@@ -17,8 +17,8 @@
     de: Card-as-a-Service-Plattform, entwickelt bei IT Sonix und Finatix.
     en: Card-as-a-service platform, developed at IT Sonix and Finatix.
     fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix.
-  languages: [Java, PHP, Typescript]
-  frameworks: [Spring-Boot, Symfony, Angular]
+  languages: [Java, PHP, TypeScript]
+  frameworks: [Spring Boot, Symfony, Angular]
   kind: professional
   period: {from: 2017-10, to: 2020-09}
   team: group
@@ -37,14 +37,14 @@
     de: Zahlungsverkehrsplattform für DATEV, als Entwickler und Architekt bei Finatix.
     en: Payment platform for DATEV, as developer and architect at Finatix.
     fr: Plateforme de paiement pour DATEV, en tant que développeur et architecte chez Finatix.
-  languages: [Java, Typescript, Python]
-  frameworks: [Spring-Boot, Angular]
+  languages: [Java, TypeScript, Python]
+  frameworks: [Spring Boot, Angular]
   tools: [AWS, Postgres, Terraform]
   kind: professional
   period: {from: 2020-10}
   team: group
   teamDetails:
-    de: Agiles Entwicklungsteam von 6-15 Personen, insg. Zusammenarbeit von 5 solche Teams aus unterschiedlichen Dienstleistern
+    de: Agiles Entwicklungsteam von 6-15 Personen, insg. Zusammenarbeit von 5 solcher Teams aus unterschiedlichen Dienstleistern
     en: Agile development team of 6-15 people, in total 5 such teams from different service providers working together
     fr: Équipe de développement agile de 6 à 15 personnes, au total 5 équipes de ce type issues de différents prestataires travaillant ensemble
 
@@ -241,7 +241,7 @@
   aiUsage: none    # TODO: check rating
   description:
     de: >
-      Beispiel mit zwei reaktiven Spring-Boot-Diensten, die eine Trace-ID über RabbitMQ
+      Beispiel mit zwei reaktiven Spring Boot-Diensten, die eine Trace-ID über RabbitMQ
       weitergeben, sodass alle Logeinträge einer Anfrage zusammengehören.
     en: >
       Example with two reactive Spring Boot services passing a trace ID over RabbitMQ,
