@@ -18,7 +18,7 @@
     en: Card-as-a-service platform, developed at IT Sonix and Finatix.
     fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix.
   languages: [Java, PHP, TypeScript]
-  frameworks: [Spring Boot, Symfony, Angular]
+  frameworks: [Spring-Boot, Symfony, Angular]
   kind: professional
   period: {from: 2017-10, to: 2020-09}
   team: group
@@ -38,7 +38,7 @@
     en: Payment platform for DATEV, as developer and architect at Finatix.
     fr: Plateforme de paiement pour DATEV, en tant que développeur et architecte chez Finatix.
   languages: [Java, TypeScript, Python]
-  frameworks: [Spring Boot, Angular]
+  frameworks: [Spring-Boot, Angular]
   tools: [AWS, Postgres, Terraform]
   kind: professional
   period: {from: 2020-10}
@@ -241,16 +241,16 @@
   aiUsage: none    # TODO: check rating
   description:
     de: >
-      Beispiel mit zwei reaktiven Spring Boot-Diensten, die eine Trace-ID über RabbitMQ
+      Beispiel mit zwei reaktiven Spring-Boot-Diensten, die eine Trace-ID über RabbitMQ
       weitergeben, sodass alle Logeinträge einer Anfrage zusammengehören.
     en: >
-      Example with two reactive Spring Boot services passing a trace ID over RabbitMQ,
+      Example with two reactive Spring-Boot services passing a trace ID over RabbitMQ,
       so that all log entries of a request belong together.
     fr: >
-      Exemple de deux services Spring Boot réactifs qui transmettent un identifiant de trace
+      Exemple de deux services Spring-Boot réactifs qui transmettent un identifiant de trace
       via RabbitMQ, pour relier toutes les entrées de log d’une requête.
   languages: [Java]
-  frameworks: [Spring Boot]
+  frameworks: [Spring-Boot]
   tools: [RabbitMQ, DynamoDB, LocalStack, Docker]
   kind: training
   period: {from: 2023-03, to: 2023-12}
@@ -274,7 +274,7 @@
       Bac à sable pour télécharger de nombreux fichiers depuis un flux d’événements lent,
       implémenté une fois en réactif et une fois en Spring MVC classique.
   languages: [Java]
-  frameworks: [Spring Boot, WebFlux]
+  frameworks: [Spring-Boot, WebFlux]
   tools: [OpenAPI]
   kind: training
   period: {from: 2024-07, to: 2024-07}
@@ -298,7 +298,7 @@
       Client et serveur avec Spring WebFlux montrant comment l’enchaînement de Flux
       fait se chevaucher des étapes de traitement lentes.
   languages: [Java]
-  frameworks: [Spring Boot, WebFlux]
+  frameworks: [Spring-Boot, WebFlux]
   kind: training
   period: {from: 2020-11, to: 2021-01}
   team: solo
