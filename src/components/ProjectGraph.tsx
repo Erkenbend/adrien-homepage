@@ -1,6 +1,6 @@
 import projects from '../data/projects.yaml'
-import {localize} from '../data/format.ts'
-import {AI_USAGE_LEVELS, COMPLEXITY_LEVELS, type AiUsage, type Complexity} from '../data/scales.ts'
+import {kindClass, localize} from '../data/format.ts'
+import {AI_USAGE_LEVELS, COMPLEXITY_LEVELS, PROJECT_KINDS, type AiUsage, type Complexity} from '../data/scales.ts'
 import type {Project} from '../data/schema.ts'
 import {closeHash, openHash, useHash} from '../hash.ts'
 import {LANGUAGE, MESSAGES} from '../i18n/language.ts'
@@ -45,6 +45,14 @@ export function ProjectGraph() {
                     ))}
                 </div>
                 <div className="graph-axis-title graph-x-title">{MESSAGES.complexity} →</div>
+                <ul className="graph-legend" aria-label={MESSAGES.kind}>
+                    {PROJECT_KINDS.map(kind => (
+                        <li key={kind} className={`kind-${kind}`}>
+                            <span className="graph-legend-swatch"/>
+                            {MESSAGES.projectKinds[kind]}
+                        </li>
+                    ))}
+                </ul>
             </div>
             <ProjectDialog project={selected} onClose={() => {
                 // Also called when the dialog closes because the hash went away, e.g. with the back button.
@@ -82,8 +90,8 @@ function Cell({complexity, aiUsage, tooltipAlign}: CellProps) {
             aria-label={`${MESSAGES.complexityLevels[complexity]} · ${MESSAGES.aiUsageLevels[aiUsage]}`}>
             {inCell.map(project => (
                 <li key={project.id}>
-                    <button type="button" className={`project-icon tooltip-${tooltipAlign}`}
-                            aria-label={localize(project.name)} aria-haspopup="dialog"
+                    <button type="button" className={`project-icon tooltip-${tooltipAlign} ${kindClass(project)}`}
+                            aria-label={iconLabel(project)} aria-haspopup="dialog"
                             onClick={() => { openHash(project.id) }}>
                         <img src={project.icon} alt="" width={44} height={44}/>
                         <span className="tooltip" aria-hidden="true">{localize(project.name)}</span>
@@ -98,4 +106,10 @@ const collator = new Intl.Collator(LANGUAGE)
 
 function byName(a: Project, b: Project): number {
     return collator.compare(localize(a.name), localize(b.name)) || a.id.localeCompare(b.id)
+}
+
+/** The kind is shown as a coloured ring around the icon, so it is part of the label too. */
+function iconLabel(project: Project): string {
+    const name = localize(project.name)
+    return project.kind ? `${name} · ${MESSAGES.projectKinds[project.kind]}` : name
 }

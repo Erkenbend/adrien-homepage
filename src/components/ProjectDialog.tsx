@@ -1,5 +1,5 @@
 import {useEffect, useRef, type MouseEvent, type ReactNode} from 'react'
-import {formatPeriod, localize} from '../data/format.ts'
+import {formatPeriod, kindClass, localize} from '../data/format.ts'
 import type {Project} from '../data/schema.ts'
 import {MESSAGES} from '../i18n/language.ts'
 import {SiteLink} from './SiteLink.tsx'
@@ -42,7 +42,7 @@ function Details({project, onClose}: {project: Project, onClose: () => void}) {
     return (
         <div className="project-dialog-content">
             <header className="project-dialog-header">
-                <img src={project.icon} alt="" width={56} height={56}/>
+                <img className={`project-dialog-icon ${kindClass(project)}`} src={project.icon} alt="" width={56} height={56}/>
                 <h3 id="project-dialog-title">{localize(project.name)}</h3>
                 <button type="button" className="project-dialog-close" aria-label={MESSAGES.close} onClick={onClose}>
                     ×

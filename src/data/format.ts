@@ -1,5 +1,5 @@
 import {LANGUAGE, MESSAGES} from '../i18n/language.ts'
-import type {Localized, Period} from './schema.ts'
+import type {Localized, Period, Project} from './schema.ts'
 
 export function localize(value: Localized): string {
     return typeof value === 'string' ? value : value[LANGUAGE]
@@ -22,4 +22,9 @@ export function formatPeriod({from, to}: Period): string {
         return formatYearMonth(from)
     }
     return `${formatYearMonth(from)} – ${to === undefined ? MESSAGES.present : formatYearMonth(to)}`
+}
+
+/** Class setting `--kind-color` for the ring around a project icon; projects without a kind get none. */
+export function kindClass(project: Project): string {
+    return project.kind ? `kind-${project.kind}` : ''
 }

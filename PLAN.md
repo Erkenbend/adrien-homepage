@@ -109,6 +109,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Überlappungen gibt es nicht: Projekte derselben Zelle stehen nebeneinander (umbrechend), nach Namen sortiert. Das ersetzt den angedachten Versatz im Kreis, weil beide Achsen ohnehin nur vier Stufen haben.
 - Jedes Projekt ist ein `<button>` (Name als `aria-label`) mit eigenem Tooltip bei Hover und Tastaturfokus; Tooltips wachsen zur Mitte hin (in der mittleren Spalte zentriert), damit sie nicht über den Rand ragen; versteckte Tooltips nehmen keinen Platz ein. Jede belegte Zelle ist eine Liste mit Stufen als `aria-label`. Ein Klick hat noch keine Wirkung (Schritt 8).
 - Die Spaltenzahl ergibt sich aus der Zahl der Komplexitätsstufen.
+- Art des Projekts als farbiger Ring um das Icon (mit schmalem Abstand in Seitenfarbe): beruflich blau, Weiterbildung orange, Hobby rosa; Legende unter dem Graph mit allen drei Arten. Projekte ohne `kind` bekommen keinen Ring. Damit die Information nicht nur an der Farbe hängt, steht die Art auch im `aria-label` des Icons („XPAY · Beruflich“) und in der Detailansicht, deren Icon denselben Ring trägt. Farben in `src/index.css` (`.kind-*`).
 - Mobil: Spalten teilen sich die Breite, Icons bleiben 44 px groß und stapeln sich in der Zelle. Eine zusätzliche Liste unter dem Graph ist deshalb nicht nötig.
 - Geprüft mit `bun run preview` und Headless-Chromium bei 1100 px und 360 px: alle 15 Projekte sichtbar; bei 360 px in allen drei Sprachen kein horizontales Scrollen, auch nicht beim Hover über jedes einzelne Icon.
 
