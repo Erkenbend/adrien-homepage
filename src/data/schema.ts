@@ -73,15 +73,20 @@ export function createSchemas(context: SchemaContext) {
     const project = z.strictObject({
         /** Stable key, later also the anchor in the URL. */
         id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'expected lowercase letters, digits and single hyphens'),
+        /** Hidden projects are still validated, but left out of the page and the bundle. */
+        visible: z.boolean().default(true),
         name: localized,
         icon: image,
         complexity: z.enum(COMPLEXITY_LEVELS),
         aiUsage: z.enum(AI_USAGE_LEVELS),
         description: localized,
-        technologies: z.array(text).default([]),
+        languages: z.array(text).default([]),
+        frameworks: z.array(text).default([]),
         kind: z.enum(PROJECT_KINDS).optional(),
         period: period.optional(),
         team: z.enum(TEAM_SIZES).optional(),
+        /** Free text about the team, e.g. its size or the own role in it. */
+        teamDetails: localized.optional(),
         githubUrl: z.url().optional(),
         websiteUrl: z.url().optional(),
     })
@@ -94,7 +99,7 @@ export function createSchemas(context: SchemaContext) {
             }
             seen.add(id)
         })
-    })
+    }).transform(entries => entries.filter(({visible}) => visible))
 
     /** One schema per file in src/data, keyed by file name without `.yaml`. */
     return {profile, projects}

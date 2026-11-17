@@ -15,6 +15,7 @@ export const fr = {
     complexity: 'Complexité',
     complexityLevels: {
         script: 'Script',
+        demo: 'Démo',
         app: 'Petite application',
         multiPart: 'Application en plusieurs parties',
         system: 'Grand système',
@@ -28,6 +29,7 @@ export const fr = {
     },
     projectKinds: {
         professional: 'Professionnel',
+        training: 'Formation continue',
         hobby: 'Loisir',
     },
     teamSizes: {

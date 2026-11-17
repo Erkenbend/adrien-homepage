@@ -13,10 +13,12 @@
 # `complexity` and `aiUsage`.
 
 - id: vocabulary-trainer    # required, unique; lowercase letters, digits and single hyphens
+  visible: true             # optional, default true; false leaves the project out of the page (still validated)
   name: {de: Vokabeltrainer, en: Vocabulary trainer, fr: Entraîneur de vocabulaire}  # required, text
   icon: /images/projects/vocabulary-trainer.svg    # required; path below public/, ideally SVG or a small WebP
   # Required, x axis of the graph, from low to high:
   #   script     a single script or command-line tool
+  #   demo       a demo or playground showing a technique, possibly with several small services
   #   app        a small application with one part
   #   multiPart  an application made of several parts, e.g. frontend, backend and infrastructure
   #   system     a large system, typically professional and developed over years
@@ -37,15 +39,23 @@
     fr: >
       Fait réviser le vocabulaire avec des fiches et répète
       plus souvent les mots difficiles.
-  technologies: [TypeScript, React, AWS CDK]    # optional list, shown in this order
-  kind: hobby                                   # optional: professional or hobby
+  languages: [TypeScript]                       # optional list, shown in this order
+  frameworks: [React, AWS CDK]                  # optional list, shown in this order
+  # Optional: professional (for a customer or employer), training (sponsored by work, but not for a
+  # customer) or hobby.
+  kind: hobby
   period: {from: 2024-02, to: 2024-05}          # optional; no `to` = still ongoing, from = to is shown once
-  team: solo                                    # optional: solo or group
+  team: group                                   # optional: solo or group
+  teamDetails:                                  # optional, text, e.g. size of the team or own role
+    de: Zu zweit, ich habe das Frontend gebaut.
+    en: Two of us, I built the frontend.
+    fr: À deux, j’ai réalisé le frontend.
   githubUrl: https://github.com/erika-mustermann/vocabulary-trainer    # optional
   websiteUrl: https://vokabeln.example.com                             # optional
 
-# A minimal entry: only the required fields.
+# A minimal entry: only the required fields, here hidden from the page.
 - id: weather-station
+  visible: false
   name: Wetterstation
   icon: /images/projects/weather-station.webp
   complexity: script

@@ -16,6 +16,7 @@ export const de = {
     complexity: 'Komplexität',
     complexityLevels: {
         script: 'Skript',
+        demo: 'Demo',
         app: 'Kleine Anwendung',
         multiPart: 'Mehrteilige Anwendung',
         system: 'Großes System',
@@ -29,6 +30,7 @@ export const de = {
     } satisfies Record<AiUsage, string>,
     projectKinds: {
         professional: 'Beruflich',
+        training: 'Weiterbildung',
         hobby: 'Hobby',
     } satisfies Record<ProjectKind, string>,
     teamSizes: {

@@ -141,8 +141,7 @@ h2 {
 
 .graph-band,
 .graph-x-labels {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  display: grid; /* columns set inline, one per complexity level */
 }
 
 .graph-band:nth-child(odd) {
@@ -224,11 +223,16 @@ h2 {
   font-size: 0.875rem;
   white-space: nowrap;
   pointer-events: none;
-  visibility: hidden;
+  display: none; /* not just invisible: a hidden tooltip must not widen the page */
 }
 
 .tooltip-start .tooltip {
   left: 0;
+}
+
+.tooltip-center .tooltip {
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .tooltip-end .tooltip {
@@ -237,5 +241,5 @@ h2 {
 
 .project-icon:hover .tooltip,
 .project-icon:focus-visible .tooltip {
-  visibility: visible;
+  display: block;
 }

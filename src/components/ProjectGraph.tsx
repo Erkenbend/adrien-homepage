@@ -4,8 +4,11 @@ import {AI_USAGE_LEVELS, COMPLEXITY_LEVELS, type AiUsage, type Complexity} from 
 import type {Project} from '../data/schema.ts'
 import {LANGUAGE, MESSAGES} from '../i18n/language.ts'
 
+/** One column per complexity level. */
+const COLUMNS = {gridTemplateColumns: `repeat(${String(COMPLEXITY_LEVELS.length)}, minmax(0, 1fr))`}
+
 /**
- * Projects on two axes with four named levels each: one column per complexity level, one band per
+ * Projects on two axes with named levels: one column per complexity level, one band per
  * AI usage level (most AI at the top). Projects sharing a cell sit side by side, sorted by name, so
  * they never overlap and the layout does not change between builds.
  */
@@ -23,16 +26,16 @@ export function ProjectGraph() {
                 <div className="graph-axis-title">↑ {MESSAGES.aiUsage}</div>
                 <div className="graph-plot">
                     {bands.map(aiUsage => (
-                        <div key={aiUsage} className="graph-band">
+                        <div key={aiUsage} className="graph-band" style={COLUMNS}>
                             <div className="graph-band-label">{MESSAGES.aiUsageLevels[aiUsage]}</div>
                             {COMPLEXITY_LEVELS.map((complexity, column) => (
                                 <Cell key={complexity} complexity={complexity} aiUsage={aiUsage}
-                                      tooltipAlign={column < COMPLEXITY_LEVELS.length / 2 ? 'start' : 'end'}/>
+                                      tooltipAlign={tooltipAlign(column)}/>
                             ))}
                         </div>
                     ))}
                 </div>
-                <div className="graph-x-labels">
+                <div className="graph-x-labels" style={COLUMNS}>
                     {COMPLEXITY_LEVELS.map(complexity => (
                         <div key={complexity}>{MESSAGES.complexityLevels[complexity]}</div>
                     ))}
@@ -46,8 +49,15 @@ export function ProjectGraph() {
 interface CellProps {
     complexity: Complexity
     aiUsage: AiUsage
-    /** Tooltips grow towards the middle of the graph, so they do not stick out of the page. */
-    tooltipAlign: 'start' | 'end'
+    tooltipAlign: TooltipAlign
+}
+
+type TooltipAlign = 'start' | 'center' | 'end'
+
+/** Tooltips grow towards the middle of the graph, so they do not stick out of the page. */
+function tooltipAlign(column: number): TooltipAlign {
+    const middle = (COMPLEXITY_LEVELS.length - 1) / 2
+    return column < middle ? 'start' : column > middle ? 'end' : 'center'
 }
 
 function Cell({complexity, aiUsage, tooltipAlign}: CellProps) {

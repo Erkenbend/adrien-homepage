@@ -8,6 +8,7 @@
 # --- Professional ---
 
 - id: xpay
+  visible: true
   name: XPAY
   icon: /images/projects/placeholder.svg
   complexity: system
@@ -16,12 +17,14 @@
     de: Card-as-a-Service-Plattform, entwickelt bei IT Sonix und Finatix.
     en: Card-as-a-service platform, developed at IT Sonix and Finatix.
     fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix.
-  technologies: [Java, PHP, Angular]
+  languages: [Java, PHP]
+  frameworks: [Angular]
   kind: professional
   period: {from: 2017-10, to: 2020-09}
   team: group
 
 - id: datev-paymentnext
+  visible: true
   name: DATEV PaymentNext
   icon: /images/projects/placeholder.svg
   complexity: system
@@ -30,7 +33,8 @@
     de: Zahlungsverkehrsplattform für DATEV, als Entwickler und Architekt bei Finatix.
     en: Payment platform for DATEV, as developer and architect at Finatix.
     fr: Plateforme de paiement pour DATEV, en tant que développeur et architecte chez Finatix.
-  technologies: [Java, Spring-Boot, AWS, Angular]
+  languages: [Java]
+  frameworks: [Spring-Boot, AWS, Angular]
   kind: professional
   period: {from: 2020-10}
   team: group
@@ -38,6 +42,7 @@
 # --- Larger hobby projects ---
 
 - id: star-battle-solver
+  visible: true
   name: Star Battle Solver
   icon: /images/projects/placeholder.svg
   complexity: multiPart
@@ -52,7 +57,7 @@
     fr: >
       Génère et résout des grilles Star Battle par des règles logiques, comme le ferait un humain,
       et explique chaque étape, dans le terminal et sur une page web interactive.
-  technologies: [Go]
+  languages: [Go]
   kind: hobby
   period: {from: 2026-11}
   team: solo
@@ -60,6 +65,7 @@
   websiteUrl: https://meow.ninasworkshop.de
 
 - id: home-dashboard
+  visible: true
   name: Home Dashboard
   icon: /images/projects/placeholder.svg
   complexity: app
@@ -74,13 +80,15 @@
     fr: >
       Écran mural pour l’entrée sur une vieille tablette : départs de tram, agenda familial
       et météo, servis par un Raspberry Pi.
-  technologies: [Python, FastAPI, HTMX, Docker, Raspberry Pi]
+  languages: [Python]
+  frameworks: [FastAPI, HTMX, Docker, Raspberry Pi]
   kind: hobby
   period: {from: 2026-11}
   team: solo
   githubUrl: https://github.com/Erkenbend/home-dashboard
 
 - id: article-trainer
+  visible: true
   name: DER oder DAS
   icon: /images/projects/placeholder.svg
   complexity: app
@@ -89,7 +97,8 @@
     de: Interaktiver Trainer für die Artikel schwieriger deutscher Substantive.
     en: Interactive trainer for the articles of tricky German nouns.
     fr: Entraîneur interactif pour les articles des noms allemands difficiles.
-  technologies: [TypeScript, React, Vite, AWS CDK]
+  languages: [TypeScript]
+  frameworks: [React, Vite, AWS CDK]
   kind: hobby
   period: {from: 2025-09}
   team: solo
@@ -97,6 +106,7 @@
   websiteUrl: https://der-oder-das.ninasworkshop.de
 
 - id: algo-competition
+  visible: true
   name: {de: Algorithmen-Wettbewerb, en: Algorithm competition, fr: Compétition d’algorithmes}
   icon: /images/projects/placeholder.svg
   complexity: app
@@ -111,13 +121,15 @@
     fr: >
       Fait s’affronter des algorithmes, sous forme d’images Docker, dans des jeux de théorie des jeux,
       quel que soit le langage ; avec des modèles pour Java, JavaScript, Python et Go.
-  technologies: [Python, Docker, Java, JavaScript, Go]
+  languages: [Python, Java, JavaScript, Go]
+  frameworks: [Docker]
   kind: hobby
   period: {from: 2024-11}
   team: solo
   githubUrl: https://github.com/awehrung/algo-competition
 
 - id: tfcoach
+  visible: true
   name: tfcoach
   icon: /images/projects/placeholder.svg
   complexity: app
@@ -132,13 +144,15 @@
     fr: >
       Linter pour du code Terraform. Contributions : traitement concurrent, nouvelles règles,
       formats de sortie (JSON, lisible, pédagogique), configuration et fichiers d’exclusion.
-  technologies: [Go, Cobra, Terraform]
+  languages: [Go]
+  frameworks: [Cobra, Terraform]
   kind: hobby
   period: {from: 2025-10, to: 2026-03}
   team: group
   githubUrl: https://github.com/Marcel2603/tfcoach
 
 - id: garden-game
+  visible: true
   name: Garden Game
   icon: /images/projects/placeholder.svg
   complexity: app
@@ -147,7 +161,8 @@
     de: Beitrag zum 14. Pirate Software Game Jam im Januar 2024, im Team entwickelt.
     en: Entry to the 14th Pirate Software Game Jam in January 2024, developed as a team.
     fr: Participation à la 14e Pirate Software Game Jam en janvier 2024, développée en équipe.
-  technologies: [GameMaker]
+  languages: [GML]
+  frameworks: [GameMaker]
   kind: hobby
   period: {from: 2024-01, to: 2024-01}
   team: group
@@ -155,6 +170,7 @@
   websiteUrl: https://djmrek.itch.io/gardengame
 
 - id: random-picker
+  visible: true
   name: Random Picker
   icon: /images/projects/placeholder.svg
   complexity: app
@@ -163,7 +179,8 @@
     de: Zieht mit einem Klick eine Zufallszahl zwischen 1 und N.
     en: Picks a random number between 1 and N with one click.
     fr: Tire un nombre au hasard entre 1 et N en un clic.
-  technologies: [TypeScript, React, Vite, AWS CDK]
+  languages: [TypeScript]
+  frameworks: [React, Vite, AWS CDK]
   kind: hobby
   period: {from: 2025-04, to: 2025-12}
   team: solo
@@ -171,6 +188,7 @@
   websiteUrl: https://randompicker.ninasworkshop.de
 
 - id: overwatch-meta-predictor
+  visible: true
   name: Overwatch Meta Predictor
   icon: /images/projects/placeholder.svg
   complexity: script
@@ -185,7 +203,8 @@
     fr: >
       Prédit la composition d’équipe la plus forte dans un jeu de type Overwatch : deux équipes
       améliorent tour à tour leurs synergies et contres jusqu’à un équilibre.
-  technologies: [Java, Maven, Python]
+  languages: [Java, Python]
+  frameworks: [Maven]
   kind: hobby
   period: {from: 2020-04, to: 2020-12}
   team: solo
@@ -194,9 +213,10 @@
 # --- Experiments and examples ---
 
 - id: reactive-rabbitmq-tracing
+  visible: true
   name: {de: Tracing über RabbitMQ, en: Tracing across RabbitMQ, fr: Traçage via RabbitMQ}
   icon: /images/projects/placeholder.svg
-  complexity: multiPart
+  complexity: demo
   aiUsage: none    # TODO: check rating
   description:
     de: >
@@ -208,16 +228,18 @@
     fr: >
       Exemple de deux services Spring Boot réactifs qui transmettent un identifiant de trace
       via RabbitMQ, pour relier toutes les entrées de log d’une requête.
-  technologies: [Java, Spring Boot, RabbitMQ, DynamoDB, LocalStack, Docker]
+  languages: [Java]
+  frameworks: [Spring Boot, RabbitMQ, DynamoDB, LocalStack, Docker]
   kind: hobby
   period: {from: 2023-03, to: 2023-12}
   team: solo
   githubUrl: https://github.com/awehrung/spring-boot-reactive-rabbitmq-tracing-example
 
 - id: files-and-streams
+  visible: true
   name: {de: Dateien und Streams, en: Files and streams, fr: Fichiers et flux}
   icon: /images/projects/placeholder.svg
-  complexity: app
+  complexity: demo
   aiUsage: none
   description:
     de: >
@@ -229,16 +251,18 @@
     fr: >
       Bac à sable pour télécharger de nombreux fichiers depuis un flux d’événements lent,
       implémenté une fois en réactif et une fois en Spring MVC classique.
-  technologies: [Java, Spring Boot, WebFlux, OpenAPI]
+  languages: [Java]
+  frameworks: [Spring Boot, WebFlux, OpenAPI]
   kind: hobby
   period: {from: 2024-07, to: 2024-07}
   team: solo
   githubUrl: https://github.com/Erkenbend/Tinkering-with-files-and-streams
 
 - id: spring-reactive-api
+  visible: true
   name: Spring Reactive API
   icon: /images/projects/placeholder.svg
-  complexity: app
+  complexity: demo
   aiUsage: none
   description:
     de: >
@@ -250,13 +274,15 @@
     fr: >
       Client et serveur avec Spring WebFlux montrant comment l’enchaînement de Flux
       fait se chevaucher des étapes de traitement lentes.
-  technologies: [Java, Spring Boot, WebFlux]
+  languages: [Java]
+  frameworks: [Spring Boot, WebFlux]
   kind: hobby
   period: {from: 2020-11, to: 2021-01}
   team: solo
   githubUrl: https://github.com/Erkenbend/spring-reactive-api
 
 - id: sudoku-solver
+  visible: true
   name: Sudoku Solver
   icon: /images/projects/placeholder.svg
   complexity: script
@@ -271,13 +297,14 @@
     fr: >
       Résout toute grille de Sudoku valide par backtracking. Réécriture en 2022 d’une version de 2016,
       avec des groupes de cases liées et un backtracking plus propre.
-  technologies: [Java]
+  languages: [Java]
   kind: hobby
   period: {from: 2022-07, to: 2022-08}
   team: solo
   githubUrl: https://github.com/Erkenbend/SudokuSolver
 
 - id: fancy-fizz-buzz
+  visible: true
   name: Fancy FizzBuzz
   icon: /images/projects/placeholder.svg
   complexity: script
@@ -286,7 +313,7 @@
     de: Absichtlich übertriebene FizzBuzz-Umsetzungen mit Koroutinen und asynchronen Warteschlangen.
     en: Deliberately over-engineered FizzBuzz implementations with coroutines and async queues.
     fr: Implémentations volontairement surdimensionnées de FizzBuzz, avec coroutines et files asynchrones.
-  technologies: [Kotlin, Python, Go]
+  languages: [Kotlin, Python, Go]
   kind: hobby
   period: {from: 2025-03, to: 2025-04}
   team: solo

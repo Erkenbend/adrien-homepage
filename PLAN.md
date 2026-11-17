@@ -17,7 +17,8 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 | Vorrendern | Vorerst nicht, reine SPA | Evtl. später für Suchmaschinen und Link-Vorschauen |
 | Gestaltung | Standardmäßig dunkel, „weniger ist mehr“ | Vorgabe des Nutzers |
 | KI-Einsatz | Vier Stufen: keine KI → wenig KI-Unterstützung → starker KI-Einsatz → vibe-coded | Gemeint ist KI beim Entwickeln, nicht KI im Produkt |
-| Komplexität | Vier benannte Stufen wie beim KI-Einsatz: Skript → kleine Anwendung → mehrteilige Anwendung → großes System | Vorgabe des Nutzers; benannte Stufen sind leichter einzuordnen und zu lesen als Zahlen |
+| Komplexität | Fünf benannte Stufen wie beim KI-Einsatz: Skript → Demo → kleine Anwendung → mehrteilige Anwendung → großes System | Vorgabe des Nutzers; benannte Stufen sind leichter einzuordnen und zu lesen als Zahlen. „Demo“ kam bei der Durchsicht der Projekte dazu, für Spielwiesen und Beispiele |
+| Art des Projekts | Beruflich, Weiterbildung (von der Arbeit getragen, aber ohne Kundenbezug), Hobby | Vorgabe des Nutzers |
 | Projekt-Icons | KI-generierte Logos, lokal im Repository | Vorgabe des Nutzers |
 | Lizenz | Wird vor dem Livegang entschieden | |
 | Graph | Eigene Komponente aus HTML/SVG, keine Chart-Bibliothek | Nur Punkte mit Icons auf zwei Achsen; eine Bibliothek brächte mehr Gewicht als Nutzen |
@@ -90,8 +91,9 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ### 6. Projektdaten (in Arbeit)
 
-- ✅ Schema `projects` in `src/data/schema.ts`, Typ `Project`: Pflichtfelder `id` (eindeutig, Kleinbuchstaben/Ziffern/Bindestriche, später Anker in der URL), `name` und `description` (Text), `icon`, `complexity`, `aiUsage`; optional `technologies` (Liste), `kind` (`professional` | `hobby`), `period` (wie im Profil: `{from, to}`, ohne `to` = laufend), `team` (`solo` | `group`), `githubUrl`, `websiteUrl`.
-- ✅ `complexity`: `script` | `app` | `multiPart` | `system`; `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen). Beide Achsen mit vier beschrifteten Stufen statt Zahlen; Beschriftungen und Achsentitel in `src/i18n/`.
+- ✅ Schema `projects` in `src/data/schema.ts`, Typ `Project`: Pflichtfelder `id` (eindeutig, Kleinbuchstaben/Ziffern/Bindestriche, später Anker in der URL), `name` und `description` (Text), `icon`, `complexity`, `aiUsage`; optional `visible` (Standard `true`), `languages` und `frameworks` (Listen), `kind` (`professional` | `training` | `hobby`), `period` (wie im Profil: `{from, to}`, ohne `to` = laufend), `team` (`solo` | `group`), `teamDetails` (Text, z. B. Größe des Teams oder eigene Rolle), `githubUrl`, `websiteUrl`.
+- ✅ `visible: false` blendet ein Projekt aus, ohne den Eintrag auszukommentieren: Es wird weiter geprüft, aber schon im Schema herausgefiltert und landet nicht im Bundle (geprüft). In `projects.yaml` steht `visible: true` ausdrücklich bei jedem Eintrag.
+- ✅ `complexity`: `script` | `demo` | `app` | `multiPart` | `system`; `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen). Beide Achsen mit beschrifteten Stufen statt Zahlen; Beschriftungen und Achsentitel in `src/i18n/`.
 - ✅ Referenzbeispiel `src/data/examples/projects.yaml` mit Erklärung jeder Stufe.
 - ✅ Geprüft: unbekannte Stufe, doppelte `id`, fehlendes Icon und ein Feld, das im Beispiel fehlt, lassen den Build fehlschlagen.
 - ✅ Entwurf `src/data/projects.yaml` aus beiden GitHub-Profilen (`Erkenbend`, `awehrung`), `tfcoach` (eigene Beiträge) sowie XPAY und DATEV PaymentNext. Weggelassen: Forks ohne nennenswerte eigene Arbeit (nur Abhängigkeits-Updates, Formatierung, Badge) und das leere `my-solid-kata`; nach Durchsicht außerdem `9gag-bot`, `php-from-scratch`, `tcp-chat-room`, `localstack-testing` und `nina-workshop`. Bis es Logos gibt, zeigen alle Icons auf `public/images/projects/placeholder.svg`.
@@ -105,9 +107,10 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - `src/components/ProjectGraph.tsx`, Abschnitt „Projekte“ (Anker `#projects`) zwischen Profil und Kontakt, mit einem Satz zur Bedeutung der Achsen.
 - Raster statt freier Koordinaten: eine Spalte je Komplexitätsstufe, ein Band je KI-Stufe (oben am meisten KI), Stufennamen je Sprache an den Spalten bzw. in den Bändern, Achsentitel mit Pfeil. Leere Stufen bleiben sichtbar, damit die Skala vollständig ist.
 - Überlappungen gibt es nicht: Projekte derselben Zelle stehen nebeneinander (umbrechend), nach Namen sortiert. Das ersetzt den angedachten Versatz im Kreis, weil beide Achsen ohnehin nur vier Stufen haben.
-- Jedes Projekt ist ein `<button>` (Name als `aria-label`) mit eigenem Tooltip bei Hover und Tastaturfokus; Tooltips wachsen zur Mitte hin, damit sie nicht über den Rand ragen. Jede belegte Zelle ist eine Liste mit Stufen als `aria-label`. Ein Klick hat noch keine Wirkung (Schritt 8).
+- Jedes Projekt ist ein `<button>` (Name als `aria-label`) mit eigenem Tooltip bei Hover und Tastaturfokus; Tooltips wachsen zur Mitte hin (in der mittleren Spalte zentriert), damit sie nicht über den Rand ragen; versteckte Tooltips nehmen keinen Platz ein. Jede belegte Zelle ist eine Liste mit Stufen als `aria-label`. Ein Klick hat noch keine Wirkung (Schritt 8).
+- Die Spaltenzahl ergibt sich aus der Zahl der Komplexitätsstufen.
 - Mobil: Spalten teilen sich die Breite, Icons bleiben 44 px groß und stapeln sich in der Zelle. Eine zusätzliche Liste unter dem Graph ist deshalb nicht nötig.
-- Geprüft mit `bun run preview` und Headless-Chromium bei 1100 px und 360 px (`/` und `/fr/`): alle 15 Projekte sichtbar, kein horizontales Scrollen, auch nicht mit Tooltip am Rand.
+- Geprüft mit `bun run preview` und Headless-Chromium bei 1100 px und 360 px: alle 15 Projekte sichtbar; bei 360 px in allen drei Sprachen kein horizontales Scrollen, auch nicht beim Hover über jedes einzelne Icon.
 
 ### 8. Detailansicht
 
