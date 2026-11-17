@@ -1,0 +1,5 @@
+# Projects shown in the graph, validated at build time against `projects` in src/data/schema.ts.
+# Every field with explanations: src/data/examples/projects.yaml
+# Icons go to public/images/projects/.
+
+[]

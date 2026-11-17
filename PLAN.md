@@ -17,6 +17,7 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 | Vorrendern | Vorerst nicht, reine SPA | Evtl. später für Suchmaschinen und Link-Vorschauen |
 | Gestaltung | Standardmäßig dunkel, „weniger ist mehr“ | Vorgabe des Nutzers |
 | KI-Einsatz | Vier Stufen: keine KI → wenig KI-Unterstützung → starker KI-Einsatz → vibe-coded | Gemeint ist KI beim Entwickeln, nicht KI im Produkt |
+| Komplexität | Vier benannte Stufen wie beim KI-Einsatz: Skript → kleine Anwendung → mehrteilige Anwendung → großes System | Vorgabe des Nutzers; benannte Stufen sind leichter einzuordnen und zu lesen als Zahlen |
 | Projekt-Icons | KI-generierte Logos, lokal im Repository | Vorgabe des Nutzers |
 | Lizenz | Wird vor dem Livegang entschieden | |
 | Graph | Eigene Komponente aus HTML/SVG, keine Chart-Bibliothek | Nur Punkte mit Icons auf zwei Achsen; eine Bibliothek brächte mehr Gewicht als Nutzen |
@@ -28,7 +29,8 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 Es gibt keinen Server: Die Seite ist statisch (S3 + CloudFront). „Beim Start laden“ heißt hier **beim Build** (`bun run build`) bzw. beim Start von `bun dev`.
 
 - Inhalte liegen als YAML in `src/data/`, Bilder unter `public/images/`.
-- Ein kleines Vite-Plugin (`build-plugins/yaml-data.ts`) lädt `src/data/*.yaml`, prüft sie gegen ein Schema und liefert sie als JS-Modul (`import profile from './data/profile.yaml'`). Beim Bearbeiten im `bun dev` lädt die Seite neu; Fehler erscheinen im Browser-Overlay.
+- Ein kleines Vite-Plugin (`build-plugins/yaml-data.ts`) lädt `src/data/*.yaml`, prüft sie gegen ein Schema und liefert sie als JS-Modul (`import profile from './data/profile.yaml'`). Beim Bearbeiten im `bun dev` lädt die Seite neu; Fehler erscheinen im Browser-Overlay. Beim Start des Builds prüft es zusätzlich alle Dateien in `src/data/`, auch solche, die noch kein Code importiert.
+- Felder mit fester Auswahl (Komplexität, KI-Einsatz, Art, Team) sind in `src/data/scales.ts` definiert, geordnet von niedrig nach hoch; ihre Beschriftungen stehen in `src/i18n/` und sind gegen diese Listen typisiert (fehlende Beschriftung → Build-Fehler).
 - Schema mit Zod in `src/data/schema.ts`; daraus werden auch die TypeScript-Typen abgeleitet (`z.infer`). Ungültige Daten, fehlende Übersetzungen oder fehlende Bilder lassen den Build fehlschlagen.
 - `yaml` und `zod` laufen nur beim Build (devDependencies) und landen nicht im Browser-Bundle.
 - Texte sind entweder ein einfacher String (gleich in allen Sprachen, z. B. Firmennamen) oder `{de, en, fr}` mit allen drei Sprachen.
@@ -86,12 +88,13 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 - Abschnitt „Kontakt“ am Ende der Seite (`src/components/Contact.tsx`, Anker `#contact`): ein Satz mit Link zum LinkedIn-Profil (URL aus `profile.yaml`), keine E-Mail-Adresse. Formulierung ohne Anrede, damit sich die Frage „du“ oder „Sie“ nicht stellt.
 
-### 6. Projektdaten
+### 6. Projektdaten (in Arbeit)
 
-- Typ `Project` mit Pflichtfeldern `id`, `name`, `icon`, `complexity`, `aiUsage`, `description` (je Sprache) und optionalen Feldern aus `grober_plan.md`: `technologies`, `kind` (`professional` | `hobby`), `year` (oder Zeitraum), `githubUrl`, `websiteUrl`, `team` (`solo` | `group`).
-- `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen); Achse mit vier beschrifteten Stufen statt Zahlen.
-- Skala für `complexity`: siehe offene Fragen.
-- Daten in `src/data/projects.yaml`, Schema in `src/data/schema.ts` (siehe „Datenhaltung“).
+- ✅ Schema `projects` in `src/data/schema.ts`, Typ `Project`: Pflichtfelder `id` (eindeutig, Kleinbuchstaben/Ziffern/Bindestriche, später Anker in der URL), `name` und `description` (Text), `icon`, `complexity`, `aiUsage`; optional `technologies` (Liste), `kind` (`professional` | `hobby`), `period` (wie im Profil: `{from, to}`, ohne `to` = laufend), `team` (`solo` | `group`), `githubUrl`, `websiteUrl`.
+- ✅ `complexity`: `script` | `app` | `multiPart` | `system`; `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen). Beide Achsen mit vier beschrifteten Stufen statt Zahlen; Beschriftungen und Achsentitel in `src/i18n/`.
+- ✅ Referenzbeispiel `src/data/examples/projects.yaml` mit Erklärung jeder Stufe; `src/data/projects.yaml` ist eine Liste, vorerst leer.
+- ✅ Geprüft: unbekannte Stufe, doppelte `id`, fehlendes Icon und ein Feld, das im Beispiel fehlt, lassen den Build fehlschlagen.
+- Offen: Projekte auswählen und bewerten, Beschreibungen, Icons.
 - Icons: KI-generierte Logos unter `public/images/projects/`, ein Bild pro Projekt (SVG oder kleines WebP); der Build prüft, dass jedes Bild existiert.
 - Fehlende optionale Felder werden in der Detailansicht einfach weggelassen.
 - Kandidaten aus `~/code` und `~/WebstormProjects`: `star-battle-solver`, `random-picker`, `article-trainer` (DER oder DAS), `home-dashboard`, `popquiz`, `snake`, `tfcoach`, `overwatch-meta-predictor`, `minecraft-overview`, `halle-appointment-watch`, `ntfy-server`, `ldap-password-change`, `KotlinFizzBuzz`, `smartcjm-api-check`, `tinkering-with-files-and-streams` – plus berufliche Projekte. Auswahl und Bewertung trifft der Nutzer; Entwürfe für Beschreibungen können aus den READMEs erstellt werden.
@@ -127,6 +130,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Skala für Komplexität:** ganze Zahlen 1–5, ebenfalls benannte Stufen oder frei? Vorschlag: benannte Stufen wie beim KI-Einsatz, z. B. Skript → kleine App → mehrteilige Anwendung → großes System.
-2. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild. Später: Projektauswahl mit Bewertungen, Logos.
-3. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
+1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild. Projekte: Auswahl mit Bewertungen, Beschreibungen, Logos.
+2. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.

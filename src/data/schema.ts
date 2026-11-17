@@ -1,5 +1,6 @@
 import {z} from 'zod'
 import type {Language} from '../i18n/languages.ts'
+import {AI_USAGE_LEVELS, COMPLEXITY_LEVELS, PROJECT_KINDS, TEAM_SIZES} from './scales.ts'
 
 // Validated at build time by build-plugins/yaml-data.ts; the app only imports the types.
 
@@ -69,8 +70,34 @@ export function createSchemas(context: SchemaContext) {
         }),
     })
 
+    const project = z.strictObject({
+        /** Stable key, later also the anchor in the URL. */
+        id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'expected lowercase letters, digits and single hyphens'),
+        name: localized,
+        icon: image,
+        complexity: z.enum(COMPLEXITY_LEVELS),
+        aiUsage: z.enum(AI_USAGE_LEVELS),
+        description: localized,
+        technologies: z.array(text).default([]),
+        kind: z.enum(PROJECT_KINDS).optional(),
+        period: period.optional(),
+        team: z.enum(TEAM_SIZES).optional(),
+        githubUrl: z.url().optional(),
+        websiteUrl: z.url().optional(),
+    })
+
+    const projects = z.array(project).superRefine((entries, context) => {
+        const seen = new Set<string>()
+        entries.forEach(({id}, index) => {
+            if (seen.has(id)) {
+                context.addIssue({code: 'custom', path: [index, 'id'], message: `duplicate id "${id}"`})
+            }
+            seen.add(id)
+        })
+    })
+
     /** One schema per file in src/data, keyed by file name without `.yaml`. */
-    return {profile}
+    return {profile, projects}
 }
 
 type Schemas = ReturnType<typeof createSchemas>
@@ -78,3 +105,4 @@ type Schemas = ReturnType<typeof createSchemas>
 export type Localized = z.infer<typeof localized>
 export type Period = z.infer<typeof period>
 export type Profile = z.infer<Schemas['profile']>
+export type Project = z.infer<Schemas['projects']>[number]

@@ -1,3 +1,5 @@
+import type {AiUsage, Complexity, ProjectKind, TeamSize} from '../data/scales.ts'
+
 // Reference dictionary: its shape defines `Messages`, the other languages must match it.
 export const de = {
     languageSwitcherLabel: 'Sprache wählen',
@@ -9,6 +11,28 @@ export const de = {
     contact: 'Kontakt',
     contactIntro: 'Am einfachsten erreichbar per Nachricht über',
     present: 'heute',
+    complexity: 'Komplexität',
+    complexityLevels: {
+        script: 'Skript',
+        app: 'Kleine Anwendung',
+        multiPart: 'Mehrteilige Anwendung',
+        system: 'Großes System',
+    } satisfies Record<Complexity, string>,
+    aiUsage: 'KI-Einsatz',
+    aiUsageLevels: {
+        none: 'Keine KI',
+        light: 'Wenig KI-Unterstützung',
+        heavy: 'Starker KI-Einsatz',
+        vibe: 'Vibe-coded',
+    } satisfies Record<AiUsage, string>,
+    projectKinds: {
+        professional: 'Beruflich',
+        hobby: 'Hobby',
+    } satisfies Record<ProjectKind, string>,
+    teamSizes: {
+        solo: 'Allein',
+        group: 'Im Team',
+    } satisfies Record<TeamSize, string>,
 }
 
 export type Messages = typeof de

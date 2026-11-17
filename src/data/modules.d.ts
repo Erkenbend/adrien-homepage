@@ -4,3 +4,8 @@ declare module '*/profile.yaml' {
     const profile: import('./schema.ts').Profile
     export default profile
 }
+
+declare module '*/projects.yaml' {
+    const projects: import('./schema.ts').Project[]
+    export default projects
+}

@@ -10,4 +10,26 @@ export const fr = {
     contact: 'Contact',
     contactIntro: 'Le plus simple pour me joindre : un message via',
     present: 'aujourd’hui',
+    complexity: 'Complexité',
+    complexityLevels: {
+        script: 'Script',
+        app: 'Petite application',
+        multiPart: 'Application en plusieurs parties',
+        system: 'Grand système',
+    },
+    aiUsage: 'Usage de l’IA',
+    aiUsageLevels: {
+        none: 'Sans IA',
+        light: 'Peu d’assistance IA',
+        heavy: 'Usage intensif de l’IA',
+        vibe: 'Vibe-codé',
+    },
+    projectKinds: {
+        professional: 'Professionnel',
+        hobby: 'Loisir',
+    },
+    teamSizes: {
+        solo: 'En solo',
+        group: 'En équipe',
+    },
 } satisfies Messages
