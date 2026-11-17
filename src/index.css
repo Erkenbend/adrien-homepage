@@ -3,9 +3,13 @@
   line-height: 1.5;
   font-weight: 400;
 
+  --text: rgba(255, 255, 255, 0.87);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  --background: #1b1b1f;
+
   color-scheme: dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #1b1b1f;
+  color: var(--text);
+  background-color: var(--background);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,8 +23,29 @@ body {
   min-height: 100vh;
 }
 
-main {
+header, main {
   max-width: 60rem;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 1rem;
+}
+
+header {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.language-switcher {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+}
+
+.language-switcher a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+.language-switcher a:hover,
+.language-switcher a[aria-current="page"] {
+  color: var(--text);
 }

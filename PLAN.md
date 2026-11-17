@@ -47,12 +47,15 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Geprüft mit `bun run build` und danach `bunx cdk synth` in `infrastructure/` (ohne AWS-Zugang möglich).
 - **Noch nicht deployt:** Vorerst wird nur lokal getestet (`bun dev`); das erste `cdk deploy` erst nach Rücksprache.
 
-### 3. I18n-Grundlage
+### 3. I18n-Grundlage ✅
 
-- `Messages`-Typ aus `de.ts` ableiten, `en.ts` und `fr.ts` müssen ihn erfüllen.
-- Die Sprache ergibt sich allein aus dem Pfad (`/`, `/en/`, `/fr/`), ohne Router-Bibliothek; unbekannte Pfade zeigen die deutsche Seite.
-- Keine automatische Weiterleitung nach Browsersprache: Ein geteilter Link zeigt immer dieselbe Sprache. Höchstens ein dezenter Hinweis „This page is also available in English“, wenn die Browsersprache abweicht (optional).
-- Sprachumschalter in der Kopfzeile als normale Links; `<html lang>` und `document.title` folgen der Sprache.
+- `src/i18n/de.ts` ist das Referenz-Wörterbuch, `Messages = typeof de`; `en.ts` und `fr.ts` nutzen `satisfies Messages` (fehlende oder überzählige Texte → Build-Fehler).
+- `src/i18n/language.ts`: Sprache allein aus dem ersten Pfadsegment (`/`, `/en/`, `/fr/`, auch ohne Schrägstrich am Ende), ohne Router-Bibliothek; unbekannte Pfade zeigen die deutsche Seite. Sprache und Texte stehen beim Laden fest (`LANGUAGE`, `MESSAGES`), weil ein Sprachwechsel ein normaler Seitenaufruf ist.
+- `main.tsx` setzt `<html lang>` und `document.title`.
+- Sprachumschalter `DE · EN · FR` oben rechts als normale Links (`hreflang`, aktuelle Sprache mit `aria-current`).
+- Keine automatische Weiterleitung nach Browsersprache: Ein geteilter Link zeigt immer dieselbe Sprache. Ein Hinweis „This page is also available in English“ bei abweichender Browsersprache bleibt optional.
+- Lokal geprüft mit `bun run build` + `bun run preview` und Headless-Chromium für `/`, `/en/`, `/fr/`, `/en` und einen unbekannten Pfad. In Produktion übernimmt CloudFront die Rückfalllösung (403/404 → `index.html`).
+- Platzhaltertext „Seite im Aufbau“, bis echte Inhalte kommen.
 
 ### 4. Profil
 
@@ -83,7 +86,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 ### 8. Detailansicht
 
 - Klick auf ein Icon öffnet einen Dialog (`<dialog>`, schließt mit Esc und Klick daneben) mit allen vorhandenen Feldern und Links.
-- Optional: ausgewähltes Projekt in der URL (`#projekt-id`), damit sich Details verlinken lassen.
+- Optional: ausgewähltes Projekt in der URL (`#projekt-id`), damit sich Details verlinken lassen; dann sollte der Sprachumschalter den Hash mitnehmen.
 
 ### 9. CI-Pipeline (sobald es das Upstream-Repository gibt)
 
