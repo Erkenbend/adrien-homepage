@@ -21,6 +21,9 @@ const period = z.strictObject({
     to: yearMonth.optional(),
 }).refine(({from, to}) => to === undefined || from <= to, 'from must not be after to')
 
+/** Ids of page sections; a project id is used as URL hash too, so it must differ from them. */
+const SECTION_ANCHORS = ['projects', 'contact']
+
 export interface SchemaContext {
     /** Whether a URL path like `/images/profile.webp` exists in `public/`. */
     imageExists: (urlPath: string) => boolean
@@ -72,7 +75,11 @@ export function createSchemas(context: SchemaContext) {
 
     const project = z.strictObject({
         /** Stable key, later also the anchor in the URL. */
-        id: z.string().regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'expected lowercase letters, digits and single hyphens'),
+        id: z.string()
+            .regex(/^[a-z0-9]+(-[a-z0-9]+)*$/, 'expected lowercase letters, digits and single hyphens')
+            .refine(id => !SECTION_ANCHORS.includes(id), {
+                error: issue => `id "${String(issue.input)}" is taken by a section anchor of the page`,
+            }),
         /** Hidden projects are still validated, but left out of the page and the bundle. */
         visible: z.boolean().default(true),
         name: localized,

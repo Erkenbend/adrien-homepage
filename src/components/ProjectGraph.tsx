@@ -2,7 +2,9 @@ import projects from '../data/projects.yaml'
 import {localize} from '../data/format.ts'
 import {AI_USAGE_LEVELS, COMPLEXITY_LEVELS, type AiUsage, type Complexity} from '../data/scales.ts'
 import type {Project} from '../data/schema.ts'
+import {closeHash, openHash, useHash} from '../hash.ts'
 import {LANGUAGE, MESSAGES} from '../i18n/language.ts'
+import {ProjectDialog} from './ProjectDialog.tsx'
 
 /** One column per complexity level. */
 const COLUMNS = {gridTemplateColumns: `repeat(${String(COMPLEXITY_LEVELS.length)}, minmax(0, 1fr))`}
@@ -13,9 +15,11 @@ const COLUMNS = {gridTemplateColumns: `repeat(${String(COMPLEXITY_LEVELS.length)
  * they never overlap and the layout does not change between builds.
  */
 export function ProjectGraph() {
+    const hash = useHash()
     if (projects.length === 0) {
         return null
     }
+    const selected = projects.find(project => project.id === hash)
     const bands = [...AI_USAGE_LEVELS].reverse()
 
     return (
@@ -42,6 +46,12 @@ export function ProjectGraph() {
                 </div>
                 <div className="graph-axis-title graph-x-title">{MESSAGES.complexity} →</div>
             </div>
+            <ProjectDialog project={selected} onClose={() => {
+                // Also called when the dialog closes because the hash went away, e.g. with the back button.
+                if (selected) {
+                    closeHash()
+                }
+            }}/>
         </section>
     )
 }
@@ -73,7 +83,8 @@ function Cell({complexity, aiUsage, tooltipAlign}: CellProps) {
             {inCell.map(project => (
                 <li key={project.id}>
                     <button type="button" className={`project-icon tooltip-${tooltipAlign}`}
-                            aria-label={localize(project.name)}>
+                            aria-label={localize(project.name)} aria-haspopup="dialog"
+                            onClick={() => { openHash(project.id) }}>
                         <img src={project.icon} alt="" width={44} height={44}/>
                         <span className="tooltip" aria-hidden="true">{localize(project.name)}</span>
                     </button>

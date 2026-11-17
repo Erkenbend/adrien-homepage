@@ -112,10 +112,14 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Mobil: Spalten teilen sich die Breite, Icons bleiben 44 px groß und stapeln sich in der Zelle. Eine zusätzliche Liste unter dem Graph ist deshalb nicht nötig.
 - Geprüft mit `bun run preview` und Headless-Chromium bei 1100 px und 360 px: alle 15 Projekte sichtbar; bei 360 px in allen drei Sprachen kein horizontales Scrollen, auch nicht beim Hover über jedes einzelne Icon.
 
-### 8. Detailansicht
+### 8. Detailansicht ✅
 
-- Klick auf ein Icon öffnet einen Dialog (`<dialog>`, schließt mit Esc und Klick daneben) mit allen vorhandenen Feldern und Links.
-- Optional: ausgewähltes Projekt in der URL (`#projekt-id`), damit sich Details verlinken lassen; dann sollte der Sprachumschalter den Hash mitnehmen.
+- `src/components/ProjectDialog.tsx`: Klick auf ein Icon öffnet einen modalen `<dialog>` mit Icon, Name, Beschreibung und allen vorhandenen Angaben (Komplexität, KI-Einsatz, Zeitraum, Art, Team mit Details, Programmiersprachen, Frameworks, Werkzeuge) sowie Links zu Webseite und GitHub. Fehlende Angaben entfallen. Mobil stehen Bezeichnung und Wert untereinander.
+- Schließen mit Esc, Schließen-Knopf, Klick neben den Dialog oder Zurück im Browser (auf dem Handy also mit der Zurück-Geste). Der Fokus kehrt zum Icon zurück; die Seite dahinter scrollt nicht mit.
+- Das geöffnete Projekt steht im Hash (`/en/#tfcoach`), Details lassen sich also verlinken. `src/hash.ts`: Öffnen legt einen History-Eintrag an, Schließen geht ihn zurück, sodass sich beim wiederholten Öffnen keine Einträge ansammeln; bei einem direkt aufgerufenen Link wird der Hash beim Schließen ersetzt. Unbekannte Hashes öffnen nichts.
+- Projekt-`id`s dürfen nicht wie Abschnittsanker heißen (`projects`, `contact`), sonst Build-Fehler.
+- Der Sprachumschalter übernimmt den Hash (z. B. `#contact`). Für ein offenes Projekt greift das nicht, weil die Seite hinter dem modalen Dialog nicht bedienbar ist; ein Sprachwechsel mit offenem Projekt bliebe eine Idee für später.
+- Geprüft mit Headless-Chromium: alle Wege zum Öffnen und Schließen samt URL, Fokus und History, direkter Link, unbekannter Hash, Darstellung bei 1100 px und 360 px.
 
 ### 9. CI-Pipeline (sobald es das Upstream-Repository gibt)
 
