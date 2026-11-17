@@ -15,14 +15,17 @@ location:
 photo: /images/profile-placeholder.svg
 about:
   de: >
-    Ich entwickle und konzipiere Software. Technischer Schwerpunkt Java/Spring-Boot Backend. Bisher
-    im Bereich Zahlungsverkehr (EBICS) und Finanzdienstleistung tätig. Franzose, seit 2016 in Deutschland.
+    Ich entwickle und konzipiere Software. Technischer Schwerpunkt Java Spring-Boot Backend.
+    Bisher im Bereich Zahlungsverkehr (EBICS) und Finanzdienstleistung tätig.
+    Franzose, seit 2016 in Deutschland.
   en: >
-    I develop and design software, with a technical focus on Java/Spring Boot backends.
-    So far I have worked in payments (EBICS) and financial services. French, living in Germany since 2016.
+    I develop and design software, with a technical focus on Java Spring-Boot backends.
+    So far I have worked in payments (EBICS) and financial services.
+    French, living in Germany since 2016.
   fr: >
-    Je développe et conçois des logiciels, avec un accent technique sur le backend Java/Spring Boot.
-    J'ai travaillé jusqu'ici dans le paiement (EBICS) et les services financiers. Français, installé en Allemagne depuis 2016.
+    Je développe et conçois des logiciels, avec un accent technique sur le backend Java Spring-Boot.
+    J'ai travaillé jusqu'ici dans le paiement (EBICS) et les services financiers.
+    Français, installé en Allemagne depuis 2016.
 
 experience:
   - role: {de: Entwickler & Architekt, en: Developer & Architect, fr: Développeur & architecte}
