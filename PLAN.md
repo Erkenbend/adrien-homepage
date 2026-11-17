@@ -34,15 +34,18 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - `LICENSE` erst vor dem Livegang.
 - Ergebnis: dunkle Seite mit Namen als Überschrift.
 
-### 2. Infrastruktur
+### 2. Infrastruktur ✅
 
-- `infrastructure/` aus `article-trainer` übernehmen (`bin/`, `lib/`, `cdk.json`, `package.json` ohne Jest, `tsconfig.json`); gleicher AWS-Account wie die anderen Projekte.
+- `infrastructure/` aus `article-trainer` übernommen (`bin/`, `lib/`, `cdk.json`, `package.json` ohne Jest, `tsconfig.json`); gleicher AWS-Account wie die anderen Projekte.
 - Anpassungen im Stack:
-  - `ROOT_DOMAIN_NAME = 'wehrung.online'`, Hosted Zone über ID importieren (wie bisher) – ID wird benötigt.
-  - Zertifikat nur für `adrien.wehrung.online` statt Wildcard der Root-Domain (bisher legt jeder Stack ein eigenes Wildcard-Zertifikat an; hier reicht der eine Name).
-  - Bucket-Name nach dem bisherigen Muster `adrien-homepage-bucket-<account>-us-east-1`.
-  - Stack-Name `AdrienHomepageInfrastructureStack`, Construct-IDs mit Präfix `AdrienHomepage`.
-- Prüfen mit `bunx cdk synth`; erstes `cdk deploy` von Hand, sobald Hosted-Zone-ID und Zugangsdaten feststehen.
+  - `ROOT_DOMAIN_NAME = 'wehrung.online'`, Hosted Zone `Z0438866UI516D0PAKH6` über ID importiert.
+  - Zertifikat nur für `adrien.wehrung.online` statt Wildcard der Root-Domain.
+  - Bucket `adrien-homepage-bucket-919713414705-us-east-1`.
+  - Stack `AdrienHomepageInfrastructureStack` mit fester Region `us-east-1` (Zertifikate für CloudFront müssen dort liegen), Construct-IDs mit Präfix `AdrienHomepage`.
+  - Aktuelle CDK-Versionen (`aws-cdk-lib` 2.277.0, `aws-cdk` 2.1148.1) statt der Stände von `article-trainer`.
+- ESLint prüft `infrastructure/` mit (`cdk.out` ausgenommen).
+- Geprüft mit `bun run build` und danach `bunx cdk synth` in `infrastructure/` (ohne AWS-Zugang möglich).
+- **Noch nicht deployt:** Vorerst wird nur lokal getestet (`bun dev`); das erste `cdk deploy` erst nach Rücksprache.
 
 ### 3. CI-Pipeline
 
@@ -101,7 +104,6 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Hosted Zone:** ID der Hosted Zone `wehrung.online` (kommt später; blockiert nur `cdk deploy`, nicht `cdk synth`).
-2. **Skala für Komplexität:** ganze Zahlen 1–5, ebenfalls benannte Stufen oder frei? Vorschlag: benannte Stufen wie beim KI-Einsatz, z. B. Skript → kleine App → mehrteilige Anwendung → großes System.
-3. **Inhalte** (kommen später): Profilbild, Eckdaten, SimpleLogin-Alias, Projektauswahl mit Bewertungen, Logos.
-4. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
+1. **Skala für Komplexität:** ganze Zahlen 1–5, ebenfalls benannte Stufen oder frei? Vorschlag: benannte Stufen wie beim KI-Einsatz, z. B. Skript → kleine App → mehrteilige Anwendung → großes System.
+2. **Inhalte** (kommen später): Profilbild, Eckdaten, SimpleLogin-Alias, Projektauswahl mit Bewertungen, Logos.
+3. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.

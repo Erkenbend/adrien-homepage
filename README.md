@@ -11,3 +11,5 @@ Entwicklungsserver: `bun dev`
 Lint: `bun lint`
 
 Produktions-Build nach `dist/`: `bun run build`
+
+Infrastruktur (AWS CDK): siehe [infrastructure/README.md](infrastructure/README.md)
