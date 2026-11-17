@@ -15,7 +15,8 @@
 - id: vocabulary-trainer    # required, unique; lowercase letters, digits and single hyphens
   visible: true             # optional, default true; false leaves the project out of the page (still validated)
   name: {de: Vokabeltrainer, en: Vocabulary trainer, fr: Entraîneur de vocabulaire}  # required, text
-  icon: /images/projects/vocabulary-trainer.svg    # required; path below public/, ideally SVG or a small WebP
+  icon: /images/projects/vocabulary-trainer.svg    # required; path below public/, ideally a square SVG or a small WebP;
+                                                   # /images/projects/placeholder.svg until there is one
   # Required, x axis of the graph, from low to high:
   #   script     a single script or command-line tool
   #   demo       a demo or playground showing a technique, possibly with several small services

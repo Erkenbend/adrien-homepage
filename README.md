@@ -38,3 +38,11 @@ Logos der Organisationen (`public/images/logos/`), jeweils unverändert von der 
 | `mlu.png` | Favicon von [uni-halle.de](https://www.uni-halle.de) (`favicon-192x192.png`) |
 | `telecom-nancy.png` | Favicon von [telecomnancy.univ-lorraine.fr](https://telecomnancy.univ-lorraine.fr) (`apple-icon-180x180.png`) |
 | `isaqb.svg` | wie `src/assets/sites/isaqb.svg` |
+
+Projekt-Icons (`public/images/projects/`):
+
+| Datei | Quelle |
+|---|---|
+| `xpay.svg` | XPAY-Logo von der Referenzseite [finatix.de/referenzen/xpay](https://www.finatix.de/referenzen/xpay) (`Logo_gray_xPay.png`), zugeschnitten, verkleinert und auf eine weiße Kachel gesetzt |
+| `datev-paymentnext.svg` | [File:Datev.svg](https://commons.wikimedia.org/wiki/File:Datev.svg) von Wikimedia Commons (gemeinfrei als einfaches Schriftbild, Marke der DATEV eG), auf eine weiße Kachel gesetzt |
+| alle anderen | eigene Zeichnungen (mit Claude erstellt), gleiche Lizenz wie das Repository |

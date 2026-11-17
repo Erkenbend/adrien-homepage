@@ -19,7 +19,7 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 | KI-Einsatz | Vier Stufen: keine KI → wenig KI-Unterstützung → starker KI-Einsatz → vibe-coded | Gemeint ist KI beim Entwickeln, nicht KI im Produkt |
 | Komplexität | Fünf benannte Stufen wie beim KI-Einsatz: Skript → Demo → kleine Anwendung → mehrteilige Anwendung → großes System | Vorgabe des Nutzers; benannte Stufen sind leichter einzuordnen und zu lesen als Zahlen. „Demo“ kam bei der Durchsicht der Projekte dazu, für Spielwiesen und Beispiele |
 | Art des Projekts | Beruflich, Weiterbildung (von der Arbeit getragen, aber ohne Kundenbezug), Hobby | Vorgabe des Nutzers |
-| Projekt-Icons | KI-generierte Logos, lokal im Repository | Vorgabe des Nutzers |
+| Projekt-Icons | Hobby- und Weiterbildungsprojekte: eigene, von Claude gezeichnete SVG-Icons; berufliche Projekte: Logo von XPAY bzw. DATEV; alles lokal im Repository | Vorgabe des Nutzers; die SVGs sind klein, scharf in jeder Größe und frei von fremden Rechten |
 | Lizenz | Wird vor dem Livegang entschieden | |
 | Graph | Eigene Komponente aus HTML/SVG, keine Chart-Bibliothek | Nur Punkte mit Icons auf zwei Achsen; eine Bibliothek brächte mehr Gewicht als Nutzen |
 | Inhalte (Profil, Projekte) | YAML-Dateien in `src/data/` (`profile.yaml`, später `projects.yaml`), getrennt vom Code | Inhalte ohne TSX pflegen; siehe „Datenhaltung“ |
@@ -96,9 +96,9 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - ✅ `complexity`: `script` | `demo` | `app` | `multiPart` | `system`; `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen). Beide Achsen mit beschrifteten Stufen statt Zahlen; Beschriftungen und Achsentitel in `src/i18n/`.
 - ✅ Referenzbeispiel `src/data/examples/projects.yaml` mit Erklärung jeder Stufe.
 - ✅ Geprüft: unbekannte Stufe, doppelte `id`, fehlendes Icon und ein Feld, das im Beispiel fehlt, lassen den Build fehlschlagen.
-- ✅ Entwurf `src/data/projects.yaml` aus beiden GitHub-Profilen (`Erkenbend`, `awehrung`), `tfcoach` (eigene Beiträge) sowie XPAY und DATEV PaymentNext. Weggelassen: Forks ohne nennenswerte eigene Arbeit (nur Abhängigkeits-Updates, Formatierung, Badge) und das leere `my-solid-kata`; nach Durchsicht außerdem `9gag-bot`, `php-from-scratch`, `tcp-chat-room`, `localstack-testing` und `nina-workshop`. Bis es Logos gibt, zeigen alle Icons auf `public/images/projects/placeholder.svg`.
-- Offen: mit `TODO` markierte Angaben vervollständigt der Nutzer selbst; Logos.
-- Icons: KI-generierte Logos unter `public/images/projects/`, ein Bild pro Projekt (SVG oder kleines WebP); der Build prüft, dass jedes Bild existiert.
+- ✅ Entwurf `src/data/projects.yaml` aus beiden GitHub-Profilen (`Erkenbend`, `awehrung`), `tfcoach` (eigene Beiträge) sowie XPAY und DATEV PaymentNext. Weggelassen: Forks ohne nennenswerte eigene Arbeit (nur Abhängigkeits-Updates, Formatierung, Badge) und das leere `my-solid-kata`; nach Durchsicht außerdem `9gag-bot`, `php-from-scratch`, `tcp-chat-room`, `localstack-testing` und `nina-workshop`.
+- Offen: mit `TODO` markierte Angaben vervollständigt der Nutzer selbst.
+- Icons: ein Bild pro Projekt unter `public/images/projects/` (SVG oder kleines WebP, quadratisch), Pflichtfeld; der Build prüft, dass jedes Bild existiert. Siehe Schritt 9.
 - Fehlende optionale Felder werden in der Detailansicht einfach weggelassen.
 - Kandidaten aus `~/code` und `~/WebstormProjects`: `star-battle-solver`, `random-picker`, `article-trainer` (DER oder DAS), `home-dashboard`, `popquiz`, `snake`, `tfcoach`, `overwatch-meta-predictor`, `minecraft-overview`, `halle-appointment-watch`, `ntfy-server`, `ldap-password-change`, `KotlinFizzBuzz`, `smartcjm-api-check`, `tinkering-with-files-and-streams` – plus berufliche Projekte. Auswahl und Bewertung trifft der Nutzer; Entwürfe für Beschreibungen können aus den READMEs erstellt werden.
 
@@ -121,11 +121,14 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Der Sprachumschalter übernimmt den Hash (z. B. `#contact`). Für ein offenes Projekt greift das nicht, weil die Seite hinter dem modalen Dialog nicht bedienbar ist; ein Sprachwechsel mit offenem Projekt bliebe eine Idee für später.
 - Geprüft mit Headless-Chromium: alle Wege zum Öffnen und Schließen samt URL, Fokus und History, direkter Link, unbekannter Hash, Darstellung bei 1100 px und 360 px.
 
-### 9. Icons und Logos (in Arbeit)
+### 9. Icons und Logos ✅
 
 - ✅ **Links mit Icons:** `links` in `profile.yaml` ist eine Liste beliebiger URLs, `contact` die URL für den Kontakt-Abschnitt. `src/sites.ts` erkennt bekannte Seiten am Hostnamen (auch Subdomains) und zeigt Logo und Namen: GitHub (bei Profil-URLs mit Benutzername, bei Repositorys ohne), LinkedIn, iSAQB. Unbekannte Seiten bekommen ein allgemeines Link-Icon und den Hostnamen (bei Projekten „Webseite“). Eine weitere Seite ist ein Eintrag in `SITES`. Gilt für Profil-Links, Kontakt und die Links in der Projekt-Detailansicht.
 - Die Site-Icons liegen in `src/assets/sites/` und werden importiert, damit ein fehlendes Icon den Build abbricht.
 - ✅ **Logos der Organisationen:** optionales Feld `logo` bei Werdegang, Ausbildung und Zertifikaten (Bilder unter `public/images/logos/`). Angezeigt links neben dem Eintrag auf einer weißen Kachel, weil die meisten Logos für helle Hintergründe gemacht sind. Hat ein Eintrag einer Liste ein Logo, lassen alle Einträge dieser Liste Platz dafür. Quadratische Varianten (Signet oder Favicon) statt Schriftzügen, die in der kleinen Kachel unlesbar wären. Das Lycée Clemenceau hat kein eigenes Logo im Netz, das Abitur keine Institution: beide ohne Logo.
+- ✅ **Projekt-Icons:** jedes Projekt zeigt auf `public/images/projects/<id>.svg`; `placeholder.svg` bleibt für neue Projekte ohne Icon. Alle Icons 64 × 64 mit abgerundeter Kachel, damit der Graph einheitlich wirkt:
+  - Hobby und Weiterbildung: eigene Motive auf dunkler, farbiger Kachel, ohne fremde Marken (kein Terraform-, RabbitMQ- oder Overwatch-Logo): Star-Battle-Raster mit Sternen, Tablet mit Uhr/Sonne/Abfahrten, „DER“/„DAS“ in den üblichen Artikelfarben, zwei Container im Duell, Trillerpfeife mit Haken (tfcoach), Pixel-Pflänzchen, Würfel, Waage zwischen zwei Teams, zwei Dienste mit Warteschlange und Trace-Faden, Dokumente aus einem Datenstrom, versetzte, überlappende Verarbeitungsschritte, Sudoku-Block, sprudelndes Glas mit Biene (Fizz/Buzz).
+  - XPAY und DATEV PaymentNext: Firmenlogo auf weißer Kachel, wie die Logos der Organisationen.
 - ✅ **Flaggen bei Sprachen:** optionales Feld `flag` mit einem Flaggen-Emoji (🇫🇷, 🇩🇪, 🇬🇧), vom Schema geprüft; für Screenreader ausgeblendet, weil der Name daneben steht. Hinweis: Windows hat keine Flaggen-Emojis, Browser dort zeigen stattdessen die zwei Buchstaben (z. B. „FR“).
 
 ### 10. CI-Pipeline (sobald es das Upstream-Repository gibt)
@@ -147,5 +150,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild. Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer), Logos.
+1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild. Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
 2. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.

@@ -1,16 +1,16 @@
 # Projects shown in the graph, validated at build time against `projects` in src/data/schema.ts.
 # Every field with explanations: src/data/examples/projects.yaml
-# Icons go to public/images/projects/.
+# Icons go to public/images/projects/, sources in README.md; placeholder.svg stands in for a missing one.
 #
 # Draft from the GitHub profiles Erkenbend and awehrung, tfcoach and the professional projects.
-# Ratings marked TODO are guesses; until the logos exist, all icons point to a placeholder.
+# Ratings marked TODO are guesses.
 
 # --- Professional ---
 
 - id: xpay
   visible: true
   name: XPAY
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/xpay.svg
   complexity: system
   aiUsage: none
   description:
@@ -30,7 +30,7 @@
 - id: datev-paymentnext
   visible: true
   name: DATEV PaymentNext
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/datev-paymentnext.svg
   complexity: system
   aiUsage: light    # maybe revisit this to "heavy" in 2027
   description:
@@ -53,7 +53,7 @@
 - id: star-battle-solver
   visible: true
   name: Star Battle Solver
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/star-battle-solver.svg
   complexity: multiPart
   aiUsage: vibe
   description:
@@ -76,7 +76,7 @@
 - id: home-dashboard
   visible: true
   name: Home Dashboard
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/home-dashboard.svg
   complexity: app
   aiUsage: vibe
   description:
@@ -100,7 +100,7 @@
 - id: article-trainer
   visible: true
   name: DER oder DAS
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/article-trainer.svg
   complexity: app
   aiUsage: none
   description:
@@ -119,7 +119,7 @@
 - id: algo-competition
   visible: true
   name: {de: Algorithmen-Wettbewerb, en: Algorithm competition, fr: Compétition d’algorithmes}
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/algo-competition.svg
   complexity: app
   aiUsage: light
   description:
@@ -142,7 +142,7 @@
 - id: tfcoach
   visible: true
   name: tfcoach
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/tfcoach.svg
   complexity: app
   aiUsage: none
   description:
@@ -170,7 +170,7 @@
 - id: garden-game
   visible: true
   name: Garden Game
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/garden-game.svg
   complexity: app
   aiUsage: none
   description:
@@ -192,7 +192,7 @@
 - id: random-picker
   visible: true
   name: Random Picker
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/random-picker.svg
   complexity: app
   aiUsage: none
   description:
@@ -211,7 +211,7 @@
 - id: overwatch-meta-predictor
   visible: true
   name: Overwatch Meta Predictor
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/overwatch-meta-predictor.svg
   complexity: script
   aiUsage: none
   description:
@@ -236,7 +236,7 @@
 - id: reactive-rabbitmq-tracing
   visible: true
   name: {de: Tracing über RabbitMQ, en: Tracing across RabbitMQ, fr: Traçage via RabbitMQ}
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/reactive-rabbitmq-tracing.svg
   complexity: demo
   aiUsage: none    # TODO: check rating
   description:
@@ -260,7 +260,7 @@
 - id: files-and-streams
   visible: true
   name: {de: Dateien und Streams, en: Files and streams, fr: Fichiers et flux}
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/files-and-streams.svg
   complexity: demo
   aiUsage: none
   description:
@@ -284,7 +284,7 @@
 - id: spring-reactive-api
   visible: true
   name: Spring Reactive API
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/spring-reactive-api.svg
   complexity: demo
   aiUsage: none
   description:
@@ -307,7 +307,7 @@
 - id: sudoku-solver
   visible: true
   name: Sudoku Solver
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/sudoku-solver.svg
   complexity: script
   aiUsage: none
   description:
@@ -329,7 +329,7 @@
 - id: fancy-fizz-buzz
   visible: true
   name: Fancy FizzBuzz
-  icon: /images/projects/placeholder.svg
+  icon: /images/projects/fancy-fizz-buzz.svg
   complexity: script
   aiUsage: none
   description:
