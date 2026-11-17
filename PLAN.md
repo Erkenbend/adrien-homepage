@@ -154,5 +154,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Inhalte:** Profil ausgefüllt, es fehlen nur das Profilbild sowie Bild und Text des Easter Eggs (bis dahin Platzhalter `public/images/profile-placeholder.svg` und `profile-shadow-placeholder.svg`, in `profile.yaml` mit `TODO` markiert). Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
+1. **Inhalte:** Profil ausgefüllt, es fehlen nur das Profilbild und das Bild des Easter Eggs (bis dahin Platzhalter `public/images/profile-placeholder.svg` und `profile-shadow-placeholder.svg`, in `profile.yaml` mit `TODO` markiert). Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
 2. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.

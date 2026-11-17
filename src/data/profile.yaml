@@ -29,11 +29,22 @@ about:
 # Easter egg, shown while the mouse is over the photo.
 # TODO: replace with a real photo, then delete profile-shadow-placeholder.svg
 shadowPhoto: /images/profile-shadow-placeholder.svg
-# TODO: write the alternative introduction
 shadowAbout:
-  de: Platzhalter für den alternativen Text.
-  en: Placeholder for the alternative text.
-  fr: Texte alternatif à venir.
+  de: >
+    Ich schreibe gerne Software, und manchmal bekomme ich dafür Geld.
+    Für mich liegt der Spaß an Softwareentwicklung darin, die Freiheit zu haben,
+    seine Ideen umzusetzen, auch wenn sie albern sind.
+    Wer weiß, vielleicht lernt man etwas dabei?
+  en: >
+    I like writing software, and sometimes I get paid for it.
+    For me, the fun of software development lies in the freedom
+    to bring your ideas to life, even the silly ones.
+    Who knows, maybe you'll learn something along the way?
+  fr: >
+    J'aime bien programmer, et parfois on me paie pour ça.
+    Pour moi, le plaisir du développement, c'est la liberté
+    de mettre ses idées en pratique, même si elles ne sont pas très sérieuses.
+    Qui sait, peut-être qu'on apprendra quelque chose au passage ?
 
 experience:
   - role: {de: Entwickler & Architekt, en: Developer & Architect, fr: Développeur & architecte}
