@@ -49,3 +49,69 @@ header {
 .language-switcher a[aria-current="page"] {
   color: var(--text);
 }
+
+a {
+  color: var(--text);
+  text-underline-offset: 0.2em;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.25rem;
+  line-height: 1.2;
+}
+
+h2 {
+  margin: 2.5rem 0 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.muted {
+  color: var(--text-muted);
+}
+
+.profile-intro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.profile-intro p {
+  margin: 0.25rem 0 0;
+}
+
+.headline {
+  font-size: 1.125rem;
+}
+
+.profile-photo {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.profile-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.timeline {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.timeline li + li {
+  margin-top: 1rem;
+}
+
+.timeline p {
+  margin: 0.25rem 0 0;
+}

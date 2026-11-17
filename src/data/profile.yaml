@@ -1,0 +1,55 @@
+# Profile data, validated at build time against `profile` in src/data/schema.ts.
+#
+# Texts: either one string for all languages, or {de, en, fr}.
+# Periods: from/to as YYYY or YYYY-MM; without `to` the period lasts until today.
+# photo: path below public/, e.g. /images/profile.webp (optional).
+#
+# TODO: replace all placeholders with the real content.
+
+name: Adrien Wehrung
+headline:
+  de: Position (Platzhalter)
+  en: Position (placeholder)
+  fr: Poste (exemple)
+location:
+  de: Ort (Platzhalter)
+  en: Location (placeholder)
+  fr: Lieu (exemple)
+about:
+  de: Kurzvorstellung (Platzhalter)
+  en: Short introduction (placeholder)
+  fr: Courte présentation (exemple)
+
+experience:
+  - role:
+      de: Aktuelle Rolle (Platzhalter)
+      en: Current role (placeholder)
+      fr: Poste actuel (exemple)
+    organization: Firma A
+    period: {from: 2021-03}
+  - role:
+      de: Frühere Rolle (Platzhalter)
+      en: Previous role (placeholder)
+      fr: Poste précédent (exemple)
+    organization: Firma B
+    period: {from: 2017-09, to: 2021-02}
+
+education:
+  - degree:
+      de: Abschluss (Platzhalter)
+      en: Degree (placeholder)
+      fr: Diplôme (exemple)
+    institution: Hochschule
+    period: {from: 2012, to: 2017}
+
+languages:
+  - name: {de: Deutsch, en: German, fr: Allemand}
+    level: {de: Platzhalter, en: placeholder, fr: exemple}
+  - name: {de: Englisch, en: English, fr: Anglais}
+    level: {de: Platzhalter, en: placeholder, fr: exemple}
+  - name: {de: Französisch, en: French, fr: Français}
+    level: {de: Platzhalter, en: placeholder, fr: exemple}
+
+links:
+  linkedin: https://www.linkedin.com/in/placeholder
+  github: https://github.com/Erkenbend

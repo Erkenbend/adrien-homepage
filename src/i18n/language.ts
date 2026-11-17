@@ -1,11 +1,9 @@
 import {de, type Messages} from './de.ts'
 import {en} from './en.ts'
 import {fr} from './fr.ts'
+import {DEFAULT_LANGUAGE, LANGUAGES, type Language} from './languages.ts'
 
-export const LANGUAGES = ['de', 'en', 'fr'] as const
-export type Language = typeof LANGUAGES[number]
-
-export const DEFAULT_LANGUAGE: Language = 'de'
+export {LANGUAGES, type Language}
 
 const DICTIONARIES: Record<Language, Messages> = {de, en, fr}
 

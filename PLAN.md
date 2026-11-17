@@ -70,12 +70,16 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Lokal geprüft mit `bun run build` + `bun run preview` und Headless-Chromium für `/`, `/en/`, `/fr/`, `/en` und einen unbekannten Pfad. In Produktion übernimmt CloudFront die Rückfalllösung (403/404 → `index.html`).
 - Platzhaltertext „Seite im Aufbau“, bis echte Inhalte kommen.
 
-### 4. Datenhaltung und Profil
+### 4. Datenhaltung und Profil ✅
 
-- Vite-Plugin, Zod-Schema und Typen wie unter „Datenhaltung“ beschrieben.
-- `src/data/profile.yaml` mit Eckdaten analog zum LinkedIn-Profil: Name, Position, Ort, Kurzvorstellung, Werdegang (Stationen mit Zeitraum), Ausbildung, Sprachen, Links (LinkedIn, GitHub), optional Profilbild (`public/images/`, WebP/AVIF in passender Größe).
-- Bis die echten Inhalte kommen: deutlich erkennbare Platzhalter. Inhalte liefert der Nutzer, sie werden nicht automatisch von LinkedIn geholt.
-- Zeiträume als `JJJJ` oder `JJJJ-MM`, Anzeige je Sprache über `Intl.DateTimeFormat`; ohne Ende = „heute“.
+- `build-plugins/yaml-data.ts`: lädt `src/data/<name>.yaml`, prüft gegen das Schema `<name>` aus `src/data/schema.ts` und liefert ein JS-Modul. Ohne passendes Schema, bei YAML-Syntaxfehlern oder ungültigen Daten bricht der Build mit Pfad und Grund ab (geprüft: fehlende Übersetzung, ungültiger Monat, fehlendes Bild).
+- `src/data/schema.ts`: `createSchemas({imageExists})` (die Bildprüfung kommt vom Plugin, damit das Schema ohne Node-APIs auskommt); Typen `Profile`, `Localized`, `Period` per `z.infer`. `src/data/modules.d.ts` typisiert `import … from '*/profile.yaml'`.
+- `src/i18n/languages.ts` enthält die Sprachliste ohne Browser-Globals, weil das Schema sie beim Build braucht.
+- `tsconfig.app.json` ohne Node-Typen (`"types": []`), `tsconfig.node.json` mit Node-Typen und `build-plugins/`.
+- `src/data/profile.yaml` mit Platzhaltern: Name, Position, Ort, Kurzvorstellung, Werdegang, Ausbildung, Sprachen, Links (LinkedIn, GitHub), optional `photo` (Pfad unter `public/`, z. B. `/images/profile.webp`). Leere Abschnitte werden nicht angezeigt.
+- Zeiträume als `JJJJ` oder `JJJJ-MM`, Anzeige je Sprache über `Intl.DateTimeFormat` (z. B. „Sept. 2017 – Feb. 2021“, „mars 2021 – aujourd’hui“).
+- Der Seitentitel ist der Name aus `profile.yaml`.
+- `zod` und `yaml` landen nicht im Browser-Bundle (geprüft).
 
 ### 5. Kontakt
 

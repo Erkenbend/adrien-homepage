@@ -12,4 +12,6 @@ Lint: `bun lint`
 
 Produktions-Build nach `dist/`: `bun run build`
 
+Inhalte (Profil, später Projekte): YAML-Dateien in `src/data/`, beim Build gegen `src/data/schema.ts` geprüft; Bilder unter `public/images/`
+
 Infrastruktur (AWS CDK): siehe [infrastructure/README.md](infrastructure/README.md)

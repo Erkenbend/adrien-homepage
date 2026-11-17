@@ -1,5 +1,5 @@
 import {LanguageSwitcher} from './components/LanguageSwitcher.tsx'
-import {MESSAGES} from './i18n/language.ts'
+import {Profile} from './components/Profile.tsx'
 
 function App() {
     return (
@@ -8,8 +8,7 @@ function App() {
                 <LanguageSwitcher/>
             </header>
             <main>
-                <h1>Adrien Wehrung</h1>
-                <p>{MESSAGES.underConstruction}</p>
+                <Profile/>
             </main>
         </>
     )
