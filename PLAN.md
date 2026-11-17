@@ -26,12 +26,13 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 
 Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eigenen Commit.
 
-### 1. Grundgerüst
+### 1. Grundgerüst ✅
 
-- Vite-Projekt (React + TS) mit Bun anlegen; `package.json`, `tsconfig*.json`, `vite.config.ts`, `eslint.config.js`, `.gitignore` nach dem Vorbild von `article-trainer`.
-- `README.md` im Stil der anderen Projekte (Kurzbeschreibung, Link, Befehle, Quellen der Grafiken).
-- `LICENSE`: erst vor dem Livegang.
-- Ergebnis: leere Seite mit Titel läuft mit `bun dev`.
+- Vite-Projekt (React + TS) mit Bun; `package.json`, `tsconfig*.json`, `eslint.config.js`, `.gitignore` aus `article-trainer`.
+- Abweichungen: `bun lint` prüft das ganze Repository (`eslint .`) statt nur `src`; kein `BUILD_TIMESTAMP`; `infrastructure/tsconfig.json` kommt erst mit Schritt 2 in die ESLint-Konfiguration.
+- `README.md` im Stil der anderen Projekte; Quellen der Grafiken kommen dazu, sobald es welche gibt.
+- `LICENSE` erst vor dem Livegang.
+- Ergebnis: dunkle Seite mit Namen als Überschrift.
 
 ### 2. Infrastruktur
 
