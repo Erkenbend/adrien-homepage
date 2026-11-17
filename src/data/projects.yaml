@@ -17,11 +17,15 @@
     de: Card-as-a-Service-Plattform, entwickelt bei IT Sonix und Finatix.
     en: Card-as-a-service platform, developed at IT Sonix and Finatix.
     fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix.
-  languages: [Java, PHP]
-  frameworks: [Angular]
+  languages: [Java, PHP, Typescript]
+  frameworks: [Spring-Boot, Symfony, Angular]
   kind: professional
   period: {from: 2017-10, to: 2020-09}
   team: group
+  teamDetails:
+    de: Agiles Entwicklungsteam von 8-12 Personen
+    en: Agile development team of 8-12 people
+    fr: Équipe de développement agile de 8 à 12 personnes
 
 - id: datev-paymentnext
   visible: true
@@ -33,12 +37,16 @@
     de: Zahlungsverkehrsplattform für DATEV, als Entwickler und Architekt bei Finatix.
     en: Payment platform for DATEV, as developer and architect at Finatix.
     fr: Plateforme de paiement pour DATEV, en tant que développeur et architecte chez Finatix.
-  languages: [Java]
+  languages: [Java, Typescript, Python]
   frameworks: [Spring-Boot, Angular]
-  tools: [AWS]
+  tools: [AWS, Postgres, Terraform]
   kind: professional
   period: {from: 2020-10}
   team: group
+  teamDetails:
+    de: Agiles Entwicklungsteam von 6-15 Personen, insg. Zusammenarbeit von 5 solche Teams aus unterschiedlichen Dienstleistern
+    en: Agile development team of 6-15 people, in total 5 such teams from different service providers working together
+    fr: Équipe de développement agile de 6 à 15 personnes, au total 5 équipes de ce type issues de différents prestataires travaillant ensemble
 
 # --- Larger hobby projects ---
 
@@ -126,7 +134,7 @@
       quel que soit le langage ; avec des modèles pour Java, JavaScript, Python et Go.
   languages: [Python, Java, JavaScript, Go]
   tools: [Docker]
-  kind: hobby
+  kind: training
   period: {from: 2024-11}
   team: solo
   githubUrl: https://github.com/awehrung/algo-competition
@@ -153,6 +161,10 @@
   kind: hobby
   period: {from: 2025-10, to: 2026-03}
   team: group
+  teamDetails:
+    de: Unterstützung von einem Freund bei seinem Hobbyprojekt
+    en: Helping a friend with his hobby project
+    fr: Aide à un ami pour son projet personnel
   githubUrl: https://github.com/Marcel2603/tfcoach
 
 - id: garden-game
@@ -170,6 +182,10 @@
   kind: hobby
   period: {from: 2024-01, to: 2024-01}
   team: group
+  teamDetails:
+    de: Hackathon als Entwickler in einem Team von 6 Personen
+    en: Hackathon, as a developer in a team of 6 people
+    fr: Hackathon, en tant que développeur dans une équipe de 6 personnes
   githubUrl: https://github.com/Erkenbend/GardenGame
   websiteUrl: https://djmrek.itch.io/gardengame
 
@@ -236,7 +252,7 @@
   languages: [Java]
   frameworks: [Spring Boot]
   tools: [RabbitMQ, DynamoDB, LocalStack, Docker]
-  kind: hobby
+  kind: training
   period: {from: 2023-03, to: 2023-12}
   team: solo
   githubUrl: https://github.com/awehrung/spring-boot-reactive-rabbitmq-tracing-example
@@ -260,7 +276,7 @@
   languages: [Java]
   frameworks: [Spring Boot, WebFlux]
   tools: [OpenAPI]
-  kind: hobby
+  kind: training
   period: {from: 2024-07, to: 2024-07}
   team: solo
   githubUrl: https://github.com/Erkenbend/Tinkering-with-files-and-streams
@@ -283,7 +299,7 @@
       fait se chevaucher des étapes de traitement lentes.
   languages: [Java]
   frameworks: [Spring Boot, WebFlux]
-  kind: hobby
+  kind: training
   period: {from: 2020-11, to: 2021-01}
   team: solo
   githubUrl: https://github.com/Erkenbend/spring-reactive-api
@@ -321,7 +337,7 @@
     en: Deliberately over-engineered FizzBuzz implementations with coroutines and async queues.
     fr: Implémentations volontairement surdimensionnées de FizzBuzz, avec coroutines et files asynchrones.
   languages: [Kotlin, Python, Go]
-  kind: hobby
+  kind: training
   period: {from: 2025-03, to: 2025-04}
   team: solo
   githubUrl: https://github.com/awehrung/fancy-fizz-buzz
