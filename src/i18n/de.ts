@@ -3,6 +3,8 @@ export const de = {
     languageSwitcherLabel: 'Sprache wählen',
     experience: 'Werdegang',
     education: 'Ausbildung',
+    certificates: 'Zertifikate',
+    validUntil: 'gültig bis',
     languages: 'Sprachen',
     present: 'heute',
 }

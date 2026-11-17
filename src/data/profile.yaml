@@ -2,6 +2,7 @@
 #
 # Texts: either one string for all languages, or {de, en, fr}.
 # Periods: from/to as YYYY or YYYY-MM; without `to` the period lasts until today.
+# certificates: issued/validUntil as YYYY or YYYY-MM, validUntil and url optional.
 # photo: path below public/, e.g. /images/profile.webp (optional).
 #
 # TODO: replace all placeholders with the real content.
@@ -42,6 +43,16 @@ education:
     institution: Hochschule
     period: {from: 2012, to: 2017}
 
+certificates:
+  - name:
+      de: Zertifikat (Platzhalter)
+      en: Certificate (placeholder)
+      fr: Certificat (exemple)
+    issuer: Aussteller
+    issued: 2023-05
+    validUntil: 2026-05
+    url: https://example.com/credential
+
 languages:
   - name: {de: Deutsch, en: German, fr: Allemand}
     level: {de: Platzhalter, en: placeholder, fr: exemple}
@@ -52,4 +63,6 @@ languages:
 
 links:
   linkedin: https://www.linkedin.com/in/placeholder
-  github: https://github.com/Erkenbend
+  github:
+    - https://github.com/Erkenbend
+    - https://github.com/awehrung

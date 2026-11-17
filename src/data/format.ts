@@ -8,7 +8,7 @@ export function localize(value: Localized): string {
 const monthFormat = new Intl.DateTimeFormat(LANGUAGE, {month: 'short', year: 'numeric', timeZone: 'UTC'})
 
 /** `YYYY` stays as is, `YYYY-MM` becomes e.g. "März 2021". */
-function formatYearMonth(value: string): string {
+export function formatYearMonth(value: string): string {
     const match = /^(\d{4})-(\d{2})$/.exec(value)
     if (match === null) {
         return value

@@ -1,5 +1,5 @@
 import profile from '../data/profile.yaml'
-import {formatPeriod, localize} from '../data/format.ts'
+import {formatPeriod, formatYearMonth, localize} from '../data/format.ts'
 import {MESSAGES} from '../i18n/language.ts'
 
 export function Profile() {
@@ -13,7 +13,9 @@ export function Profile() {
                     {profile.location && <p className="muted">{localize(profile.location)}</p>}
                     <p className="profile-links">
                         <a href={profile.links.linkedin}>LinkedIn</a>
-                        {profile.links.github && <a href={profile.links.github}>GitHub</a>}
+                        {profile.links.github.map(url => (
+                            <a key={url} href={url}>GitHub ({githubUser(url)})</a>
+                        ))}
                     </p>
                 </div>
             </section>
@@ -52,6 +54,25 @@ export function Profile() {
                 </section>
             )}
 
+            {profile.certificates.length > 0 && (
+                <section>
+                    <h2>{MESSAGES.certificates}</h2>
+                    <ul className="timeline">
+                        {profile.certificates.map(entry => (
+                            <li key={`${localize(entry.name)}-${entry.issued}`}>
+                                <strong>
+                                    {entry.url ? <a href={entry.url}>{localize(entry.name)}</a> : localize(entry.name)}
+                                </strong> · {entry.issuer}
+                                <div className="muted">
+                                    {formatYearMonth(entry.issued)}
+                                    {entry.validUntil && <> · {MESSAGES.validUntil} {formatYearMonth(entry.validUntil)}</>}
+                                </div>
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            )}
+
             {profile.languages.length > 0 && (
                 <section>
                     <h2>{MESSAGES.languages}</h2>
@@ -66,4 +87,9 @@ export function Profile() {
             )}
         </>
     )
+}
+
+/** `https://github.com/<user>` → `<user>`, to tell several GitHub profiles apart. */
+function githubUser(url: string): string {
+    return new URL(url).pathname.split('/').find(Boolean) ?? url
 }

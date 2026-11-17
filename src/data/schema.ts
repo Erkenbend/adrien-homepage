@@ -50,13 +50,22 @@ export function createSchemas(context: SchemaContext) {
             institution: text,
             period,
         })).default([]),
+        certificates: z.array(z.strictObject({
+            name: localized,
+            issuer: text,
+            issued: yearMonth,
+            /** Last month of validity, if the certificate expires. */
+            validUntil: yearMonth.optional(),
+            url: z.url().optional(),
+        }).refine(({issued, validUntil}) => validUntil === undefined || issued <= validUntil,
+            'issued must not be after validUntil')).default([]),
         languages: z.array(z.strictObject({
             name: localized,
             level: localized,
         })).default([]),
         links: z.strictObject({
             linkedin: z.url(),
-            github: z.url().optional(),
+            github: z.array(z.url()).default([]),
         }),
     })
 
