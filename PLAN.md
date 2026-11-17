@@ -94,8 +94,8 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - ✅ `complexity`: `script` | `app` | `multiPart` | `system`; `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen). Beide Achsen mit vier beschrifteten Stufen statt Zahlen; Beschriftungen und Achsentitel in `src/i18n/`.
 - ✅ Referenzbeispiel `src/data/examples/projects.yaml` mit Erklärung jeder Stufe.
 - ✅ Geprüft: unbekannte Stufe, doppelte `id`, fehlendes Icon und ein Feld, das im Beispiel fehlt, lassen den Build fehlschlagen.
-- ✅ Entwurf `src/data/projects.yaml` aus beiden GitHub-Profilen (`Erkenbend`, `awehrung`), `tfcoach` (eigene Beiträge) sowie XPAY und DATEV PaymentNext. Weggelassen: Forks ohne nennenswerte eigene Arbeit (nur Abhängigkeits-Updates, Formatierung, Badge) und das leere `my-solid-kata`. Bis es Logos gibt, zeigen alle Icons auf `public/images/projects/placeholder.svg`.
-- Offen: Auswahl und Bewertungen durch den Nutzer prüfen (geschätzte Werte mit `TODO` markiert), Technologien der beruflichen Projekte, Logos.
+- ✅ Entwurf `src/data/projects.yaml` aus beiden GitHub-Profilen (`Erkenbend`, `awehrung`), `tfcoach` (eigene Beiträge) sowie XPAY und DATEV PaymentNext. Weggelassen: Forks ohne nennenswerte eigene Arbeit (nur Abhängigkeits-Updates, Formatierung, Badge) und das leere `my-solid-kata`; nach Durchsicht außerdem `9gag-bot`, `php-from-scratch`, `tcp-chat-room`, `localstack-testing` und `nina-workshop`. Bis es Logos gibt, zeigen alle Icons auf `public/images/projects/placeholder.svg`.
+- Offen: mit `TODO` markierte Angaben vervollständigt der Nutzer selbst; Logos.
 - Icons: KI-generierte Logos unter `public/images/projects/`, ein Bild pro Projekt (SVG oder kleines WebP); der Build prüft, dass jedes Bild existiert.
 - Fehlende optionale Felder werden in der Detailansicht einfach weggelassen.
 - Kandidaten aus `~/code` und `~/WebstormProjects`: `star-battle-solver`, `random-picker`, `article-trainer` (DER oder DAS), `home-dashboard`, `popquiz`, `snake`, `tfcoach`, `overwatch-meta-predictor`, `minecraft-overview`, `halle-appointment-watch`, `ntfy-server`, `ldap-password-change`, `KotlinFizzBuzz`, `smartcjm-api-check`, `tinkering-with-files-and-streams` – plus berufliche Projekte. Auswahl und Bewertung trifft der Nutzer; Entwürfe für Beschreibungen können aus den READMEs erstellt werden.
@@ -131,5 +131,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild. Projekte: Entwurf prüfen (Auswahl, mit `TODO` markierte Bewertungen), Logos.
+1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild. Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer), Logos.
 2. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
