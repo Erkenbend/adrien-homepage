@@ -1,5 +1,376 @@
 # Projects shown in the graph, validated at build time against `projects` in src/data/schema.ts.
 # Every field with explanations: src/data/examples/projects.yaml
 # Icons go to public/images/projects/.
+#
+# Draft from the GitHub profiles Erkenbend and awehrung, tfcoach and the professional projects.
+# Ratings marked TODO are guesses; until the logos exist, all icons point to a placeholder.
 
-[]
+# --- Professional ---
+
+- id: xpay
+  name: XPAY
+  icon: /images/projects/placeholder.svg
+  complexity: system
+  aiUsage: none
+  description:
+    de: Card-as-a-Service-Plattform, entwickelt bei IT Sonix und Finatix.
+    en: Card-as-a-service platform, developed at IT Sonix and Finatix.
+    fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix.
+  # TODO: technologies
+  kind: professional
+  period: {from: 2017-10, to: 2020-09}
+  team: group
+
+- id: datev-paymentnext
+  name: DATEV PaymentNext
+  icon: /images/projects/placeholder.svg
+  complexity: system
+  aiUsage: light    # TODO: check rating
+  description:    # TODO: what the platform does, own role
+    de: Zahlungsverkehrsplattform für DATEV, als Entwickler und Architekt bei Finatix.
+    en: Payment platform for DATEV, as developer and architect at Finatix.
+    fr: Plateforme de paiement pour DATEV, en tant que développeur et architecte chez Finatix.
+  # TODO: technologies
+  kind: professional
+  period: {from: 2020-10}
+  team: group
+
+# --- Larger hobby projects ---
+
+- id: star-battle-solver
+  name: Star Battle Solver
+  icon: /images/projects/placeholder.svg
+  complexity: multiPart
+  aiUsage: vibe
+  description:
+    de: >
+      Erzeugt und löst Star-Battle-Puzzles mit logischen Regeln, so wie ein Mensch es täte,
+      und erklärt jeden Schritt, im Terminal und auf einer interaktiven Webseite.
+    en: >
+      Generates and solves Star Battle puzzles with logical rules, the way a human would,
+      and explains every step, in the terminal and on an interactive web page.
+    fr: >
+      Génère et résout des grilles Star Battle par des règles logiques, comme le ferait un humain,
+      et explique chaque étape, dans le terminal et sur une page web interactive.
+  technologies: [Go]
+  kind: hobby
+  period: {from: 2026-11}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/star-battle-solver
+  websiteUrl: https://meow.ninasworkshop.de
+
+- id: home-dashboard
+  name: Home Dashboard
+  icon: /images/projects/placeholder.svg
+  complexity: multiPart
+  aiUsage: vibe
+  description:
+    de: >
+      Wandanzeige für den Flur auf einem alten Tablet: Straßenbahn-Abfahrten, Familienkalender
+      und Wetter, ausgeliefert von einem Raspberry Pi.
+    en: >
+      Wall display for the hallway on an old tablet: tram departures, family calendar
+      and weather, served by a Raspberry Pi.
+    fr: >
+      Écran mural pour l’entrée sur une vieille tablette : départs de tram, agenda familial
+      et météo, servis par un Raspberry Pi.
+  technologies: [Python, FastAPI, HTMX, Docker, Raspberry Pi]
+  kind: hobby
+  period: {from: 2026-11}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/home-dashboard
+
+- id: article-trainer
+  name: DER oder DAS
+  icon: /images/projects/placeholder.svg
+  complexity: multiPart
+  aiUsage: light    # TODO: check rating
+  description:
+    de: Interaktiver Trainer für die Artikel schwieriger deutscher Substantive.
+    en: Interactive trainer for the articles of tricky German nouns.
+    fr: Entraîneur interactif pour les articles des noms allemands difficiles.
+  technologies: [TypeScript, React, Vite, AWS CDK]
+  kind: hobby
+  period: {from: 2025-09}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/article-trainer
+  websiteUrl: https://der-oder-das.ninasworkshop.de
+
+- id: algo-competition
+  name: {de: Algorithmen-Wettbewerb, en: Algorithm competition, fr: Compétition d’algorithmes}
+  icon: /images/projects/placeholder.svg
+  complexity: multiPart
+  aiUsage: light    # TODO: check rating
+  description:
+    de: >
+      Lässt Algorithmen als Docker-Images in spieltheoretischen Spielen gegeneinander antreten,
+      unabhängig von der Programmiersprache; mit Vorlagen für Java, JavaScript, Python und Go.
+    en: >
+      Lets algorithms packaged as Docker images compete in game-theory games, regardless of
+      programming language; with templates for Java, JavaScript, Python and Go.
+    fr: >
+      Fait s’affronter des algorithmes, sous forme d’images Docker, dans des jeux de théorie des jeux,
+      quel que soit le langage ; avec des modèles pour Java, JavaScript, Python et Go.
+  technologies: [Python, Docker, Java, JavaScript, Go]
+  # TODO: kind
+  period: {from: 2024-11}
+  team: solo
+  githubUrl: https://github.com/awehrung/algo-competition
+
+- id: tfcoach
+  name: tfcoach
+  icon: /images/projects/placeholder.svg
+  complexity: app
+  aiUsage: light    # TODO: check rating
+  description:
+    de: >
+      Linter für Terraform-Code. Beiträge: nebenläufige Verarbeitung, neue Regeln,
+      Ausgabeformate (JSON, lesbar, lehrreich), Konfiguration und Ignorier-Dateien.
+    en: >
+      Linter for Terraform code. Contributions: concurrent processing, new rules,
+      output formats (JSON, pretty, educational), configuration and ignore files.
+    fr: >
+      Linter pour du code Terraform. Contributions : traitement concurrent, nouvelles règles,
+      formats de sortie (JSON, lisible, pédagogique), configuration et fichiers d’exclusion.
+  technologies: [Go, Cobra, Terraform]
+  kind: hobby
+  period: {from: 2025-10, to: 2026-03}
+  team: group
+  githubUrl: https://github.com/Marcel2603/tfcoach
+
+- id: garden-game
+  name: Garden Game
+  icon: /images/projects/placeholder.svg
+  complexity: app
+  aiUsage: none    # TODO: check rating
+  description:
+    de: Beitrag zum 14. Pirate Software Game Jam im Januar 2024, im Team entwickelt.
+    en: Entry to the 14th Pirate Software Game Jam in January 2024, developed as a team.
+    fr: Participation à la 14e Pirate Software Game Jam en janvier 2024, développée en équipe.
+  technologies: [GameMaker]
+  kind: hobby
+  period: {from: 2024-01, to: 2024-01}
+  team: group
+  githubUrl: https://github.com/Erkenbend/GardenGame
+  websiteUrl: https://djmrek.itch.io/gardengame
+
+- id: random-picker
+  name: Random Picker
+  icon: /images/projects/placeholder.svg
+  complexity: app
+  aiUsage: light    # TODO: check rating
+  description:
+    de: Zieht mit einem Klick eine Zufallszahl zwischen 1 und N.
+    en: Picks a random number between 1 and N with one click.
+    fr: Tire un nombre au hasard entre 1 et N en un clic.
+  technologies: [TypeScript, React, Vite, AWS CDK]
+  kind: hobby
+  period: {from: 2025-04, to: 2025-12}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/random-picker
+  websiteUrl: https://randompicker.ninasworkshop.de
+
+- id: overwatch-meta-predictor
+  name: Overwatch Meta Predictor
+  icon: /images/projects/placeholder.svg
+  complexity: app
+  aiUsage: none
+  description:
+    de: >
+      Sagt die stärkste Teamzusammenstellung in einem Overwatch-ähnlichen Spiel voraus: Zwei Teams
+      verbessern abwechselnd ihre Synergien und Konter, bis ein Gleichgewicht erreicht ist.
+    en: >
+      Predicts the strongest team composition in an Overwatch-like game: two teams take turns
+      improving their synergies and counters until they reach an equilibrium.
+    fr: >
+      Prédit la composition d’équipe la plus forte dans un jeu de type Overwatch : deux équipes
+      améliorent tour à tour leurs synergies et contres jusqu’à un équilibre.
+  technologies: [Java, Maven, Python]
+  kind: hobby
+  period: {from: 2020-04, to: 2020-12}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/overwatch-meta-predictor
+
+# --- Experiments and examples ---
+
+- id: reactive-rabbitmq-tracing
+  name: {de: Tracing über RabbitMQ, en: Tracing across RabbitMQ, fr: Traçage via RabbitMQ}
+  icon: /images/projects/placeholder.svg
+  complexity: multiPart
+  aiUsage: none    # TODO: check rating
+  description:
+    de: >
+      Beispiel mit zwei reaktiven Spring-Boot-Diensten, die eine Trace-ID über RabbitMQ
+      weitergeben, sodass alle Logeinträge einer Anfrage zusammengehören.
+    en: >
+      Example with two reactive Spring Boot services passing a trace ID over RabbitMQ,
+      so that all log entries of a request belong together.
+    fr: >
+      Exemple de deux services Spring Boot réactifs qui transmettent un identifiant de trace
+      via RabbitMQ, pour relier toutes les entrées de log d’une requête.
+  technologies: [Java, Spring Boot, RabbitMQ, DynamoDB, LocalStack, Docker]
+  # TODO: kind
+  period: {from: 2023-03, to: 2023-12}
+  team: solo
+  githubUrl: https://github.com/awehrung/spring-boot-reactive-rabbitmq-tracing-example
+
+- id: files-and-streams
+  name: {de: Dateien und Streams, en: Files and streams, fr: Fichiers et flux}
+  icon: /images/projects/placeholder.svg
+  complexity: multiPart
+  aiUsage: none    # TODO: check rating
+  description:
+    de: >
+      Spielwiese zum Herunterladen vieler Dateien aus einem langsamen Event-Stream,
+      einmal reaktiv und einmal klassisch mit Spring MVC umgesetzt.
+    en: >
+      Playground for downloading many files from a slow event stream,
+      implemented once reactively and once classically with Spring MVC.
+    fr: >
+      Bac à sable pour télécharger de nombreux fichiers depuis un flux d’événements lent,
+      implémenté une fois en réactif et une fois en Spring MVC classique.
+  technologies: [Java, Spring Boot, WebFlux, OpenAPI]
+  kind: hobby
+  period: {from: 2024-07, to: 2024-07}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/Tinkering-with-files-and-streams
+
+- id: spring-reactive-api
+  name: Spring Reactive API
+  icon: /images/projects/placeholder.svg
+  complexity: app
+  aiUsage: none
+  description:
+    de: >
+      Client und Server mit Spring WebFlux, die zeigen, wie verkettete Flux-Aufrufe
+      langsame Verarbeitungsschritte überlappen lassen.
+    en: >
+      Client and server with Spring WebFlux showing how chained Flux calls
+      let slow processing steps overlap.
+    fr: >
+      Client et serveur avec Spring WebFlux montrant comment l’enchaînement de Flux
+      fait se chevaucher des étapes de traitement lentes.
+  technologies: [Java, Spring Boot, WebFlux]
+  kind: hobby
+  period: {from: 2020-11, to: 2021-01}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/spring-reactive-api
+
+- id: sudoku-solver
+  name: Sudoku Solver
+  icon: /images/projects/placeholder.svg
+  complexity: script
+  aiUsage: none
+  description:
+    de: >
+      Löst jedes gültige Sudoku mit Backtracking. Neufassung 2022 einer Version von 2016,
+      mit Gruppen verbundener Felder und saubererem Backtracking.
+    en: >
+      Solves any valid Sudoku with backtracking. A 2022 rewrite of a 2016 version,
+      using groups of tied cells and cleaner backtracking.
+    fr: >
+      Résout toute grille de Sudoku valide par backtracking. Réécriture en 2022 d’une version de 2016,
+      avec des groupes de cases liées et un backtracking plus propre.
+  technologies: [Java]
+  kind: hobby
+  period: {from: 2022-07, to: 2022-08}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/SudokuSolver
+
+- id: fancy-fizz-buzz
+  name: Fancy FizzBuzz
+  icon: /images/projects/placeholder.svg
+  complexity: script
+  aiUsage: none    # TODO: check rating
+  description:
+    de: Absichtlich übertriebene FizzBuzz-Umsetzungen mit Koroutinen und asynchronen Warteschlangen.
+    en: Deliberately over-engineered FizzBuzz implementations with coroutines and async queues.
+    fr: Implémentations volontairement surdimensionnées de FizzBuzz, avec coroutines et files asynchrones.
+  technologies: [Kotlin, Python, Go]
+  # TODO: kind
+  period: {from: 2025-03, to: 2025-04}
+  team: solo
+  githubUrl: https://github.com/awehrung/fancy-fizz-buzz
+
+- id: rip-bot
+  name: RIP Bot
+  icon: /images/projects/placeholder.svg
+  complexity: script
+  aiUsage: none
+  description:
+    de: >
+      An einem Abend gebaut: sucht in Wikipedia die bekannteste Person mit Todestag am
+      heutigen Datum, macht daraus ein Meme und postet es auf Twitter.
+    en: >
+      Built in one evening: finds the best-known person who died on today’s date on
+      Wikipedia, turns it into a meme and posts it on Twitter.
+    fr: >
+      Réalisé en une soirée : cherche sur Wikipédia la personne la plus connue décédée
+      à la date du jour, en fait un mème et le publie sur Twitter.
+  technologies: [Python, Selenium, Twitter API]
+  kind: hobby
+  period: {from: 2020-11, to: 2020-11}
+  team: group
+  githubUrl: https://github.com/Erkenbend/9gag-bot
+
+# --- Small, candidates to drop ---
+
+- id: tcp-chat-room
+  name: TCP Chat Room
+  icon: /images/projects/placeholder.svg
+  complexity: script
+  aiUsage: none
+  description:
+    de: Einfacher Chatraum über TCP im Terminal, mit Admin-Befehlen; nach einem Tutorial von NeuralNine.
+    en: Simple terminal chat room over TCP with admin commands; based on a NeuralNine tutorial.
+    fr: Salon de discussion simple en TCP dans le terminal, avec commandes d’administration ; d’après un tutoriel de NeuralNine.
+  technologies: [Python]
+  kind: hobby
+  period: {from: 2020-12, to: 2020-12}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/tcp-chat-room
+
+- id: php-guestbook
+  name: {de: PHP-Gästebuch, en: PHP guestbook, fr: Livre d’or en PHP}
+  icon: /images/projects/placeholder.svg
+  complexity: app
+  aiUsage: none
+  description:
+    de: Gästebuch in PHP ohne Framework, nach dem MVC-Muster, mit MySQL.
+    en: Guestbook in PHP without a framework, following the MVC pattern, with MySQL.
+    fr: Livre d’or en PHP sans framework, selon le modèle MVC, avec MySQL.
+  technologies: [PHP, MySQL, Docker]
+  kind: hobby
+  period: {from: 2020-04, to: 2020-04}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/php-from-scratch
+
+- id: localstack-testing
+  name: LocalStack Testing
+  icon: /images/projects/placeholder.svg
+  complexity: script
+  aiUsage: none    # TODO: check rating
+  description:
+    de: Nachstellung eines Problems mit einem Lambda-Authorizer hinter API Gateway in LocalStack, inzwischen geklärt.
+    en: Reproduction of an issue with a Lambda authorizer behind API Gateway in LocalStack, since resolved.
+    fr: Reproduction d’un problème d’authorizer Lambda derrière API Gateway dans LocalStack, depuis résolu.
+  technologies: [LocalStack, AWS Lambda, Python, Docker]
+  # TODO: kind
+  period: {from: 2024-09, to: 2024-09}
+  team: solo
+  githubUrl: https://github.com/awehrung/localstack-testing
+
+- id: unit-testing-workshop
+  name: {de: Unit-Testing-Workshop, en: Unit testing workshop, fr: Atelier de tests unitaires}
+  icon: /images/projects/placeholder.svg
+  complexity: script
+  aiUsage: none
+  description:
+    de: Übungen zum Einstieg in Unit-Tests mit Java.
+    en: Exercises for getting started with unit testing in Java.
+    fr: Exercices pour débuter avec les tests unitaires en Java.
+  technologies: [Java, JUnit]
+  kind: hobby
+  period: {from: 2018-09, to: 2018-09}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/nina-workshop
