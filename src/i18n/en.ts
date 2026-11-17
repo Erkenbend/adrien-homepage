@@ -7,5 +7,7 @@ export const en = {
     certificates: 'Certifications',
     validUntil: 'valid until',
     languages: 'Languages',
+    contact: 'Contact',
+    contactIntro: 'Best reached by message via',
     present: 'present',
 } satisfies Messages

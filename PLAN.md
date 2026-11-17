@@ -82,9 +82,9 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Der Seitentitel ist der Name aus `profile.yaml`.
 - `zod` und `yaml` landen nicht im Browser-Bundle (geprüft).
 
-### 5. Kontakt
+### 5. Kontakt ✅
 
-- Kurzer Abschnitt mit Link zum LinkedIn-Profil (URL aus `profile.yaml`), keine E-Mail-Adresse.
+- Abschnitt „Kontakt“ am Ende der Seite (`src/components/Contact.tsx`, Anker `#contact`): ein Satz mit Link zum LinkedIn-Profil (URL aus `profile.yaml`), keine E-Mail-Adresse. Formulierung ohne Anrede, damit sich die Frage „du“ oder „Sie“ nicht stellt.
 
 ### 6. Projektdaten
 

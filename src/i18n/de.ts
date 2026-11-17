@@ -6,6 +6,8 @@ export const de = {
     certificates: 'Zertifikate',
     validUntil: 'gültig bis',
     languages: 'Sprachen',
+    contact: 'Kontakt',
+    contactIntro: 'Am einfachsten erreichbar per Nachricht über',
     present: 'heute',
 }
 
