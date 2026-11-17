@@ -77,6 +77,7 @@ certificates:
 languages:
   - name: {de: Deutsch, en: German, fr: Allemand}            # required, text
     level: {de: Muttersprache, en: Native, fr: Langue maternelle}  # required, text
+    flag: 🇩🇪                                                       # optional, one flag emoji, shown before the name
   - name: {de: Englisch, en: English, fr: Anglais}
     level: C1
 

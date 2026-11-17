@@ -84,6 +84,8 @@ export function Profile() {
                     <ul className="timeline">
                         {profile.languages.map(entry => (
                             <li key={localize(entry.name)}>
+                                {/* The name follows, a screen reader need not read "flag: France" too. */}
+                                {entry.flag && <span className="flag" aria-hidden="true">{entry.flag}</span>}
                                 {localize(entry.name)} <span className="muted">· {localize(entry.level)}</span>
                             </li>
                         ))}

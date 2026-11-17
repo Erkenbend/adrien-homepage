@@ -80,10 +80,13 @@ certificates:
 languages:
   - name: {de: Französisch, en: French, fr: Français}
     level: {de: Muttersprache, en: native, fr: langue maternelle}
+    flag: 🇫🇷
   - name: {de: Deutsch, en: German, fr: Allemand}
     level: {de: fließend, en: fluent, fr: courant}
+    flag: 🇩🇪
   - name: {de: Englisch, en: English, fr: Anglais}
     level: {de: fließend, en: fluent, fr: courant}
+    flag: 🇬🇧
 
 links:
   - https://www.linkedin.com/in/a-wehrung/

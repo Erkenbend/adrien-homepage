@@ -21,6 +21,10 @@ const period = z.strictObject({
     to: yearMonth.optional(),
 }).refine(({from, to}) => to === undefined || from <= to, 'from must not be after to')
 
+/** A flag emoji: two regional indicators (🇫🇷) or a subdivision tag sequence (🏴󠁧󠁢󠁳󠁣󠁴󠁿). */
+const flag = z.string().regex(/^(\p{Regional_Indicator}{2}|\u{1F3F4}[\u{E0061}-\u{E007A}]{2,}\u{E007F})$/u,
+    'expected a single flag emoji, e.g. 🇫🇷')
+
 /** Ids of page sections; a project id is used as URL hash too, so it must differ from them. */
 const SECTION_ANCHORS = ['projects', 'contact']
 
@@ -70,6 +74,7 @@ export function createSchemas(context: SchemaContext) {
         languages: z.array(z.strictObject({
             name: localized,
             level: localized,
+            flag: flag.optional(),
         })).default([]),
         /** Shown below the name; known sites (src/sites.ts) get their icon and name. */
         links: z.array(z.url()).default([]),
