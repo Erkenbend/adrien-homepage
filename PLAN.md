@@ -20,7 +20,20 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 | Projekt-Icons | KI-generierte Logos, lokal im Repository | Vorgabe des Nutzers |
 | Lizenz | Wird vor dem Livegang entschieden | |
 | Graph | Eigene Komponente aus HTML/SVG, keine Chart-Bibliothek | Nur Punkte mit Icons auf zwei Achsen; eine Bibliothek brächte mehr Gewicht als Nutzen |
-| Projektdaten | Eine typisierte Datei `src/data/projects.ts`, Texte je Sprache | Inhalte im Repository, Build schlägt bei fehlenden Feldern fehl |
+| Inhalte (Profil, Projekte) | YAML-Dateien in `src/data/` (`profile.yaml`, später `projects.yaml`), getrennt vom Code | Inhalte ohne TSX pflegen; siehe „Datenhaltung“ |
+| Kontakt | Link zum LinkedIn-Profil statt SimpleLogin-Alias | Entscheidung des Nutzers (weicht von `grober_plan.md` ab); keine E-Mail-Adresse auf der Seite |
+
+## Datenhaltung
+
+Es gibt keinen Server: Die Seite ist statisch (S3 + CloudFront). „Beim Start laden“ heißt hier **beim Build** (`bun run build`) bzw. beim Start von `bun dev`.
+
+- Inhalte liegen als YAML in `src/data/`, Bilder unter `public/images/`.
+- Ein kleines Vite-Plugin (`build-plugins/yaml-data.ts`) lädt `src/data/*.yaml`, prüft sie gegen ein Schema und liefert sie als JS-Modul (`import profile from './data/profile.yaml'`). Beim Bearbeiten im `bun dev` lädt die Seite neu; Fehler erscheinen im Browser-Overlay.
+- Schema mit Zod in `src/data/schema.ts`; daraus werden auch die TypeScript-Typen abgeleitet (`z.infer`). Ungültige Daten, fehlende Übersetzungen oder fehlende Bilder lassen den Build fehlschlagen.
+- `yaml` und `zod` laufen nur beim Build (devDependencies) und landen nicht im Browser-Bundle.
+- Texte sind entweder ein einfacher String (gleich in allen Sprachen, z. B. Firmennamen) oder `{de, en, fr}` mit allen drei Sprachen.
+- Feste Texte der Oberfläche (Überschriften, Beschriftungen) bleiben in `src/i18n/`.
+- Verworfen: YAML zur Laufzeit per `fetch` laden. Das brächte Ladezustand und Fehler erst beim Besucher, und ein Deployment ist für jede Änderung ohnehin nötig.
 
 ## Schritte
 
@@ -57,22 +70,24 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Lokal geprüft mit `bun run build` + `bun run preview` und Headless-Chromium für `/`, `/en/`, `/fr/`, `/en` und einen unbekannten Pfad. In Produktion übernimmt CloudFront die Rückfalllösung (403/404 → `index.html`).
 - Platzhaltertext „Seite im Aufbau“, bis echte Inhalte kommen.
 
-### 4. Profil
+### 4. Datenhaltung und Profil
 
-- Profilbild (`public/` bzw. `src/assets/`, optimiert als WebP/AVIF mit passender Größe).
-- Eckdaten analog zum LinkedIn-Profil: Name, aktuelle Position, Werdegang in Kurzform, Ort, Sprachen, Links (LinkedIn, GitHub). Inhalte liefert der Nutzer, sie werden nicht automatisch von LinkedIn geholt.
+- Vite-Plugin, Zod-Schema und Typen wie unter „Datenhaltung“ beschrieben.
+- `src/data/profile.yaml` mit Eckdaten analog zum LinkedIn-Profil: Name, Position, Ort, Kurzvorstellung, Werdegang (Stationen mit Zeitraum), Ausbildung, Sprachen, Links (LinkedIn, GitHub), optional Profilbild (`public/images/`, WebP/AVIF in passender Größe).
+- Bis die echten Inhalte kommen: deutlich erkennbare Platzhalter. Inhalte liefert der Nutzer, sie werden nicht automatisch von LinkedIn geholt.
+- Zeiträume als `JJJJ` oder `JJJJ-MM`, Anzeige je Sprache über `Intl.DateTimeFormat`; ohne Ende = „heute“.
 
 ### 5. Kontakt
 
-- SimpleLogin-Alias als `mailto:`-Link.
-- Zusätzlich gegen einfache Scraper: Adresse nicht im statischen HTML, sondern erst im Browser zusammensetzen (der Alias selbst bleibt der eigentliche Schutz, weil er sich abschalten lässt).
+- Kurzer Abschnitt mit Link zum LinkedIn-Profil (URL aus `profile.yaml`), keine E-Mail-Adresse.
 
 ### 6. Projektdaten
 
 - Typ `Project` mit Pflichtfeldern `id`, `name`, `icon`, `complexity`, `aiUsage`, `description` (je Sprache) und optionalen Feldern aus `grober_plan.md`: `technologies`, `kind` (`professional` | `hobby`), `year` (oder Zeitraum), `githubUrl`, `websiteUrl`, `team` (`solo` | `group`).
 - `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen); Achse mit vier beschrifteten Stufen statt Zahlen.
 - Skala für `complexity`: siehe offene Fragen.
-- Icons: KI-generierte Logos unter `src/assets/projects/`, ein Bild pro Projekt (SVG oder kleines WebP).
+- Daten in `src/data/projects.yaml`, Schema in `src/data/schema.ts` (siehe „Datenhaltung“).
+- Icons: KI-generierte Logos unter `public/images/projects/`, ein Bild pro Projekt (SVG oder kleines WebP); der Build prüft, dass jedes Bild existiert.
 - Fehlende optionale Felder werden in der Detailansicht einfach weggelassen.
 - Kandidaten aus `~/code` und `~/WebstormProjects`: `star-battle-solver`, `random-picker`, `article-trainer` (DER oder DAS), `home-dashboard`, `popquiz`, `snake`, `tfcoach`, `overwatch-meta-predictor`, `minecraft-overview`, `halle-appointment-watch`, `ntfy-server`, `ldap-password-change`, `KotlinFizzBuzz`, `smartcjm-api-check`, `tinkering-with-files-and-streams` – plus berufliche Projekte. Auswahl und Bewertung trifft der Nutzer; Entwürfe für Beschreibungen können aus den READMEs erstellt werden.
 
@@ -108,5 +123,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 ## Offene Fragen
 
 1. **Skala für Komplexität:** ganze Zahlen 1–5, ebenfalls benannte Stufen oder frei? Vorschlag: benannte Stufen wie beim KI-Einsatz, z. B. Skript → kleine App → mehrteilige Anwendung → großes System.
-2. **Inhalte** (kommen später): Profilbild, Eckdaten, SimpleLogin-Alias, Projektauswahl mit Bewertungen, Logos.
+2. **Inhalte** (kommen später): Profilbild, Eckdaten, URL des LinkedIn-Profils, Projektauswahl mit Bewertungen, Logos.
 3. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
