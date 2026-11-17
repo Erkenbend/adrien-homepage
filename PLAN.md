@@ -125,6 +125,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 - ✅ **Links mit Icons:** `links` in `profile.yaml` ist eine Liste beliebiger URLs, `contact` die URL für den Kontakt-Abschnitt. `src/sites.ts` erkennt bekannte Seiten am Hostnamen (auch Subdomains) und zeigt Logo und Namen: GitHub (bei Profil-URLs mit Benutzername, bei Repositorys ohne), LinkedIn, iSAQB. Unbekannte Seiten bekommen ein allgemeines Link-Icon und den Hostnamen (bei Projekten „Webseite“). Eine weitere Seite ist ein Eintrag in `SITES`. Gilt für Profil-Links, Kontakt und die Links in der Projekt-Detailansicht.
 - Die Site-Icons liegen in `src/assets/sites/` und werden importiert, damit ein fehlendes Icon den Build abbricht.
+- ✅ **Logos der Organisationen:** optionales Feld `logo` bei Werdegang, Ausbildung und Zertifikaten (Bilder unter `public/images/logos/`). Angezeigt links neben dem Eintrag auf einer weißen Kachel, weil die meisten Logos für helle Hintergründe gemacht sind. Hat ein Eintrag einer Liste ein Logo, lassen alle Einträge dieser Liste Platz dafür. Quadratische Varianten (Signet oder Favicon) statt Schriftzügen, die in der kleinen Kachel unlesbar wären. Das Lycée Clemenceau hat kein eigenes Logo im Netz, das Abitur keine Institution: beide ohne Logo.
 
 ### 10. CI-Pipeline (sobald es das Upstream-Repository gibt)
 

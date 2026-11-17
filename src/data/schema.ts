@@ -45,6 +45,8 @@ export function createSchemas(context: SchemaContext) {
         experience: z.array(z.strictObject({
             role: localized,
             organization: text,
+            /** Logo of the organization, shown on a white tile. */
+            logo: image.optional(),
             location: localized.optional(),
             period,
             description: localized.optional(),
@@ -52,11 +54,13 @@ export function createSchemas(context: SchemaContext) {
         education: z.array(z.strictObject({
             degree: localized,
             institution: text.optional(),
+            logo: image.optional(),
             period,
         })).default([]),
         certificates: z.array(z.strictObject({
             name: localized,
             issuer: text,
+            logo: image.optional(),
             issued: yearMonth,
             /** Last month of validity, if the certificate expires. */
             validUntil: yearMonth.optional(),

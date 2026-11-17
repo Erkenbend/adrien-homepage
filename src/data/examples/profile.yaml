@@ -36,10 +36,12 @@ about:
     Je développe des applications web et des outils,
     de préférence en TypeScript.
 
-# Optional list, newest first (shown in this order).
+# Optional list, newest first (shown in this order). If any entry of a list has a logo, all entries
+# of that list leave room for one, so the texts stay aligned.
 experience:
   - role: {de: Senior-Entwicklerin, en: Senior developer, fr: Développeuse senior}   # required, text
     organization: Beispiel GmbH                                                     # required
+    logo: /images/logos/beispiel.svg                                                # optional, path below public/; shown on a white tile, ideally square
     location: {de: München, en: Munich, fr: Munich}                                 # optional, text
     period: {from: 2021-03}                                                         # required; no `to` = until today
     description:                                                                    # optional, text
@@ -54,6 +56,7 @@ experience:
 education:
   - degree: {de: Master Informatik, en: Master's in computer science, fr: Master en informatique}  # required, text
     institution: Technische Universität Musterstadt                                                # optional
+    logo: /images/logos/tu-musterstadt.png                                                         # optional, as in experience
     period: {from: 2015, to: 2017}                                                                 # required; from = to is shown once, e.g. {from: 2012, to: 2012}
   - degree: {de: Abitur, en: Abitur (high school diploma), fr: Abitur (baccalauréat allemand)}
     period: {from: 2009, to: 2009}
@@ -62,6 +65,7 @@ education:
 certificates:
   - name: AWS Certified Solutions Architect – Associate    # required, text
     issuer: Amazon Web Services                            # required
+    logo: /images/logos/aws.svg                            # optional, as in experience
     issued: 2023-05                                        # required
     validUntil: 2026-05                                    # optional, last month of validity
     url: https://example.com/credential/12345              # optional, makes the name a link

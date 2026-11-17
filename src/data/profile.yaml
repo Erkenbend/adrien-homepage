@@ -1,4 +1,5 @@
 # Profile shown on the page, validated at build time against `profile` in src/data/schema.ts.
+# Logos of organizations go to public/images/logos/, sources in README.md.
 # Every field with explanations: src/data/examples/profile.yaml
 
 name: Adrien Wehrung
@@ -24,6 +25,7 @@ about:
 experience:
   - role: {de: Entwickler & Architekt, en: Developer & Architect, fr: Développeur & architecte}
     organization: Finatix GmbH
+    logo: /images/logos/finatix.png
     location: Leipzig
     period: {from: 2018-07}
     description:
@@ -32,6 +34,7 @@ experience:
       fr: De développeur à développeur & architecte. Projets XPAY (plateforme card-as-a-service, jusqu’en septembre 2020) et DATEV PaymentNext (depuis octobre 2020).
   - role: {de: Entwickler, en: Developer, fr: Développeur}
     organization: IT Sonix custom development GmbH
+    logo: /images/logos/it-sonix.png
     location: Leipzig
     period: {from: 2017-10, to: 2018-06}
     description:
@@ -45,12 +48,14 @@ education:
       en: Erasmus year (final year at TELECOM Nancy)
       fr: Année Erasmus (dernière année de TELECOM Nancy)
     institution: Martin-Luther-Universität Halle-Wittenberg
+    logo: /images/logos/mlu.png
     period: {from: 2016, to: 2017}
   - degree:
       de: Diplôme d’ingénieur (Master-Niveau), Informatik
       en: Diplôme d’ingénieur (master’s level), computer science
       fr: Diplôme d’ingénieur, informatique
     institution: TELECOM Nancy (Université de Lorraine)
+    logo: /images/logos/telecom-nancy.png
     period: {from: 2014, to: 2017}
   - degree:
       de: Classes préparatoires MPSI/MP (Mathematik, Physik)
@@ -68,6 +73,7 @@ education:
 certificates:
   - name: iSAQB® Certified Professional for Software Architecture – Foundation Level (CPSA-F)
     issuer: iSAQB
+    logo: /images/logos/isaqb.svg
     issued: 2023-06
     url: https://www.certible.com/de/verify/54e5c27bc63e7c187ee07d4d231b1d79/
 
