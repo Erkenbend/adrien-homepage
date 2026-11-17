@@ -1,64 +1,86 @@
 # Profile shown on the page, validated at build time against `profile` in src/data/schema.ts.
 # Every field with explanations: src/data/examples/profile.yaml
-#
-# TODO: replace all placeholders with the real content.
 
 name: Adrien Wehrung
 headline:
-  de: Position (Platzhalter)
-  en: Position (placeholder)
-  fr: Poste (exemple)
+  de: Softwareentwickler & Architekt
+  en: Software developer & architect
+  fr: Développeur & architecte logiciel
 location:
-  de: Ort (Platzhalter)
-  en: Location (placeholder)
-  fr: Lieu (exemple)
+  de: Halle (Saale)
+  en: Halle (Saale), Germany
+  fr: Halle (Saale), Allemagne
 about:
-  de: Kurzvorstellung (Platzhalter)
-  en: Short introduction (placeholder)
-  fr: Courte présentation (exemple)
+  de: >
+    Franzose, seit 2016 in Deutschland. Ich entwickle und konzipiere Software
+    für Zahlungsverkehr und Finanzdienstleister.
+  en: >
+    French, living in Germany since 2016. I develop and design software
+    for payments and financial services.
+  fr: >
+    Français, installé en Allemagne depuis 2016. Je développe et conçois des
+    logiciels pour le paiement et les services financiers.
 
 experience:
-  - role:
-      de: Aktuelle Rolle (Platzhalter)
-      en: Current role (placeholder)
-      fr: Poste actuel (exemple)
-    organization: Firma A
-    period: {from: 2021-03}
-  - role:
-      de: Frühere Rolle (Platzhalter)
-      en: Previous role (placeholder)
-      fr: Poste précédent (exemple)
-    organization: Firma B
-    period: {from: 2017-09, to: 2021-02}
+  - role: {de: Entwickler & Architekt, en: Developer & Architect, fr: Développeur & architecte}
+    organization: Finatix GmbH
+    location: Leipzig
+    period: {from: 2018-07}
+    description:
+      de: Vom Entwickler zum Entwickler & Architekten. Projekte XPAY (Card-as-a-Service-Plattform, bis September 2020) und DATEV PaymentNext (seit Oktober 2020).
+      en: Grew from developer to developer & architect. Projects XPAY (card-as-a-service platform, until September 2020) and DATEV PaymentNext (since October 2020).
+      fr: De développeur à développeur & architecte. Projets XPAY (plateforme card-as-a-service, jusqu’en septembre 2020) et DATEV PaymentNext (depuis octobre 2020).
+  - role: {de: Entwickler, en: Developer, fr: Développeur}
+    organization: ITSonix
+    location: Leipzig
+    period: {from: 2017-10, to: 2018-06}
+    description:
+      de: Projekt XPAY. Wechsel zur neu gegründeten Finatix GmbH im Juli 2018.
+      en: Project XPAY. Moved to the newly founded Finatix GmbH in July 2018.
+      fr: Projet XPAY. Passage à la société Finatix GmbH, nouvellement créée, en juillet 2018.
 
+# TODO: confirm the years of TELECOM Nancy (2014–2017) and the prépa (2012–2014), derived from the bac in 2012 and the Erasmus year 2016–2017.
 education:
   - degree:
-      de: Abschluss (Platzhalter)
-      en: Degree (placeholder)
-      fr: Diplôme (exemple)
-    institution: Hochschule
-    period: {from: 2012, to: 2017}
+      de: Erasmus-Jahr (letztes Studienjahr von TELECOM Nancy)
+      en: Erasmus year (final year at TELECOM Nancy)
+      fr: Année Erasmus (dernière année de TELECOM Nancy)
+    institution: Martin-Luther-Universität Halle-Wittenberg
+    period: {from: 2016, to: 2017}
+  - degree:
+      de: Diplôme d’ingénieur (Master-Niveau), Informatik
+      en: Diplôme d’ingénieur (master’s level), computer science
+      fr: Diplôme d’ingénieur, informatique
+    institution: TELECOM Nancy (Université de Lorraine)
+    period: {from: 2014, to: 2017}
+  - degree:
+      de: Classes préparatoires MPSI/MP (Mathematik, Physik)
+      en: Classes préparatoires MPSI/MP (mathematics, physics)
+      fr: Classes préparatoires MPSI/MP
+    institution: Lycée Georges Clemenceau, Reims
+    period: {from: 2012, to: 2014}
+# TODO: which lycée? Then uncomment.
+#  - degree:
+#      de: Baccalauréat S (naturwissenschaftlich), Prädikat „gut“ (mention bien)
+#      en: Baccalauréat S (science track), with honours (mention bien)
+#      fr: Baccalauréat S, mention bien
+#    institution: Lycée …
+#    period: {from: 2012, to: 2012}
 
-certificates:
-  - name:
-      de: Zertifikat (Platzhalter)
-      en: Certificate (placeholder)
-      fr: Certificat (exemple)
-    issuer: Aussteller
-    issued: 2023-05
-    validUntil: 2026-05
-    url: https://example.com/credential
+# TODO: add the issue date (YYYY-MM) from LinkedIn, then uncomment. The certificate does not expire.
+certificates: []
+#  - name: iSAQB® Certified Professional for Software Architecture – Foundation Level (CPSA-F)
+#    issuer: iSAQB
+#    issued: YYYY-MM
+#    url: (credential link from LinkedIn, if any)
 
+# TODO: levels for German and English.
 languages:
-  - name: {de: Deutsch, en: German, fr: Allemand}
-    level: {de: Platzhalter, en: placeholder, fr: exemple}
-  - name: {de: Englisch, en: English, fr: Anglais}
-    level: {de: Platzhalter, en: placeholder, fr: exemple}
   - name: {de: Französisch, en: French, fr: Français}
-    level: {de: Platzhalter, en: placeholder, fr: exemple}
+    level: {de: Muttersprache, en: Native, fr: Langue maternelle}
 
 links:
-  linkedin: https://www.linkedin.com/in/placeholder
+  linkedin: https://www.linkedin.com/in/a-wehrung/
   github:
     - https://github.com/Erkenbend
     - https://github.com/awehrung

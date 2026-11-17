@@ -16,6 +16,10 @@ export function formatYearMonth(value: string): string {
     return monthFormat.format(new Date(Date.UTC(Number(match[1]), Number(match[2]) - 1)))
 }
 
+/** Without `to` the period lasts until today; `from` equal to `to` is shown once. */
 export function formatPeriod({from, to}: Period): string {
+    if (from === to) {
+        return formatYearMonth(from)
+    }
     return `${formatYearMonth(from)} – ${to === undefined ? MESSAGES.present : formatYearMonth(to)}`
 }

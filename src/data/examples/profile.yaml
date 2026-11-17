@@ -54,7 +54,7 @@ experience:
 education:
   - degree: {de: Master Informatik, en: Master's in computer science, fr: Master en informatique}  # required, text
     institution: Technische Universität Musterstadt                                                # required
-    period: {from: 2015, to: 2017}                                                                 # required
+    period: {from: 2015, to: 2017}                                                                 # required; from = to is shown once, e.g. {from: 2012, to: 2012}
 
 # Optional list.
 certificates:

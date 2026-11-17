@@ -128,5 +128,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 ## Offene Fragen
 
 1. **Skala für Komplexität:** ganze Zahlen 1–5, ebenfalls benannte Stufen oder frei? Vorschlag: benannte Stufen wie beim KI-Einsatz, z. B. Skript → kleine App → mehrteilige Anwendung → großes System.
-2. **Inhalte** (kommen später): Profilbild, Eckdaten, URL des LinkedIn-Profils, Projektauswahl mit Bewertungen, Logos.
+2. **Inhalte:** Profil größtenteils ausgefüllt; offen sind die TODOs in `src/data/profile.yaml` (Datum des CPSA-F-Zertifikats, Lycée des Bac, Jahre von Prépa und TELECOM Nancy bestätigen, Sprachniveaus Deutsch/Englisch) und das Profilbild. Später: Projektauswahl mit Bewertungen, Logos.
 3. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
