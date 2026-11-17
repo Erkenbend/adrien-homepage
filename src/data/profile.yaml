@@ -31,7 +31,7 @@ experience:
       en: Grew from developer to developer & architect. Projects XPAY (card-as-a-service platform, until September 2020) and DATEV PaymentNext (since October 2020).
       fr: De développeur à développeur & architecte. Projets XPAY (plateforme card-as-a-service, jusqu’en septembre 2020) et DATEV PaymentNext (depuis octobre 2020).
   - role: {de: Entwickler, en: Developer, fr: Développeur}
-    organization: ITSonix
+    organization: IT Sonix custom development GmbH
     location: Leipzig
     period: {from: 2017-10, to: 2018-06}
     description:
@@ -39,7 +39,6 @@ experience:
       en: Project XPAY. Moved to the newly founded Finatix GmbH in July 2018.
       fr: Projet XPAY. Passage à la société Finatix GmbH, nouvellement créée, en juillet 2018.
 
-# TODO: confirm the years of TELECOM Nancy (2014–2017) and the prépa (2012–2014), derived from the bac in 2012 and the Erasmus year 2016–2017.
 education:
   - degree:
       de: Erasmus-Jahr (letztes Studienjahr von TELECOM Nancy)
@@ -59,25 +58,26 @@ education:
       fr: Classes préparatoires MPSI/MP
     institution: Lycée Georges Clemenceau, Reims
     period: {from: 2012, to: 2014}
-# TODO: which lycée? Then uncomment.
-#  - degree:
-#      de: Baccalauréat S (naturwissenschaftlich), Prädikat „gut“ (mention bien)
-#      en: Baccalauréat S (science track), with honours (mention bien)
-#      fr: Baccalauréat S, mention bien
-#    institution: Lycée …
-#    period: {from: 2012, to: 2012}
+  - degree:
+      de: Baccalauréat S (naturwissenschaftlich), Prädikat „gut“ (mention bien)
+      en: Baccalauréat S (science track), with honours (mention bien)
+      fr: Baccalauréat S, mention bien
+    period: {from: 2012, to: 2012}
 
-# TODO: add the issue date (YYYY-MM) from LinkedIn, then uncomment. The certificate does not expire.
-certificates: []
-#  - name: iSAQB® Certified Professional for Software Architecture – Foundation Level (CPSA-F)
-#    issuer: iSAQB
-#    issued: YYYY-MM
-#    url: (credential link from LinkedIn, if any)
+# The CPSA-F does not expire, hence no validUntil.
+certificates:
+  - name: iSAQB® Certified Professional for Software Architecture – Foundation Level (CPSA-F)
+    issuer: iSAQB
+    issued: 2023-06
+    url: https://www.certible.com/de/verify/54e5c27bc63e7c187ee07d4d231b1d79/
 
-# TODO: levels for German and English.
 languages:
   - name: {de: Französisch, en: French, fr: Français}
-    level: {de: Muttersprache, en: Native, fr: Langue maternelle}
+    level: {de: Muttersprache, en: native, fr: langue maternelle}
+  - name: {de: Deutsch, en: German, fr: Allemand}
+    level: {de: fließend, en: fluent, fr: courant}
+  - name: {de: Englisch, en: English, fr: Anglais}
+    level: {de: fließend, en: fluent, fr: courant}
 
 links:
   linkedin: https://www.linkedin.com/in/a-wehrung/

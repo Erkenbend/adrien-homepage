@@ -47,7 +47,7 @@ export function createSchemas(context: SchemaContext) {
         })).default([]),
         education: z.array(z.strictObject({
             degree: localized,
-            institution: text,
+            institution: text.optional(),
             period,
         })).default([]),
         certificates: z.array(z.strictObject({

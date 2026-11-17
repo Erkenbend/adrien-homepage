@@ -45,8 +45,9 @@ export function Profile() {
                     <h2>{MESSAGES.education}</h2>
                     <ul className="timeline">
                         {profile.education.map(entry => (
-                            <li key={`${entry.institution}-${entry.period.from}`}>
-                                <strong>{localize(entry.degree)}</strong> · {entry.institution}
+                            <li key={`${localize(entry.degree)}-${entry.period.from}`}>
+                                <strong>{localize(entry.degree)}</strong>
+                                {entry.institution && <> · {entry.institution}</>}
                                 <div className="muted">{formatPeriod(entry.period)}</div>
                             </li>
                         ))}
