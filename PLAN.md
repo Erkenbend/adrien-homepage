@@ -47,33 +47,24 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Geprüft mit `bun run build` und danach `bunx cdk synth` in `infrastructure/` (ohne AWS-Zugang möglich).
 - **Noch nicht deployt:** Vorerst wird nur lokal getestet (`bun dev`); das erste `cdk deploy` erst nach Rücksprache.
 
-### 3. CI-Pipeline
-
-- `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernehmen (Bun 1.3.8, Node 22), Stack-Name anpassen.
-- Wird erst mit dem Upstream-Repository wirksam; dort die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` hinterlegen.
-
-**Sobald es das Upstream-Repository gibt:**
-- `BUILD_TIMESTAMP` wieder einführen (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`) und als Version im Footer anzeigen, wie bei `article-trainer`.
-- Link zum GitHub-Repository mit GitHub-Logo im Footer, wie bei `random-picker` und `article-trainer`.
-
-### 4. I18n-Grundlage
+### 3. I18n-Grundlage
 
 - `Messages`-Typ aus `de.ts` ableiten, `en.ts` und `fr.ts` müssen ihn erfüllen.
 - Die Sprache ergibt sich allein aus dem Pfad (`/`, `/en/`, `/fr/`), ohne Router-Bibliothek; unbekannte Pfade zeigen die deutsche Seite.
 - Keine automatische Weiterleitung nach Browsersprache: Ein geteilter Link zeigt immer dieselbe Sprache. Höchstens ein dezenter Hinweis „This page is also available in English“, wenn die Browsersprache abweicht (optional).
 - Sprachumschalter in der Kopfzeile als normale Links; `<html lang>` und `document.title` folgen der Sprache.
 
-### 5. Profil
+### 4. Profil
 
 - Profilbild (`public/` bzw. `src/assets/`, optimiert als WebP/AVIF mit passender Größe).
 - Eckdaten analog zum LinkedIn-Profil: Name, aktuelle Position, Werdegang in Kurzform, Ort, Sprachen, Links (LinkedIn, GitHub). Inhalte liefert der Nutzer, sie werden nicht automatisch von LinkedIn geholt.
 
-### 6. Kontakt
+### 5. Kontakt
 
 - SimpleLogin-Alias als `mailto:`-Link.
 - Zusätzlich gegen einfache Scraper: Adresse nicht im statischen HTML, sondern erst im Browser zusammensetzen (der Alias selbst bleibt der eigentliche Schutz, weil er sich abschalten lässt).
 
-### 7. Projektdaten
+### 6. Projektdaten
 
 - Typ `Project` mit Pflichtfeldern `id`, `name`, `icon`, `complexity`, `aiUsage`, `description` (je Sprache) und optionalen Feldern aus `grober_plan.md`: `technologies`, `kind` (`professional` | `hobby`), `year` (oder Zeitraum), `githubUrl`, `websiteUrl`, `team` (`solo` | `group`).
 - `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen); Achse mit vier beschrifteten Stufen statt Zahlen.
@@ -82,17 +73,26 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Fehlende optionale Felder werden in der Detailansicht einfach weggelassen.
 - Kandidaten aus `~/code` und `~/WebstormProjects`: `star-battle-solver`, `random-picker`, `article-trainer` (DER oder DAS), `home-dashboard`, `popquiz`, `snake`, `tfcoach`, `overwatch-meta-predictor`, `minecraft-overview`, `halle-appointment-watch`, `ntfy-server`, `ldap-password-change`, `KotlinFizzBuzz`, `smartcjm-api-check`, `tinkering-with-files-and-streams` – plus berufliche Projekte. Auswahl und Bewertung trifft der Nutzer; Entwürfe für Beschreibungen können aus den READMEs erstellt werden.
 
-### 8. Projekt-Graph
+### 7. Projekt-Graph
 
 - Fläche mit x = Komplexität, y = KI-Einsatz (vier Bänder), Achsenbeschriftung je Sprache.
 - Jedes Projekt als Icon an seiner Position, als `<button>` mit Namen als `aria-label` und Tooltip.
 - Überlappungen: Projekte mit (fast) gleichen Werten leicht versetzen, deterministisch (z. B. kleiner Kreis um den Punkt), damit die Anordnung stabil bleibt.
 - Mobil: Graph skaliert auf Bildschirmbreite, Icons behalten eine Mindestgröße zum Antippen; falls zu eng, zusätzlich eine Liste unter dem Graph.
 
-### 9. Detailansicht
+### 8. Detailansicht
 
 - Klick auf ein Icon öffnet einen Dialog (`<dialog>`, schließt mit Esc und Klick daneben) mit allen vorhandenen Feldern und Links.
 - Optional: ausgewähltes Projekt in der URL (`#projekt-id`), damit sich Details verlinken lassen.
+
+### 9. CI-Pipeline (sobald es das Upstream-Repository gibt)
+
+- `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernehmen (Bun 1.3.8, Node 22), Stack-Name anpassen.
+- Wird erst mit dem Upstream-Repository wirksam; dort die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` hinterlegen.
+
+**Sobald es das Upstream-Repository gibt:**
+- `BUILD_TIMESTAMP` wieder einführen (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`) und als Version im Footer anzeigen, wie bei `article-trainer`.
+- Link zum GitHub-Repository mit GitHub-Logo im Footer, wie bei `random-picker` und `article-trainer`.
 
 ### 10. Feinschliff und Livegang
 
