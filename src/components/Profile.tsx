@@ -1,14 +1,26 @@
-import type {ReactNode} from 'react'
+import {type ReactNode, useState} from 'react'
 import profile from '../data/profile.yaml'
 import {formatPeriod, formatYearMonth, localize} from '../data/format.ts'
 import {MESSAGES} from '../i18n/language.ts'
 import {SiteLink} from './SiteLink.tsx'
 
 export function Profile() {
+    // Easter egg: hovering the photo swaps photo and introduction for their shadow versions.
+    const [shadow, setShadow] = useState(false)
+    const hasShadow = profile.shadowPhoto !== undefined || profile.shadowAbout !== undefined
+
     return (
         <>
             <section className="profile-intro">
-                {profile.photo && <img className="profile-photo" src={profile.photo} alt={profile.name}/>}
+                {profile.photo && (
+                    <div onMouseEnter={hasShadow ? () => { setShadow(true) } : undefined}
+                         onMouseLeave={hasShadow ? () => { setShadow(false) } : undefined}>
+                        <Swap shadow={shadow}
+                              normal={<img className="profile-photo" src={profile.photo} alt={profile.name}/>}
+                              alternative={profile.shadowPhoto &&
+                                  <img className="profile-photo" src={profile.shadowPhoto} alt={profile.name}/>}/>
+                    </div>
+                )}
                 <div>
                     <h1>{profile.name}</h1>
                     <p className="headline">{localize(profile.headline)}</p>
@@ -21,7 +33,11 @@ export function Profile() {
                 </div>
             </section>
 
-            {profile.about && <p>{localize(profile.about)}</p>}
+            {profile.about && (
+                <Swap className="profile-about" shadow={shadow}
+                      normal={<p>{localize(profile.about)}</p>}
+                      alternative={profile.shadowAbout && <p>{localize(profile.shadowAbout)}</p>}/>
+            )}
 
             {profile.experience.length > 0 && (
                 <section>
@@ -93,6 +109,31 @@ export function Profile() {
                 </section>
             )}
         </>
+    )
+}
+
+interface SwapProps {
+    className?: string
+    shadow: boolean
+    normal: ReactNode
+    /** Without it, `normal` stays visible. */
+    alternative: ReactNode
+}
+
+/**
+ * Shows `alternative` instead of `normal` while `shadow` is set. Both stay rendered in the same grid cell, so
+ * the swap neither shifts the layout nor waits for an image to load; the hidden one is invisible to screen
+ * readers too.
+ */
+function Swap({className, shadow, normal, alternative}: SwapProps) {
+    if (!alternative) {
+        return <div className={className}>{normal}</div>
+    }
+    return (
+        <div className={className ? `swap ${className}` : 'swap'}>
+            <div className={shadow ? 'swap-hidden' : undefined}>{normal}</div>
+            <div className={shadow ? undefined : 'swap-hidden'}>{alternative}</div>
+        </div>
     )
 }
 

@@ -26,6 +26,14 @@ about:
     Je développe et conçois des logiciels, avec un accent technique sur le backend Java Spring-Boot.
     J'ai travaillé jusqu'ici dans le paiement (EBICS) et les services financiers.
     Français, installé en Allemagne depuis 2016.
+# Easter egg, shown while the mouse is over the photo.
+# TODO: replace with a real photo, then delete profile-shadow-placeholder.svg
+shadowPhoto: /images/profile-shadow-placeholder.svg
+# TODO: write the alternative introduction
+shadowAbout:
+  de: Platzhalter für den alternativen Text.
+  en: Placeholder for the alternative text.
+  fr: Texte alternatif à venir.
 
 experience:
   - role: {de: Entwickler & Architekt, en: Developer & Architect, fr: Développeur & architecte}

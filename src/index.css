@@ -97,6 +97,39 @@ h2 {
   object-fit: cover;
 }
 
+.profile-photo {
+  display: block;
+}
+
+/* The margin sits on the wrapper: inside the grid of .swap it would not collapse with the neighbours'. */
+.profile-about {
+  margin: 1em 0;
+}
+
+.profile-about p {
+  margin: 0;
+}
+
+.swap {
+  display: grid;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.swap > .swap-hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .swap > * {
+    transition: none;
+  }
+}
+
 .profile-links {
   display: flex;
   flex-wrap: wrap;

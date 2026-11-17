@@ -36,6 +36,19 @@ about:
     Je développe des applications web et des outils,
     de préférence en TypeScript.
 
+# Easter egg: while the mouse is over the photo (on touch screens: after tapping it), the photo
+# and the introduction are replaced by these. Each is optional; without one, the normal version
+# stays. Both need `photo`, `shadowAbout` also needs `about`.
+
+# Optional. Path below public/, shown instead of `photo`.
+shadowPhoto: /images/profile-shadow.webp
+
+# Optional, text, shown instead of `about`.
+shadowAbout:
+  de: Nachts schreibe ich Code, der nur auf meinem Rechner läuft.
+  en: At night I write code that only runs on my machine.
+  fr: La nuit, j'écris du code qui ne tourne que sur ma machine.
+
 # Optional list, newest first (shown in this order). If any entry of a list has a logo, all entries
 # of that list leave room for one, so the texts stay aligned.
 experience:

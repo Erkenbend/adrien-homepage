@@ -81,6 +81,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - `src/i18n/languages.ts` enthält die Sprachliste ohne Browser-Globals, weil das Schema sie beim Build braucht.
 - `tsconfig.app.json` ohne Node-Typen (`"types": []`), `tsconfig.node.json` mit Node-Typen und `build-plugins/`.
 - `src/data/profile.yaml` mit Platzhaltern: Name, Position, Ort, Kurzvorstellung, Werdegang, Ausbildung, Zertifikate (Name, Aussteller, ausgestellt, optional gültig bis und Link), Sprachen, Links (inzwischen eine freie Liste von URLs, siehe Schritt 9), optional `photo` (Pfad unter `public/`, z. B. `/images/profile.webp`). Leere Abschnitte werden nicht angezeigt.
+- Easter Egg: optionale Felder `shadowPhoto` und `shadowAbout`. Solange die Maus über dem Foto steht (auf Touchscreens nach einem Tipp darauf), ersetzen sie Foto und Kurzvorstellung; fehlt eines, bleibt die normale Fassung. Beide Fassungen liegen in derselben Grid-Zelle und werden nur ein- und ausgeblendet (kurzes Überblenden, ohne bei `prefers-reduced-motion`): kein Springen des Layouts, kein Nachladen des Bildes, die verborgene Fassung ist auch für Screenreader unsichtbar. Ohne `photo` bzw. `about` bricht der Build ab.
 - Zeiträume als `JJJJ` oder `JJJJ-MM`, Anzeige je Sprache über `Intl.DateTimeFormat` (z. B. „Sept. 2017 – Feb. 2021“, „mars 2021 – aujourd’hui“).
 - Der Seitentitel ist der Name aus `profile.yaml`.
 - `zod` und `yaml` landen nicht im Browser-Bundle (geprüft).
@@ -153,5 +154,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild (bis dahin Platzhalter `public/images/profile-placeholder.svg`, in `profile.yaml` mit `TODO` markiert). Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
+1. **Inhalte:** Profil ausgefüllt, es fehlen nur das Profilbild sowie Bild und Text des Easter Eggs (bis dahin Platzhalter `public/images/profile-placeholder.svg` und `profile-shadow-placeholder.svg`, in `profile.yaml` mit `TODO` markiert). Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
 2. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.

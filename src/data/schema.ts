@@ -47,6 +47,9 @@ export function createSchemas(context: SchemaContext) {
         location: localized.optional(),
         photo: image.optional(),
         about: localized.optional(),
+        /** Easter egg: shown instead of `photo` and `about` while the mouse is over the photo. */
+        shadowPhoto: image.optional(),
+        shadowAbout: localized.optional(),
         experience: z.array(z.strictObject({
             role: localized,
             organization: text,
@@ -82,6 +85,11 @@ export function createSchemas(context: SchemaContext) {
         /** The one way to get in touch, linked in the contact section. */
         contact: z.url(),
     })
+        .refine(({photo, shadowPhoto, shadowAbout}) =>
+            photo !== undefined || (shadowPhoto === undefined && shadowAbout === undefined),
+        {error: 'shadowPhoto and shadowAbout need a photo to hover over', path: ['photo']})
+        .refine(({about, shadowAbout}) => about !== undefined || shadowAbout === undefined,
+            {error: 'shadowAbout needs an about to replace', path: ['about']})
 
     const project = z.strictObject({
         /** Stable key, later also the anchor in the URL. */
