@@ -365,12 +365,12 @@ body:has(.project-dialog[open]) {
 /* Links with the icon of their site, see src/sites.ts */
 
 .site-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35em;
+  white-space: nowrap;
 }
 
 .site-icon {
   height: 1.1em;
   width: auto;
+  margin-right: 0.35em;
+  vertical-align: -0.2em; /* centred on the text, also within a sentence */
 }
