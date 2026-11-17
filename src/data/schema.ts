@@ -1,6 +1,7 @@
 import {z} from 'zod'
 import type {Language} from '../i18n/languages.ts'
 import {AI_USAGE_LEVELS, COMPLEXITY_LEVELS, PROJECT_KINDS, TEAM_SIZES} from './scales.ts'
+import {FRAMEWORKS, idsOf, PROGRAMMING_LANGUAGES, TOOLS} from './technologies.ts'
 
 // Validated at build time by build-plugins/yaml-data.ts; the app only imports the types.
 
@@ -96,10 +97,11 @@ export function createSchemas(context: SchemaContext) {
         complexity: z.enum(COMPLEXITY_LEVELS),
         aiUsage: z.enum(AI_USAGE_LEVELS),
         description: localized,
-        languages: z.array(text).default([]),
-        frameworks: z.array(text).default([]),
+        /** Ids from src/data/technologies.ts; an unknown id fails the build. */
+        languages: z.array(z.enum(idsOf(PROGRAMMING_LANGUAGES))).default([]),
+        frameworks: z.array(z.enum(idsOf(FRAMEWORKS))).default([]),
         /** Platforms, build tools, infrastructure, e.g. Docker or AWS. */
-        tools: z.array(text).default([]),
+        tools: z.array(z.enum(idsOf(TOOLS))).default([]),
         kind: z.enum(PROJECT_KINDS).optional(),
         period: period.optional(),
         team: z.enum(TEAM_SIZES).optional(),

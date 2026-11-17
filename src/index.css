@@ -389,6 +389,22 @@ body:has(.project-dialog[open]) {
   margin: 0;
 }
 
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tech-logo {
+  width: 1.1em;
+  height: 1.1em;
+  margin-right: 0.35em;
+  vertical-align: -0.2em;
+}
+
 .project-links {
   display: flex;
   flex-wrap: wrap;

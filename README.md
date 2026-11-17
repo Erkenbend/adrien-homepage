@@ -45,3 +45,5 @@ Projekt-Icons (`public/images/projects/`):
 | `xpay.svg` | XPAY-Logo von der Referenzseite [finatix.de/referenzen/xpay](https://www.finatix.de/referenzen/xpay) (`Logo_gray_xPay.png`), zugeschnitten, verkleinert und auf eine weiße Kachel gesetzt |
 | `datev-paymentnext.svg` | [File:Datev.svg](https://commons.wikimedia.org/wiki/File:Datev.svg) von Wikimedia Commons (gemeinfrei als einfaches Schriftbild, Marke der DATEV eG), auf eine weiße Kachel gesetzt |
 | alle anderen | eigene Zeichnungen (mit Claude erstellt), gleiche Lizenz wie das Repository |
+
+Logos der Technologien (`public/images/tech/`): farbige Varianten (`*-original.svg`) aus [Devicon](https://github.com/devicons/devicon) v2.18.0, MIT, © konpa; die Logos selbst sind Marken ihrer Inhaber. Für den dunklen Hintergrund aufgehellt (sonst unverändert): bei `aws.svg` der Schriftzug (weiß), bei `htmx.svg` die spitzen Klammern (hellgrau), bei `symfony.svg` der Kreis (weiß).

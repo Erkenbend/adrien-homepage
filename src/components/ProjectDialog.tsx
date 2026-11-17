@@ -1,6 +1,7 @@
 import {useEffect, useRef, type MouseEvent, type ReactNode} from 'react'
 import {formatPeriod, kindClass, localize} from '../data/format.ts'
 import type {Project} from '../data/schema.ts'
+import {FRAMEWORKS, PROGRAMMING_LANGUAGES, TOOLS, type Technology} from '../data/technologies.ts'
 import {MESSAGES} from '../i18n/language.ts'
 import {SiteLink} from './SiteLink.tsx'
 
@@ -63,9 +64,9 @@ function Details({project, onClose}: {project: Project, onClose: () => void}) {
                         {project.teamDetails && localize(project.teamDetails)}
                     </Fact>
                 )}
-                <ListFact label={MESSAGES.programmingLanguages} items={project.languages}/>
-                <ListFact label={MESSAGES.frameworks} items={project.frameworks}/>
-                <ListFact label={MESSAGES.tools} items={project.tools}/>
+                <TechFact label={MESSAGES.programmingLanguages} registry={PROGRAMMING_LANGUAGES} ids={project.languages}/>
+                <TechFact label={MESSAGES.frameworks} registry={FRAMEWORKS} ids={project.frameworks}/>
+                <TechFact label={MESSAGES.tools} registry={TOOLS} ids={project.tools}/>
             </dl>
 
             {(project.githubUrl ?? project.websiteUrl) && (
@@ -87,6 +88,27 @@ function Fact({label, children}: {label: string, children: ReactNode}) {
     )
 }
 
-function ListFact({label, items}: {label: string, items: string[]}) {
-    return items.length > 0 && <Fact label={label}>{items.join(', ')}</Fact>
+interface TechFactProps<Id extends string> {
+    label: string
+    registry: Record<Id, Technology>
+    ids: Id[]
+}
+
+/** Technologies with their logo before the name; the logo is decorative, the name follows. */
+function TechFact<Id extends string>({label, registry, ids}: TechFactProps<Id>) {
+    return ids.length > 0 && (
+        <Fact label={label}>
+            <ul className="tech-list">
+                {ids.map(id => {
+                    const {name, logo} = registry[id]
+                    return (
+                        <li key={id}>
+                            {logo && <img className="tech-logo" src={logo} alt=""/>}
+                            {name}
+                        </li>
+                    )
+                })}
+            </ul>
+        </Fact>
+    )
 }
