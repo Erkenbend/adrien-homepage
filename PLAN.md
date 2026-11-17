@@ -33,6 +33,7 @@ Es gibt keinen Server: Die Seite ist statisch (S3 + CloudFront). „Beim Start l
 - `yaml` und `zod` laufen nur beim Build (devDependencies) und landen nicht im Browser-Bundle.
 - Texte sind entweder ein einfacher String (gleich in allen Sprachen, z. B. Firmennamen) oder `{de, en, fr}` mit allen drei Sprachen.
 - Feste Texte der Oberfläche (Überschriften, Beschriftungen) bleiben in `src/i18n/`.
+- Zu jeder Datei gibt es ein Referenzbeispiel `src/data/examples/<name>.yaml` mit allen Feldern, erfundenen Werten und Erklärungen als Kommentar. Der Build prüft beim Start (auch `bun dev`), dass es gültig ist und jedes Feld des Schemas mindestens einmal nutzt (`build-plugins/completeness.ts`, über `z.toJSONSchema`); in Listen genügt ein Eintrag mit dem Feld, damit das Beispiel auch minimale Einträge zeigen kann. Bilder der Beispiele müssen nicht existieren.
 - Verworfen: YAML zur Laufzeit per `fetch` laden. Das brächte Ladezustand und Fehler erst beim Besucher, und ein Deployment ist für jede Änderung ohnehin nötig.
 
 ## Schritte

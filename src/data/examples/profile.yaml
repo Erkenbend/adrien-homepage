@@ -1,0 +1,82 @@
+# Reference example for src/data/profile.yaml: every field, with fictional values.
+# The build checks that this file is valid and uses every field, so it stays up to date with
+# src/data/schema.ts. It is not shown anywhere.
+#
+# Texts (marked "text" below) come in two forms:
+#   - one string for all languages:     organization: Beispiel GmbH
+#   - one string per language, all three required:
+#       role: {de: Entwicklerin, en: Developer, fr: Développeuse}
+#     or as a block, see `headline`.
+# Dates: YYYY or YYYY-MM (e.g. 2021 or 2021-03).
+
+# Required. Also the page title.
+name: Erika Mustermann
+
+# Required, text.
+headline:
+  de: Softwareentwicklerin
+  en: Software developer
+  fr: Développeuse logicielle
+
+# Optional, text. Here one string for all languages.
+location: Berlin
+
+# Optional. Path below public/, i.e. this file is public/images/profile.webp.
+photo: /images/profile.webp
+
+# Optional, text. Longer texts can use YAML's folded style (">"): line breaks become spaces.
+about:
+  de: >
+    Ich baue Webanwendungen und Werkzeuge,
+    am liebsten mit TypeScript.
+  en: >
+    I build web applications and tools,
+    preferably with TypeScript.
+  fr: >
+    Je développe des applications web et des outils,
+    de préférence en TypeScript.
+
+# Optional list, newest first (shown in this order).
+experience:
+  - role: {de: Senior-Entwicklerin, en: Senior developer, fr: Développeuse senior}   # required, text
+    organization: Beispiel GmbH                                                     # required
+    location: {de: München, en: Munich, fr: Munich}                                 # optional, text
+    period: {from: 2021-03}                                                         # required; no `to` = until today
+    description:                                                                    # optional, text
+      de: Verantwortlich für die Kundenplattform.
+      en: Responsible for the customer platform.
+      fr: Responsable de la plateforme client.
+  - role: {de: Entwicklerin, en: Developer, fr: Développeuse}
+    organization: Muster AG
+    period: {from: 2017-09, to: 2021-02}
+
+# Optional list.
+education:
+  - degree: {de: Master Informatik, en: Master's in computer science, fr: Master en informatique}  # required, text
+    institution: Technische Universität Musterstadt                                                # required
+    period: {from: 2015, to: 2017}                                                                 # required
+
+# Optional list.
+certificates:
+  - name: AWS Certified Solutions Architect – Associate    # required, text
+    issuer: Amazon Web Services                            # required
+    issued: 2023-05                                        # required
+    validUntil: 2026-05                                    # optional, last month of validity
+    url: https://example.com/credential/12345              # optional, makes the name a link
+  - name: {de: Scrum-Master-Zertifikat, en: Scrum Master certificate, fr: Certificat Scrum Master}
+    issuer: Scrum.org
+    issued: 2019
+
+# Optional list.
+languages:
+  - name: {de: Deutsch, en: German, fr: Allemand}            # required, text
+    level: {de: Muttersprache, en: Native, fr: Langue maternelle}  # required, text
+  - name: {de: Englisch, en: English, fr: Anglais}
+    level: C1
+
+# Required.
+links:
+  linkedin: https://www.linkedin.com/in/erika-mustermann    # required
+  github:                                                   # optional list, shown as "GitHub (<user>)"
+    - https://github.com/erika-mustermann
+    - https://github.com/erika-work

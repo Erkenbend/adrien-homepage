@@ -24,3 +24,4 @@
 ## Documentation
 
 * Update the docs a change affects in the same commit
+* Keep the reference examples in `src/data/examples/` complete: a change to `src/data/schema.ts` updates the matching example (every field, with comments) in the same commit; the build fails if a field is missing

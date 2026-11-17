@@ -1,9 +1,5 @@
-# Profile data, validated at build time against `profile` in src/data/schema.ts.
-#
-# Texts: either one string for all languages, or {de, en, fr}.
-# Periods: from/to as YYYY or YYYY-MM; without `to` the period lasts until today.
-# certificates: issued/validUntil as YYYY or YYYY-MM, validUntil and url optional.
-# photo: path below public/, e.g. /images/profile.webp (optional).
+# Profile shown on the page, validated at build time against `profile` in src/data/schema.ts.
+# Every field with explanations: src/data/examples/profile.yaml
 #
 # TODO: replace all placeholders with the real content.
 
