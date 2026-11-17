@@ -41,6 +41,7 @@
       plus souvent les mots difficiles.
   languages: [TypeScript]                       # optional list, shown in this order
   frameworks: [React, AWS CDK]                  # optional list, shown in this order
+  tools: [Vite, AWS]                            # optional list: platforms, build tools, infrastructure
   # Optional: professional (for a customer or employer), training (sponsored by work, but not for a
   # customer) or hobby.
   kind: hobby

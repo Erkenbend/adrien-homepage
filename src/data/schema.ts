@@ -82,6 +82,8 @@ export function createSchemas(context: SchemaContext) {
         description: localized,
         languages: z.array(text).default([]),
         frameworks: z.array(text).default([]),
+        /** Platforms, build tools, infrastructure, e.g. Docker or AWS. */
+        tools: z.array(text).default([]),
         kind: z.enum(PROJECT_KINDS).optional(),
         period: period.optional(),
         team: z.enum(TEAM_SIZES).optional(),

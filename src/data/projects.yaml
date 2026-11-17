@@ -34,7 +34,8 @@
     en: Payment platform for DATEV, as developer and architect at Finatix.
     fr: Plateforme de paiement pour DATEV, en tant que développeur et architecte chez Finatix.
   languages: [Java]
-  frameworks: [Spring-Boot, AWS, Angular]
+  frameworks: [Spring-Boot, Angular]
+  tools: [AWS]
   kind: professional
   period: {from: 2020-10}
   team: group
@@ -81,7 +82,8 @@
       Écran mural pour l’entrée sur une vieille tablette : départs de tram, agenda familial
       et météo, servis par un Raspberry Pi.
   languages: [Python]
-  frameworks: [FastAPI, HTMX, Docker, Raspberry Pi]
+  frameworks: [FastAPI, HTMX]
+  tools: [Docker, Raspberry Pi]
   kind: hobby
   period: {from: 2026-11}
   team: solo
@@ -98,7 +100,8 @@
     en: Interactive trainer for the articles of tricky German nouns.
     fr: Entraîneur interactif pour les articles des noms allemands difficiles.
   languages: [TypeScript]
-  frameworks: [React, Vite, AWS CDK]
+  frameworks: [React, AWS CDK]
+  tools: [Vite]
   kind: hobby
   period: {from: 2025-09}
   team: solo
@@ -122,7 +125,7 @@
       Fait s’affronter des algorithmes, sous forme d’images Docker, dans des jeux de théorie des jeux,
       quel que soit le langage ; avec des modèles pour Java, JavaScript, Python et Go.
   languages: [Python, Java, JavaScript, Go]
-  frameworks: [Docker]
+  tools: [Docker]
   kind: hobby
   period: {from: 2024-11}
   team: solo
@@ -145,7 +148,8 @@
       Linter pour du code Terraform. Contributions : traitement concurrent, nouvelles règles,
       formats de sortie (JSON, lisible, pédagogique), configuration et fichiers d’exclusion.
   languages: [Go]
-  frameworks: [Cobra, Terraform]
+  frameworks: [Cobra]
+  tools: [Terraform]
   kind: hobby
   period: {from: 2025-10, to: 2026-03}
   team: group
@@ -180,7 +184,8 @@
     en: Picks a random number between 1 and N with one click.
     fr: Tire un nombre au hasard entre 1 et N en un clic.
   languages: [TypeScript]
-  frameworks: [React, Vite, AWS CDK]
+  frameworks: [React, AWS CDK]
+  tools: [Vite]
   kind: hobby
   period: {from: 2025-04, to: 2025-12}
   team: solo
@@ -204,7 +209,7 @@
       Prédit la composition d’équipe la plus forte dans un jeu de type Overwatch : deux équipes
       améliorent tour à tour leurs synergies et contres jusqu’à un équilibre.
   languages: [Java, Python]
-  frameworks: [Maven]
+  tools: [Maven]
   kind: hobby
   period: {from: 2020-04, to: 2020-12}
   team: solo
@@ -229,7 +234,8 @@
       Exemple de deux services Spring Boot réactifs qui transmettent un identifiant de trace
       via RabbitMQ, pour relier toutes les entrées de log d’une requête.
   languages: [Java]
-  frameworks: [Spring Boot, RabbitMQ, DynamoDB, LocalStack, Docker]
+  frameworks: [Spring Boot]
+  tools: [RabbitMQ, DynamoDB, LocalStack, Docker]
   kind: hobby
   period: {from: 2023-03, to: 2023-12}
   team: solo
@@ -252,7 +258,8 @@
       Bac à sable pour télécharger de nombreux fichiers depuis un flux d’événements lent,
       implémenté une fois en réactif et une fois en Spring MVC classique.
   languages: [Java]
-  frameworks: [Spring Boot, WebFlux, OpenAPI]
+  frameworks: [Spring Boot, WebFlux]
+  tools: [OpenAPI]
   kind: hobby
   period: {from: 2024-07, to: 2024-07}
   team: solo
