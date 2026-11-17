@@ -11,6 +11,8 @@ location:
   de: Halle (Saale)
   en: Halle (Saale), Germany
   fr: Halle (Saale), Allemagne
+# TODO: replace with a real photo (e.g. /images/profile.webp), then delete profile-placeholder.svg
+photo: /images/profile-placeholder.svg
 about:
   de: >
     Franzose, seit 2016 in Deutschland. Ich entwickle und konzipiere Software

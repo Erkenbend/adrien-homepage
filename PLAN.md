@@ -153,5 +153,5 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild. Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
+1. **Inhalte:** Profil ausgefüllt, es fehlt nur das Profilbild (bis dahin Platzhalter `public/images/profile-placeholder.svg`, in `profile.yaml` mit `TODO` markiert). Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
 2. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
