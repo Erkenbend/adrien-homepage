@@ -11,6 +11,8 @@ export const de = {
     contact: 'Kontakt',
     contactIntro: 'Am einfachsten erreichbar per Nachricht über',
     present: 'heute',
+    projects: 'Projekte',
+    projectsIntro: 'Meine Projekte, eingeordnet nach Komplexität und nach KI-Einsatz beim Entwickeln.',
     complexity: 'Komplexität',
     complexityLevels: {
         script: 'Skript',

@@ -115,3 +115,127 @@ h2 {
 .timeline p {
   margin: 0.25rem 0 0;
 }
+
+/* Project graph: one column per complexity level, one band per AI usage level. */
+
+.graph {
+  --graph-line: rgba(255, 255, 255, 0.12);
+  --icon-size: 2.75rem;
+  margin-top: 1rem;
+}
+
+.graph-axis-title {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.graph-x-title {
+  text-align: right;
+}
+
+.graph-plot {
+  margin: 0.25rem 0;
+  border-left: 1px solid var(--graph-line);
+  border-bottom: 1px solid var(--graph-line);
+}
+
+.graph-band,
+.graph-x-labels {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.graph-band:nth-child(odd) {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.graph-band-label {
+  grid-column: 1 / -1;
+  padding: 0.25rem 0.5rem 0;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.graph-cell {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  gap: 0.5rem;
+  min-height: calc(var(--icon-size) + 1rem);
+  margin: 0;
+  padding: 0.5rem 0.25rem;
+  list-style: none;
+}
+
+.graph-cell + .graph-cell {
+  border-left: 1px dashed var(--graph-line);
+}
+
+.graph-x-labels {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.graph-x-labels > div {
+  padding: 0 0.25rem;
+}
+
+.project-icon {
+  position: relative;
+  display: block;
+  width: var(--icon-size);
+  height: var(--icon-size);
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+  background: none;
+  cursor: pointer;
+}
+
+.project-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.15s;
+}
+
+.project-icon:hover img,
+.project-icon:focus-visible img {
+  transform: scale(1.1);
+}
+
+.project-icon:focus-visible {
+  outline: 2px solid var(--text);
+  outline-offset: 2px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  z-index: 1;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  background: #33333a;
+  color: var(--text);
+  font-size: 0.875rem;
+  white-space: nowrap;
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.tooltip-start .tooltip {
+  left: 0;
+}
+
+.tooltip-end .tooltip {
+  right: 0;
+}
+
+.project-icon:hover .tooltip,
+.project-icon:focus-visible .tooltip {
+  visibility: visible;
+}

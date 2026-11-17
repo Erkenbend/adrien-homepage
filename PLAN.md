@@ -100,12 +100,14 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Fehlende optionale Felder werden in der Detailansicht einfach weggelassen.
 - Kandidaten aus `~/code` und `~/WebstormProjects`: `star-battle-solver`, `random-picker`, `article-trainer` (DER oder DAS), `home-dashboard`, `popquiz`, `snake`, `tfcoach`, `overwatch-meta-predictor`, `minecraft-overview`, `halle-appointment-watch`, `ntfy-server`, `ldap-password-change`, `KotlinFizzBuzz`, `smartcjm-api-check`, `tinkering-with-files-and-streams` – plus berufliche Projekte. Auswahl und Bewertung trifft der Nutzer; Entwürfe für Beschreibungen können aus den READMEs erstellt werden.
 
-### 7. Projekt-Graph
+### 7. Projekt-Graph ✅
 
-- Fläche mit x = Komplexität, y = KI-Einsatz (vier Bänder), Achsenbeschriftung je Sprache.
-- Jedes Projekt als Icon an seiner Position, als `<button>` mit Namen als `aria-label` und Tooltip.
-- Überlappungen: Projekte mit (fast) gleichen Werten leicht versetzen, deterministisch (z. B. kleiner Kreis um den Punkt), damit die Anordnung stabil bleibt.
-- Mobil: Graph skaliert auf Bildschirmbreite, Icons behalten eine Mindestgröße zum Antippen; falls zu eng, zusätzlich eine Liste unter dem Graph.
+- `src/components/ProjectGraph.tsx`, Abschnitt „Projekte“ (Anker `#projects`) zwischen Profil und Kontakt, mit einem Satz zur Bedeutung der Achsen.
+- Raster statt freier Koordinaten: eine Spalte je Komplexitätsstufe, ein Band je KI-Stufe (oben am meisten KI), Stufennamen je Sprache an den Spalten bzw. in den Bändern, Achsentitel mit Pfeil. Leere Stufen bleiben sichtbar, damit die Skala vollständig ist.
+- Überlappungen gibt es nicht: Projekte derselben Zelle stehen nebeneinander (umbrechend), nach Namen sortiert. Das ersetzt den angedachten Versatz im Kreis, weil beide Achsen ohnehin nur vier Stufen haben.
+- Jedes Projekt ist ein `<button>` (Name als `aria-label`) mit eigenem Tooltip bei Hover und Tastaturfokus; Tooltips wachsen zur Mitte hin, damit sie nicht über den Rand ragen. Jede belegte Zelle ist eine Liste mit Stufen als `aria-label`. Ein Klick hat noch keine Wirkung (Schritt 8).
+- Mobil: Spalten teilen sich die Breite, Icons bleiben 44 px groß und stapeln sich in der Zelle. Eine zusätzliche Liste unter dem Graph ist deshalb nicht nötig.
+- Geprüft mit `bun run preview` und Headless-Chromium bei 1100 px und 360 px (`/` und `/fr/`): alle 15 Projekte sichtbar, kein horizontales Scrollen, auch nicht mit Tooltip am Rand.
 
 ### 8. Detailansicht
 

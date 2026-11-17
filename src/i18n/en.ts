@@ -10,6 +10,8 @@ export const en = {
     contact: 'Contact',
     contactIntro: 'Best reached by message via',
     present: 'present',
+    projects: 'Projects',
+    projectsIntro: 'My projects, placed by complexity and by how much AI was used to develop them.',
     complexity: 'Complexity',
     complexityLevels: {
         script: 'Script',

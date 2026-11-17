@@ -10,6 +10,8 @@ export const fr = {
     contact: 'Contact',
     contactIntro: 'Le plus simple pour me joindre : un message via',
     present: 'aujourd’hui',
+    projects: 'Projets',
+    projectsIntro: 'Mes projets, classés selon leur complexité et la part d’IA utilisée pour les développer.',
     complexity: 'Complexité',
     complexityLevels: {
         script: 'Script',
