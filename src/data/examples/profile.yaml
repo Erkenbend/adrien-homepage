@@ -76,9 +76,14 @@ languages:
   - name: {de: Englisch, en: English, fr: Anglais}
     level: C1
 
-# Required.
+# Optional list of URLs, shown below the name in this order. Known sites (see SITES in src/sites.ts)
+# get their icon and name, e.g. "LinkedIn", "iSAQB" or "GitHub (<user>)" for a GitHub profile;
+# other links get a generic icon and their host name, here "erika.example.com".
 links:
-  linkedin: https://www.linkedin.com/in/erika-mustermann    # required
-  github:                                                   # optional list, shown as "GitHub (<user>)"
-    - https://github.com/erika-mustermann
-    - https://github.com/erika-work
+  - https://www.linkedin.com/in/erika-mustermann
+  - https://github.com/erika-mustermann
+  - https://github.com/erika-work
+  - https://erika.example.com
+
+# Required. Linked in the contact section, shown like the links above.
+contact: https://www.linkedin.com/in/erika-mustermann

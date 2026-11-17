@@ -1,6 +1,7 @@
 import profile from '../data/profile.yaml'
 import {formatPeriod, formatYearMonth, localize} from '../data/format.ts'
 import {MESSAGES} from '../i18n/language.ts'
+import {SiteLink} from './SiteLink.tsx'
 
 export function Profile() {
     return (
@@ -11,12 +12,11 @@ export function Profile() {
                     <h1>{profile.name}</h1>
                     <p className="headline">{localize(profile.headline)}</p>
                     {profile.location && <p className="muted">{localize(profile.location)}</p>}
-                    <p className="profile-links">
-                        <a href={profile.links.linkedin}>LinkedIn</a>
-                        {profile.links.github.map(url => (
-                            <a key={url} href={url}>GitHub ({githubUser(url)})</a>
-                        ))}
-                    </p>
+                    {profile.links.length > 0 && (
+                        <p className="profile-links">
+                            {profile.links.map(url => <SiteLink key={url} url={url}/>)}
+                        </p>
+                    )}
                 </div>
             </section>
 
@@ -88,9 +88,4 @@ export function Profile() {
             )}
         </>
     )
-}
-
-/** `https://github.com/<user>` → `<user>`, to tell several GitHub profiles apart. */
-function githubUser(url: string): string {
-    return new URL(url).pathname.split('/').find(Boolean) ?? url
 }

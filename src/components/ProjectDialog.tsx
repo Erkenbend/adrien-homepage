@@ -2,6 +2,7 @@ import {useEffect, useRef, type MouseEvent, type ReactNode} from 'react'
 import {formatPeriod, localize} from '../data/format.ts'
 import type {Project} from '../data/schema.ts'
 import {MESSAGES} from '../i18n/language.ts'
+import {SiteLink} from './SiteLink.tsx'
 
 interface ProjectDialogProps {
     /** The project to show; none keeps the dialog closed. */
@@ -69,8 +70,8 @@ function Details({project, onClose}: {project: Project, onClose: () => void}) {
 
             {(project.githubUrl ?? project.websiteUrl) && (
                 <p className="project-links">
-                    {project.websiteUrl && <a href={project.websiteUrl}>{MESSAGES.website}</a>}
-                    {project.githubUrl && <a href={project.githubUrl}>GitHub</a>}
+                    {project.websiteUrl && <SiteLink url={project.websiteUrl} fallbackLabel={MESSAGES.website}/>}
+                    {project.githubUrl && <SiteLink url={project.githubUrl}/>}
                 </p>
             )}
         </div>

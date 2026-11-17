@@ -80,14 +80,14 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - `src/data/schema.ts`: `createSchemas({imageExists})` (die Bildprüfung kommt vom Plugin, damit das Schema ohne Node-APIs auskommt); Typen `Profile`, `Localized`, `Period` per `z.infer`. `src/data/modules.d.ts` typisiert `import … from '*/profile.yaml'`.
 - `src/i18n/languages.ts` enthält die Sprachliste ohne Browser-Globals, weil das Schema sie beim Build braucht.
 - `tsconfig.app.json` ohne Node-Typen (`"types": []`), `tsconfig.node.json` mit Node-Typen und `build-plugins/`.
-- `src/data/profile.yaml` mit Platzhaltern: Name, Position, Ort, Kurzvorstellung, Werdegang, Ausbildung, Zertifikate (Name, Aussteller, ausgestellt, optional gültig bis und Link), Sprachen, Links (LinkedIn, beliebig viele GitHub-Profile, angezeigt als „GitHub (Benutzername)“), optional `photo` (Pfad unter `public/`, z. B. `/images/profile.webp`). Leere Abschnitte werden nicht angezeigt.
+- `src/data/profile.yaml` mit Platzhaltern: Name, Position, Ort, Kurzvorstellung, Werdegang, Ausbildung, Zertifikate (Name, Aussteller, ausgestellt, optional gültig bis und Link), Sprachen, Links (inzwischen eine freie Liste von URLs, siehe Schritt 9), optional `photo` (Pfad unter `public/`, z. B. `/images/profile.webp`). Leere Abschnitte werden nicht angezeigt.
 - Zeiträume als `JJJJ` oder `JJJJ-MM`, Anzeige je Sprache über `Intl.DateTimeFormat` (z. B. „Sept. 2017 – Feb. 2021“, „mars 2021 – aujourd’hui“).
 - Der Seitentitel ist der Name aus `profile.yaml`.
 - `zod` und `yaml` landen nicht im Browser-Bundle (geprüft).
 
 ### 5. Kontakt ✅
 
-- Abschnitt „Kontakt“ am Ende der Seite (`src/components/Contact.tsx`, Anker `#contact`): ein Satz mit Link zum LinkedIn-Profil (URL aus `profile.yaml`), keine E-Mail-Adresse. Formulierung ohne Anrede, damit sich die Frage „du“ oder „Sie“ nicht stellt.
+- Abschnitt „Kontakt“ am Ende der Seite (`src/components/Contact.tsx`, Anker `#contact`): ein Satz mit Link zum LinkedIn-Profil (`contact` in `profile.yaml`), keine E-Mail-Adresse. Formulierung ohne Anrede, damit sich die Frage „du“ oder „Sie“ nicht stellt.
 
 ### 6. Projektdaten (in Arbeit)
 
@@ -121,7 +121,12 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Der Sprachumschalter übernimmt den Hash (z. B. `#contact`). Für ein offenes Projekt greift das nicht, weil die Seite hinter dem modalen Dialog nicht bedienbar ist; ein Sprachwechsel mit offenem Projekt bliebe eine Idee für später.
 - Geprüft mit Headless-Chromium: alle Wege zum Öffnen und Schließen samt URL, Fokus und History, direkter Link, unbekannter Hash, Darstellung bei 1100 px und 360 px.
 
-### 9. CI-Pipeline (sobald es das Upstream-Repository gibt)
+### 9. Icons und Logos (in Arbeit)
+
+- ✅ **Links mit Icons:** `links` in `profile.yaml` ist eine Liste beliebiger URLs, `contact` die URL für den Kontakt-Abschnitt. `src/sites.ts` erkennt bekannte Seiten am Hostnamen (auch Subdomains) und zeigt Logo und Namen: GitHub (bei Profil-URLs mit Benutzername, bei Repositorys ohne), LinkedIn, iSAQB. Unbekannte Seiten bekommen ein allgemeines Link-Icon und den Hostnamen (bei Projekten „Webseite“). Eine weitere Seite ist ein Eintrag in `SITES`. Gilt für Profil-Links, Kontakt und die Links in der Projekt-Detailansicht.
+- Die Site-Icons liegen in `src/assets/sites/` und werden importiert, damit ein fehlendes Icon den Build abbricht.
+
+### 10. CI-Pipeline (sobald es das Upstream-Repository gibt)
 
 - `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernehmen (Bun 1.3.8, Node 22), Stack-Name anpassen.
 - Wird erst mit dem Upstream-Repository wirksam; dort die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` hinterlegen.
@@ -130,7 +135,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - `BUILD_TIMESTAMP` wieder einführen (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`) und als Version im Footer anzeigen, wie bei `article-trainer`.
 - Link zum GitHub-Repository mit GitHub-Logo im Footer, wie bei `random-picker` und `article-trainer`.
 
-### 10. Feinschliff und Livegang
+### 11. Feinschliff und Livegang
 
 - Favicon, `<meta name="description">`, Open-Graph-Tags (für Vorschauen auf LinkedIn u. a.).
 - Barrierefreiheit: Tastaturbedienung des Graphen, Kontraste, `alt`-Texte.

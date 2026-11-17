@@ -67,10 +67,10 @@ export function createSchemas(context: SchemaContext) {
             name: localized,
             level: localized,
         })).default([]),
-        links: z.strictObject({
-            linkedin: z.url(),
-            github: z.array(z.url()).default([]),
-        }),
+        /** Shown below the name; known sites (src/sites.ts) get their icon and name. */
+        links: z.array(z.url()).default([]),
+        /** The one way to get in touch, linked in the contact section. */
+        contact: z.url(),
     })
 
     const project = z.strictObject({

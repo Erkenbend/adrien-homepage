@@ -80,7 +80,7 @@ languages:
     level: {de: fließend, en: fluent, fr: courant}
 
 links:
-  linkedin: https://www.linkedin.com/in/a-wehrung/
-  github:
-    - https://github.com/Erkenbend
-    - https://github.com/awehrung
+  - https://www.linkedin.com/in/a-wehrung/
+  - https://github.com/Erkenbend
+  - https://github.com/awehrung
+contact: https://www.linkedin.com/in/a-wehrung/
