@@ -4,6 +4,7 @@ import type {Plugin} from 'vite'
 import {parse} from 'yaml'
 import {z} from 'zod'
 import {createSchemas, type SchemaContext} from '../src/data/schema.ts'
+import {GENERIC_LINK_ICON, SITES} from '../src/sites.ts'
 import {unusedFields} from './completeness.ts'
 
 type Schemas = ReturnType<typeof createSchemas>
@@ -12,7 +13,7 @@ type Schemas = ReturnType<typeof createSchemas>
  * Turns `src/data/<name>.yaml` into a JS module after validating it against the schema `<name>`
  * from src/data/schema.ts. Invalid data fails the build (and shows the error overlay in `bun dev`).
  *
- * At build start it checks every data file, also those no code imports yet, and the reference examples
+ * At build start it checks the site icons of src/sites.ts, every data file, also those no code imports yet, and the reference examples
  * `src/data/examples/<name>.yaml`: they must be valid and use every field of the schema at least once,
  * so they cannot fall behind the schema.
  */
@@ -27,6 +28,13 @@ export function yamlData(): Plugin {
         },
 
         buildStart() {
+            const {imageExists} = imagesInPublic(root)
+            for (const icon of [GENERIC_LINK_ICON, ...SITES.map(site => site.icon)]) {
+                if (!imageExists(icon)) {
+                    throw new Error(`src/sites.ts: icon not found: public${icon}`)
+                }
+            }
+
             const dataDir = path.join(root, 'src', 'data')
             const dataSchemas = createSchemas(imagesInPublic(root))
             for (const file of yamlFiles(dataDir)) {

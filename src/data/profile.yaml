@@ -73,7 +73,7 @@ education:
 certificates:
   - name: iSAQB® Certified Professional for Software Architecture – Foundation Level (CPSA-F)
     issuer: iSAQB
-    logo: /images/logos/isaqb.svg
+    logo: /images/sites/isaqb.svg
     issued: 2023-06
     url: https://www.certible.com/de/verify/54e5c27bc63e7c187ee07d4d231b1d79/
 

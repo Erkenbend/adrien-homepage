@@ -1,23 +1,24 @@
-import githubIcon from './assets/sites/github.svg'
-import isaqbIcon from './assets/sites/isaqb.svg'
-import linkIcon from './assets/sites/link.svg'
-import linkedinIcon from './assets/sites/linkedin.png'
+// No browser APIs here: build-plugins/yaml-data.ts imports this file to check that every icon exists.
 
 interface Site {
     /** Host names, subdomains included (`linkedin.com` also matches `de.linkedin.com`). */
     hosts: string[]
     name: string
+    /** Path below public/. */
     icon: string
     /** Optional detail shown after the name, e.g. to tell several profiles apart. */
     detail?: (url: URL) => string | undefined
 }
 
 /** Known sites, recognized by host name. Add an entry here to give another site its icon and name. */
-const SITES: Site[] = [
-    {hosts: ['github.com'], name: 'GitHub', icon: githubIcon, detail: githubUser},
-    {hosts: ['linkedin.com'], name: 'LinkedIn', icon: linkedinIcon},
-    {hosts: ['isaqb.org'], name: 'iSAQB', icon: isaqbIcon},
+export const SITES: Site[] = [
+    {hosts: ['github.com'], name: 'GitHub', icon: '/images/sites/github.svg', detail: githubUser},
+    {hosts: ['linkedin.com'], name: 'LinkedIn', icon: '/images/sites/linkedin.png'},
+    {hosts: ['isaqb.org'], name: 'iSAQB', icon: '/images/sites/isaqb.svg'},
 ]
+
+/** Icon of links to sites not in `SITES`. */
+export const GENERIC_LINK_ICON = '/images/sites/link.svg'
 
 export interface LinkDisplay {
     label: string
@@ -33,7 +34,7 @@ export function describeLink(href: string, fallbackLabel?: string): LinkDisplay 
     const host = url.hostname.toLowerCase()
     const site = SITES.find(({hosts}) => hosts.some(known => host === known || host.endsWith(`.${known}`)))
     if (!site) {
-        return {label: fallbackLabel ?? host.replace(/^www\./, ''), icon: linkIcon}
+        return {label: fallbackLabel ?? host.replace(/^www\./, ''), icon: GENERIC_LINK_ICON}
     }
     const detail = site.detail?.(url)
     return {label: detail ? `${site.name} (${detail})` : site.name, icon: site.icon}

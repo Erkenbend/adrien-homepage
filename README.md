@@ -20,7 +20,7 @@ Infrastruktur (AWS CDK): siehe [infrastructure/README.md](infrastructure/README.
 
 Logos sind Marken ihrer Inhaber und werden nur verwendet, um auf die jeweilige Seite, Organisation oder das Projekt zu verweisen.
 
-Icons der Links (`src/assets/sites/`):
+Icons der Links (`public/images/sites/`; `isaqb.svg` ist auch das Logo beim Zertifikat):
 
 | Datei | Quelle | Lizenz / Bedingungen |
 |---|---|---|
@@ -37,7 +37,6 @@ Logos der Organisationen (`public/images/logos/`), jeweils unverändert von der 
 | `it-sonix.png` | Favicon von [itsonix.eu](https://itsonix.eu) (`cropped-it-sonix-favicon-192x192.png`) |
 | `mlu.png` | Favicon von [uni-halle.de](https://www.uni-halle.de) (`favicon-192x192.png`) |
 | `telecom-nancy.png` | Favicon von [telecomnancy.univ-lorraine.fr](https://telecomnancy.univ-lorraine.fr) (`apple-icon-180x180.png`) |
-| `isaqb.svg` | wie `src/assets/sites/isaqb.svg` |
 
 Projekt-Icons (`public/images/projects/`):
 
