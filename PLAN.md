@@ -91,15 +91,15 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 - Abschnitt „Kontakt“ am Ende der Seite (`src/components/Contact.tsx`, Anker `#contact`): ein Satz mit Link zum LinkedIn-Profil (`contact` in `profile.yaml`), keine E-Mail-Adresse. Formulierung ohne Anrede, damit sich die Frage „du“ oder „Sie“ nicht stellt.
 
-### 6. Projektdaten (in Arbeit)
+### 6. Projektdaten ✅
 
 - ✅ Schema `projects` in `src/data/schema.ts`, Typ `Project`: Pflichtfelder `id` (eindeutig, Kleinbuchstaben/Ziffern/Bindestriche, später Anker in der URL), `name` und `description` (Text), `icon`, `complexity`, `aiUsage`; optional `visible` (Standard `true`), `languages`, `frameworks` und `tools` (Listen von IDs aus `src/data/technologies.ts`, siehe Schritt 9; `tools` für Plattformen, Build-Werkzeuge und Infrastruktur wie Docker oder AWS), `kind` (`professional` | `training` | `hobby`), `period` (wie im Profil: `{from, to}`, ohne `to` = laufend), `team` (`solo` | `group`), `teamDetails` (Text, z. B. Größe des Teams oder eigene Rolle), `githubUrl`, `websiteUrl`.
 - ✅ `visible: false` blendet ein Projekt aus, ohne den Eintrag auszukommentieren: Es wird weiter geprüft, aber schon im Schema herausgefiltert und landet nicht im Bundle (geprüft). In `projects.yaml` steht `visible: true` ausdrücklich bei jedem Eintrag.
 - ✅ `complexity`: `script` | `demo` | `app` | `multiPart` | `system`; `aiUsage`: `none` | `light` | `heavy` | `vibe` (siehe Entscheidungen). Beide Achsen mit beschrifteten Stufen statt Zahlen; Beschriftungen und Achsentitel in `src/i18n/`.
 - ✅ Referenzbeispiel `src/data/examples/projects.yaml` mit Erklärung jeder Stufe.
 - ✅ Geprüft: unbekannte Stufe, doppelte `id`, fehlendes Icon und ein Feld, das im Beispiel fehlt, lassen den Build fehlschlagen.
-- ✅ Entwurf `src/data/projects.yaml` aus beiden GitHub-Profilen (`Erkenbend`, `awehrung`), `tfcoach` (eigene Beiträge) sowie XPAY und DATEV PaymentNext. Weggelassen: Forks ohne nennenswerte eigene Arbeit (nur Abhängigkeits-Updates, Formatierung, Badge) und das leere `my-solid-kata`; nach Durchsicht außerdem `9gag-bot`, `php-from-scratch`, `tcp-chat-room`, `localstack-testing` und `nina-workshop`.
-- Offen: mit `TODO` markierte Angaben vervollständigt der Nutzer selbst.
+- ✅ `src/data/projects.yaml` aus beiden GitHub-Profilen (`Erkenbend`, `awehrung`), `tfcoach` (eigene Beiträge) sowie XPAY und DATEV PaymentNext. Weggelassen: Forks ohne nennenswerte eigene Arbeit (nur Abhängigkeits-Updates, Formatierung, Badge) und das leere `my-solid-kata`; nach Durchsicht außerdem `9gag-bot`, `php-from-scratch`, `tcp-chat-room`, `localstack-testing` und `nina-workshop`.
+- ✅ Alle Angaben vom Nutzer vervollständigt und geprüft.
 - Icons: ein Bild pro Projekt unter `public/images/projects/` (SVG oder kleines WebP, quadratisch), Pflichtfeld; der Build prüft, dass jedes Bild existiert. Siehe Schritt 9.
 - Fehlende optionale Felder werden in der Detailansicht einfach weggelassen.
 - Kandidaten aus `~/code` und `~/WebstormProjects`: `star-battle-solver`, `random-picker`, `article-trainer` (DER oder DAS), `home-dashboard`, `popquiz`, `snake`, `tfcoach`, `overwatch-meta-predictor`, `minecraft-overview`, `halle-appointment-watch`, `ntfy-server`, `ldap-password-change`, `KotlinFizzBuzz`, `smartcjm-api-check`, `tinkering-with-files-and-streams` – plus berufliche Projekte. Auswahl und Bewertung trifft der Nutzer; Entwürfe für Beschreibungen können aus den READMEs erstellt werden.
@@ -160,12 +160,14 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Die Varianten 2–4 haben dasselbe Gerüst (`AxesGraph` in `src/components/ProjectGraph.tsx`, ein einziges CSS-Grid): Pfeile aus CSS (Linie + Dreieck), die sich unten links kreuzen; Stufennamen links der y-Achse bzw. unter der x-Achse, jeweils mit Teilstrich; Achsentitel an den Pfeilspitzen (KI-Einsatz neben der oberen, Komplexität unter der rechten). Mobil (unter 36rem) stehen die Namen der KI-Stufen hochkant, damit die Spalten breit genug für die Icons bleiben.
 - Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen, jeder Anordnung und jedem Graphen: kein horizontales Scrollen, alle 15 Projekte sichtbar; in `bun dev` mit Leiste ebenso bei 360 px. Produktions-Build mit `VITE_LAYOUT=split`: Anordnung `split` trotz `?layout=bento`, kein Umschalter, Sprachlinks ohne Query-Parameter. Ungültige und leere Werte brechen den Build ab.
 
-### 10. CI-Pipeline (sobald es das Upstream-Repository gibt)
+### 10. CI-Pipeline (als Nächstes)
 
+- Das Upstream-Repository auf GitHub legt der Nutzer an.
 - `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernehmen (Bun 1.3.8, Node 22), Stack-Name anpassen.
-- Wird erst mit dem Upstream-Repository wirksam; dort die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` hinterlegen.
+- Im Upstream-Repository die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` hinterlegen.
+- Achtung: Der erste Push auf `main` mit dem Workflow löst das erste `cdk deploy` aus (siehe Schritt 2, noch nicht deployt).
 
-**Sobald es das Upstream-Repository gibt:**
+**Mit dem Upstream-Repository außerdem:**
 - `BUILD_TIMESTAMP` wieder einführen (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`) und als Version im Footer anzeigen, wie bei `article-trainer`.
 - Link zum GitHub-Repository mit GitHub-Logo im Footer, wie bei `random-picker` und `article-trainer`.
 
@@ -185,5 +187,4 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Inhalte:** Profil ausgefüllt, es fehlen nur das Profilbild und das Bild des Easter Eggs (bis dahin Platzhalter `public/images/profile-placeholder.svg` und `profile-shadow-placeholder.svg`, in `profile.yaml` mit `TODO` markiert). Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
-2. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
+1. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.

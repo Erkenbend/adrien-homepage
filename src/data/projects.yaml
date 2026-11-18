@@ -2,8 +2,7 @@
 # Every field with explanations: src/data/examples/projects.yaml
 # Icons go to public/images/projects/, sources in README.md; placeholder.svg stands in for a missing one.
 #
-# Draft from the GitHub profiles Erkenbend and awehrung, tfcoach and the professional projects.
-# Ratings marked TODO are guesses.
+# Selected from the GitHub profiles Erkenbend and awehrung, tfcoach and the professional projects.
 
 # --- Professional ---
 
@@ -244,7 +243,7 @@
   name: {de: Tracing über RabbitMQ, en: Tracing across RabbitMQ, fr: Traçage via RabbitMQ}
   icon: /images/projects/reactive-rabbitmq-tracing.svg
   complexity: demo
-  aiUsage: none    # TODO: check rating
+  aiUsage: none
   description:
     de: >
       Beispiel mit zwei reaktiven Spring-Boot-Diensten, die eine Trace-ID über RabbitMQ
