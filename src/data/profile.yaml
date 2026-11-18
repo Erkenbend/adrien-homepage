@@ -1,5 +1,5 @@
 # Profile shown on the page, validated at build time against `profile` in src/data/schema.ts.
-# Logos of organizations go to public/images/logos/, sources in README.md.
+# Logos of organizations go to public/images/logos/, sources in docs/credits.md.
 # Every field with explanations: src/data/examples/profile.yaml
 
 name: Adrien Wehrung

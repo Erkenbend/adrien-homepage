@@ -1,79 +1,53 @@
-# Persönliche Homepage
+# Personal homepage
 
-Profil, Kontakt und eigene Projekte → https://adrien.wehrung.online
+Profile, projects and contact on one static page → https://adrien.wehrung.online
 
-## Befehle
+- **Projects as a graph:** every project sits on two axes, complexity and AI used while developing it. Click a project for its details; each one has its own link (`/#tfcoach`).
+- **Three languages:** German at `/`, English at `/en/`, French at `/fr/`.
+- **Content in YAML:** profile and projects live in `src/data/*.yaml`, separate from the code. The build checks them against a schema, so a missing translation, an unknown value or a missing image fails the build instead of showing up on the page.
+- **Static and small:** React, no server, no tracking. Hosted on AWS (S3 + CloudFront), deployed by GitHub Actions.
 
-Einrichten: `bun install`
+## Quick start
 
-Entwicklungsserver: `bun dev`
-
-Lint: `bun lint`
-
-Produktions-Build nach `dist/`: `bun run build`
-
-## Build-Einstellungen
-
-Die Darstellung der Seite wird beim Build festgelegt, über Umgebungsvariablen in [.env](.env):
-
-| Variable | Bedeutung | Werte | Standard |
-|---|---|---|---|
-| `VITE_LAYOUT` | Anordnung der Seite | `classic` (eine Spalte, Projekte als erster Abschnitt), `showcase` (Projekte im Mittelpunkt), `sidebar` (Seitenleiste), `split` (geteilter Bildschirm, Graph bleibt stehen), `bento` (Kacheln) | `classic` |
-| `VITE_GRAPH` | Aussehen des Projekt-Graphen | `classic` (Bänder), `matrix` (gleich gefärbte Zellen), `lines` (Gitterlinien), `open` (nur Achsen) | `lines` |
-
-- Für einen einzelnen Build überschreiben: `VITE_LAYOUT=split bun run build`
-- Lokal dauerhaft überschreiben: dieselben Zeilen in `.env.local` (nicht im Repository)
-- Ein fehlender oder unbekannter Wert bricht `bun dev` und `bun run build` mit den erlaubten Werten ab.
-- In `bun dev` zeigt eine Leiste am linken Rand alle Werte zum Vergleichen; die Auswahl steht in der URL (`?layout=split&graph=open`) und überschreibt die Einstellung. Im Produktions-Build gibt es die Leiste nicht, und die URL-Parameter haben keine Wirkung.
-
-Inhalte (Profil, Projekte): YAML-Dateien in `src/data/`, beim Build gegen `src/data/schema.ts` geprüft; Bilder unter `public/images/`. Alle Felder mit Erklärungen: [src/data/examples/profile.yaml](src/data/examples/profile.yaml), [src/data/examples/projects.yaml](src/data/examples/projects.yaml)
-
-Infrastruktur (AWS CDK): siehe [infrastructure/README.md](infrastructure/README.md)
-
-## Deployment
-
-Jeder Push auf `main` baut und deployt die Seite über GitHub Actions ([Workflow](.github/workflows/github-actions-build-deploy.yml)): install → lint → build → `cdk diff` → `cdk deploy`. Dafür braucht das Repository die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY`.
-
-Von Hand deployen (mit lokalen AWS-Zugangsdaten, Region `us-east-1`):
+Requires [Bun](https://bun.sh) (CI uses 1.3.8).
 
 ```sh
-bun run build
-cd infrastructure
-bun install
-bunx cdk diff
-bunx cdk deploy AdrienHomepageInfrastructureStack
+bun install       # set up
+bun dev           # development server with hot reload
+bun lint          # ESLint over the whole repository
+bun run build     # production build into dist/
+bun run preview   # serve dist/ locally
 ```
 
-## Grafiken
+In `bun dev`, a bar on the left switches between the available page layouts and graph styles.
 
-Logos sind Marken ihrer Inhaber und werden nur verwendet, um auf die jeweilige Seite, Organisation oder das Projekt zu verweisen.
+## Make it your own
 
-Icons der Links (`public/images/sites/`; `isaqb.svg` ist auch das Logo beim Zertifikat):
+The code is generic; everything personal sits in a few places. To build your own page from it:
 
-| Datei | Quelle | Lizenz / Bedingungen |
-|---|---|---|
-| `github.svg` | GitHub Mark (weiß) von [github.com/logos](https://github.com/logos), wie in `random-picker` | GitHub Logo-Richtlinien: unverändert, zum Verlinken auf GitHub |
-| `linkedin.png` | `LI-In-Bug.png` aus `in-logo.zip` von [brand.linkedin.com/downloads](https://brand.linkedin.com/downloads) | LinkedIn Brand Guidelines: unverändert, zum Verlinken auf das eigene Profil |
-| `isaqb.svg` | Signet aus dem Favicon von [isaqb.org](https://www.isaqb.org) (`favicon.svg`), nur Editor-Metadaten entfernt | Marke des iSAQB e. V., Fragen zur Nutzung an info@isaqb.org ([Trademarks](https://www.isaqb.org/trademarks)) |
-| `link.svg` | `link-external-16` aus [Primer Octicons](https://github.com/primer/octicons), Füllfarbe weiß | MIT, © GitHub Inc. |
+1. **Fork or clone** the repository, run `bun install` and `bun dev`.
+2. **Replace the content:** rewrite `src/data/profile.yaml` and `src/data/projects.yaml`. The reference examples in `src/data/examples/` show every field with an explanation. Put your photo, logos and project icons under `public/images/`, and delete the images you no longer use. → [docs/content.md](docs/content.md)
+3. **Adjust the texts of the page** (headings, the sentence above the graph, the contact sentence) in `src/i18n/`, and the fallback `<title>` and `lang` in `index.html`.
+4. **Optionally adapt the model:** the levels of the graph axes, the kinds of projects and their colours, the list of technologies and the recognized link sites. → [docs/content.md](docs/content.md)
+5. **Choose your languages:** add, remove or reorder them, or pick another default. → [docs/languages.md](docs/languages.md)
+6. **Choose a layout and graph style** in `.env`. → [docs/build-settings.md](docs/build-settings.md)
+7. **Point the footer** at your repository: `REPOSITORY_URL` in `src/components/Footer.tsx`.
+8. **Deploy:** change the domain, hosted zone and bucket name in `infrastructure/`, or serve `dist/` from any static host. → [docs/deployment.md](docs/deployment.md)
+9. **Check the credits** for the images you keep. → [docs/credits.md](docs/credits.md)
 
-Logos der Organisationen (`public/images/logos/`), jeweils unverändert von der Webseite der Organisation:
+`bun lint` and `bun run build` tell you when something is missing: the data, the translations and the examples are all checked at build time.
 
-| Datei | Quelle |
+## Documentation
+
+| File | Contents |
 |---|---|
-| `finatix.png` | Favicon von [finatix.de](https://www.finatix.de) (`logo-finatix-l-ohne-Hintergrund.png`) |
-| `it-sonix.png` | Favicon von [itsonix.eu](https://itsonix.eu) (`cropped-it-sonix-favicon-192x192.png`) |
-| `mlu.png` | Favicon von [uni-halle.de](https://www.uni-halle.de) (`favicon-192x192.png`) |
-| `telecom-nancy.png` | Favicon von [telecomnancy.univ-lorraine.fr](https://telecomnancy.univ-lorraine.fr) (`apple-icon-180x180.png`) |
+| [docs/content.md](docs/content.md) | Profile and project data, images, technologies, link sites, graph axes, texts of the page |
+| [docs/languages.md](docs/languages.md) | Adding or removing a language, changing the default |
+| [docs/build-settings.md](docs/build-settings.md) | Page layouts and graph styles (`VITE_LAYOUT`, `VITE_GRAPH`) |
+| [docs/deployment.md](docs/deployment.md) | AWS infrastructure (CDK), GitHub Actions, manual deployment, other hosts |
+| [docs/credits.md](docs/credits.md) | Sources and licences of logos and icons |
+| [PLAN.md](PLAN.md) | Implementation plan, decisions and status (German) |
 
-Projekt-Icons (`public/images/projects/`):
+## Tech stack
 
-| Datei | Quelle |
-|---|---|
-| `xpay.svg` | XPAY-Logo von der Referenzseite [finatix.de/referenzen/xpay](https://www.finatix.de/referenzen/xpay) (`Logo_gray_xPay.png`), zugeschnitten, verkleinert und auf eine weiße Kachel gesetzt |
-| `datev-paymentnext.svg` | [File:Datev.svg](https://commons.wikimedia.org/wiki/File:Datev.svg) von Wikimedia Commons (gemeinfrei als einfaches Schriftbild, Marke der DATEV eG), auf eine weiße Kachel gesetzt |
-| alle anderen | eigene Zeichnungen (mit Claude erstellt), gleiche Lizenz wie das Repository |
-
-Logos der Technologien (`public/images/tech/`): farbige Varianten (`*-original.svg`) aus [Devicon](https://github.com/devicons/devicon) v2.18.0, MIT, © konpa; die Logos selbst sind Marken ihrer Inhaber. Für den dunklen Hintergrund aufgehellt (sonst unverändert): bei `aws.svg` der Schriftzug (weiß), bei `htmx.svg` die spitzen Klammern (hellgrau), bei `symfony.svg` der Kreis (weiß). `aws.svg` steht auch bei AWS CDK.
-
-`localstack.svg`: Signet aus dem Logo in der Navigationsleiste von [localstack.cloud](https://www.localstack.cloud) (Inline-SVG; nur das Signet ohne Schriftzug übernommen, sonst unverändert), Marke der LocalStack GmbH.
+React 19, TypeScript, Vite, Bun; Zod and YAML at build time only; AWS CDK for S3, CloudFront and Route 53.

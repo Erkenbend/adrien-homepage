@@ -1,6 +1,6 @@
 # Projects shown in the graph, validated at build time against `projects` in src/data/schema.ts.
 # Every field with explanations: src/data/examples/projects.yaml
-# Icons go to public/images/projects/, sources in README.md; placeholder.svg stands in for a missing one.
+# Icons go to public/images/projects/, sources in docs/credits.md; placeholder.svg stands in for a missing one.
 #
 # Selected from the GitHub profiles Erkenbend and awehrung, tfcoach and the professional projects.
 

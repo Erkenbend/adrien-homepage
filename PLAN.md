@@ -24,6 +24,7 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 | Graph | Eigene Komponente aus HTML/SVG, keine Chart-Bibliothek | Nur Punkte mit Icons auf zwei Achsen; eine Bibliothek brächte mehr Gewicht als Nutzen |
 | Inhalte (Profil, Projekte) | YAML-Dateien in `src/data/` (`profile.yaml`, später `projects.yaml`), getrennt vom Code | Inhalte ohne TSX pflegen; siehe „Datenhaltung“ |
 | Kontakt | Link zum LinkedIn-Profil statt SimpleLogin-Alias | Entscheidung des Nutzers (weicht von `grober_plan.md` ab); keine E-Mail-Adresse auf der Seite |
+| Dokumentation | `README.md` und `docs/` auf Englisch, `PLAN.md` auf Deutsch | Entscheidung des Nutzers vor dem Livegang: Das Repository ist öffentlich auf GitHub und soll sich als Vorlage für eigene Seiten eignen |
 
 ## Datenhaltung
 
@@ -48,7 +49,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 - Vite-Projekt (React + TS) mit Bun; `package.json`, `tsconfig*.json`, `eslint.config.js`, `.gitignore` aus `article-trainer`.
 - Abweichungen: `bun lint` prüft das ganze Repository (`eslint .`) statt nur `src`; kein `BUILD_TIMESTAMP`; `infrastructure/tsconfig.json` kommt erst mit Schritt 2 in die ESLint-Konfiguration.
-- `README.md` im Stil der anderen Projekte; Quellen der Grafiken kommen dazu, sobald es welche gibt.
+- `README.md` im Stil der anderen Projekte (inzwischen auf Englisch mit Details in `docs/`, siehe Schritt 11).
 - `LICENSE` erst vor dem Livegang.
 - Ergebnis: dunkle Seite mit Namen als Überschrift.
 
@@ -141,7 +142,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Ziel: verschiedene Anordnungen von Profiltexten und Graph vergleichen (nicht Schrift und Farben). Begonnen als Auswahl auf der Seite (Proof of Concept), jetzt Build-Einstellungen mit Umschalter nur in `bun dev`.
 - Entscheidung des Nutzers: Standard sind Anordnung 1 (mit den Projekten als erstem Abschnitt) und Graph 3 (Gitterlinien). Die anderen Varianten bleiben vorerst auswählbar.
 - Das Profil besteht jetzt aus einzelnen Bausteinen (`ProfileHeader`, `ProfileAbout`, `Experience`, `Education`, `Certificates`, `Languages` in `src/components/Profile.tsx`), die jede Anordnung frei platziert. Der Zustand des Easter Eggs liegt in einem Context (`src/components/shadow.ts`), weil Foto und Kurzvorstellung je nach Anordnung an verschiedenen Stellen stehen.
-- **Build-Einstellungen** in `.env` (im Repository): `VITE_LAYOUT` (Anordnung) und `VITE_GRAPH` (Graph); dokumentiert in `README.md`. Überschreibbar für einen Build (`VITE_LAYOUT=split bun run build`) oder lokal in `.env.local` (nicht im Repository). Die erlaubten Werte stehen in `src/settings.ts` (ohne React und Browser-APIs, weil auch der Build sie braucht); `build-plugins/settings.ts` prüft beim Start von Vite, dass beide gesetzt und gültig sind, sonst bricht `bun dev` bzw. der Build mit den erlaubten Werten ab.
+- **Build-Einstellungen** in `.env` (im Repository): `VITE_LAYOUT` (Anordnung) und `VITE_GRAPH` (Graph); dokumentiert in `docs/build-settings.md`. Überschreibbar für einen Build (`VITE_LAYOUT=split bun run build`) oder lokal in `.env.local` (nicht im Repository). Die erlaubten Werte stehen in `src/settings.ts` (ohne React und Browser-APIs, weil auch der Build sie braucht); `build-plugins/settings.ts` prüft beim Start von Vite, dass beide gesetzt und gültig sind, sonst bricht `bun dev` bzw. der Build mit den erlaubten Werten ab.
 - Vites Mechanismus für Umgebungsvariablen statt einer eigenen Konfigurationsdatei: Er bringt `.env`, `.env.local` und das Überschreiben per Umgebung schon mit, auch für eine spätere CI-Pipeline.
 - `src/options.ts`: Werte für die Seite. Im Produktions-Build gelten nur die Build-Einstellungen, Query-Parameter werden ignoriert. In `bun dev` überschreibt ein Query-Parameter (`?layout=split&graph=lines`) die Einstellung, damit ein Link dieselbe Darstellung zeigt; Werte gleich der Build-Einstellung stehen nicht in der URL. Der Sprachumschalter übernimmt die Parameter (nur in `bun dev`), der Hash der Detailansicht bleibt erhalten.
 - `src/layouts/Layouts.tsx`: eine Komponente je Anordnung; CSS unter `.layout-<name>` in `src/index.css`. Unter 56rem Breite ist jede Anordnung einspaltig in DOM-Reihenfolge.
@@ -164,7 +165,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 - ✅ Upstream-Repository `git@github.com:Erkenbend/adrien-homepage.git` als Remote `origin` eingetragen; noch nichts gepusht.
 - ✅ `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernommen (Bun 1.3.8, Node 22), Stack `AdrienHomepageInfrastructureStack`. Abweichung: nur bei Push auf `main`, ohne manuellen Start (`workflow_dispatch`), Entscheidung des Nutzers.
-- ✅ Befehle für Deployment von Hand in `README.md`.
+- ✅ Befehle für Deployment von Hand in `docs/deployment.md`.
 - Offen: Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` im Repository hinterlegen (Nutzer).
 - Achtung: Der erste Push auf `main` deployt die Seite (siehe Schritt 2, noch nicht deployt). Der Nutzer macht das erste Deployment evtl. von Hand vorher.
 
@@ -175,6 +176,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ### 11. Feinschliff und Livegang
 
+- ✅ **README für GitHub:** `README.md` auf Englisch, kurz: Überblick, Befehle, „Make it your own“ (Schritte, um aus dem Repository eine eigene Seite zu machen) und Verweise auf die Details in `docs/`: `content.md` (Daten, Bilder, Technologien, Link-Seiten, Achsen, Texte), `languages.md` (Sprachen hinzufügen/entfernen, Standardsprache), `build-settings.md` (Anordnung, Graph), `deployment.md` (Infrastruktur, CI, Deployment von Hand, eigene Domain, andere Hosts), `credits.md` (Quellen der Grafiken, vorher im README).
 - Favicon, `<meta name="description">`, Open-Graph-Tags (für Vorschauen auf LinkedIn u. a.).
 - Barrierefreiheit: Tastaturbedienung des Graphen, Kontraste, `alt`-Texte.
 - Dunkles Farbschema als Standard (schon im Grundgerüst); helles Schema nur bei Bedarf.

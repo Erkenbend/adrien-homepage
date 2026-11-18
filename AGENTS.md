@@ -9,7 +9,8 @@
 
 * Code in English (identifiers, file names, comments, scripts and their output, data ids)
 * Commits in English
-* User docs (`README.md`, `docs/`, `PLAN.md`) in German
+* `README.md` and `docs/` in English (public on GitHub)
+* `PLAN.md` in German
 * Chat in the language of the user's prompt
 
 ## Coding

@@ -1,4 +1,4 @@
-// Build settings for the display of the page, set in `.env` (see README.md, "Build-Einstellungen").
+// Build settings for the display of the page, set in `.env` (see docs/build-settings.md).
 // Without React or browser APIs, because the build checks the values too (build-plugins/settings.ts).
 
 export const SETTINGS = {

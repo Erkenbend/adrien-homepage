@@ -5,7 +5,7 @@
 export interface Technology {
     /** Shown on the page, the same in every language. */
     name: string
-    /** Path below public/, shown before the name; sources in README.md. */
+    /** Path below public/, shown before the name; sources in docs/credits.md. */
     logo?: string
 }
 
