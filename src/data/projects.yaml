@@ -14,18 +14,18 @@
   complexity: system
   aiUsage: none
   description:
-    de: Card-as-a-Service-Plattform, entwickelt bei IT Sonix und Finatix.
-    en: Card-as-a-service platform, developed at IT Sonix and Finatix.
-    fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix.
+    de: Card-as-a-Service-Plattform, entwickelt bei IT Sonix und Finatix. Whitelabel-Card-Programm, das es Geschäften erlaubt, ihren Kunden eigene Prepaid-Kreditkarten mit eigenem Branding sowie Treueprogramme anzubieten.
+    en: Card-as-a-service platform, developed at IT Sonix and Finatix. A white-label card program that lets businesses offer their customers their own prepaid credit cards with their own branding, as well as loyalty programs.
+    fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix. Programme de cartes en marque blanche permettant aux commerces de proposer à leurs clients leurs propres cartes de crédit prépayées à leur image, ainsi que des programmes de fidélité.
   languages: [java, php, typescript]
   frameworks: [spring-boot, symfony, angular]
   kind: professional
   period: {from: 2017-10, to: 2020-09}
   team: group
   teamDetails:
-    de: Agiles Entwicklungsteam von 8-12 Personen
-    en: Agile development team of 8-12 people
-    fr: Équipe de développement agile de 8 à 12 personnes
+    de: Agiles Entwicklungsteam von 8-12 Personen. Ich habe am großen Refactoring des monolithischen Legacy-Backends (in PHP) und an der Erweiterung des Produkts für die neuen Whitelabel-Card-Programme gearbeitet.
+    en: Agile development team of 8-12 people. I worked on the major refactoring of the monolithic legacy backend (in PHP) and on extending the product for the new white-label card programs.
+    fr: Équipe de développement agile de 8 à 12 personnes. J’ai travaillé sur le grand refactoring du backend legacy monolithique (en PHP) et sur l’extension du produit aux nouveaux programmes de cartes en marque blanche.
 
 - id: datev-paymentnext
   visible: true
@@ -34,9 +34,9 @@
   complexity: system
   aiUsage: light    # maybe revisit this to "heavy" in 2027
   description:
-    de: Zahlungsverkehrsplattform für DATEV, als Entwickler und Architekt bei Finatix.
-    en: Payment platform for DATEV, as developer and architect at Finatix.
-    fr: Plateforme de paiement pour DATEV, en tant que développeur et architecte chez Finatix.
+    de: "Zahlungsverkehrsplattform für DATEV, als Entwickler und Team-Architekt bei Finatix. Kontext EBICS: sichere und resiliente Abwicklung von Umsatzabholungen und Zahlungsaufträgen (Millionen pro Tag), zentral und standardisiert bereitgestellt für die anderen Komponenten des Systems."
+    en: "Payment platform for DATEV, as developer and team architect at Finatix. EBICS context: secure and resilient processing of account transaction retrievals and payment orders (millions per day), provided centrally and in a standardized way to the other components of the system."
+    fr: "Plateforme de paiement pour DATEV, en tant que développeur et architecte d’équipe chez Finatix. Contexte EBICS : traitement sûr et résilient des récupérations de transactions bancaires et des ordres de paiement (des millions par jour), mis à disposition de façon centralisée et standardisée pour les autres composants du système."
   languages: [java, typescript, python]
   frameworks: [spring-boot, angular]
   tools: [aws, postgres, terraform]
@@ -44,9 +44,9 @@
   period: {from: 2020-10}
   team: group
   teamDetails:
-    de: Agiles Entwicklungsteam von 6-15 Personen, insg. Zusammenarbeit von 5 solcher Teams aus unterschiedlichen Dienstleistern
-    en: Agile development team of 6-15 people, in total 5 such teams from different service providers working together
-    fr: Équipe de développement agile de 6 à 15 personnes, au total 5 équipes de ce type issues de différents prestataires travaillant ensemble
+    de: Agiles Entwicklungsteam von 6-15 Personen, insg. Zusammenarbeit von 5 solcher Teams aus unterschiedlichen Dienstleistern. Ich fungiere als erfahrener Entwickler und Team-Architekt, um das Produkt sicher, in hoher Qualität und mit hoher langfristiger Geschwindigkeit voranzubringen.
+    en: Agile development team of 6-15 people, in total 5 such teams from different service providers working together. I act as an experienced developer and team architect, moving the product forward securely, with high quality and at a high, sustainable pace.
+    fr: Équipe de développement agile de 6 à 15 personnes, au total 5 équipes de ce type issues de différents prestataires travaillant ensemble. J’interviens en tant que développeur expérimenté et architecte d’équipe pour faire avancer le produit de manière sûre, avec un haut niveau de qualité et à un rythme soutenu sur la durée.
 
 # --- Larger hobby projects ---
 
