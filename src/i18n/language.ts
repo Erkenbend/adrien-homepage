@@ -1,9 +1,9 @@
 import {de, type Messages} from './de.ts'
 import {en} from './en.ts'
 import {fr} from './fr.ts'
-import {DEFAULT_LANGUAGE, LANGUAGES, type Language} from './languages.ts'
+import {DEFAULT_LANGUAGE, LANGUAGES, pathFor, type Language} from './languages.ts'
 
-export {LANGUAGES, type Language}
+export {LANGUAGES, pathFor, type Language}
 
 const DICTIONARIES: Record<Language, Messages> = {de, en, fr}
 
@@ -12,11 +12,6 @@ export const LANGUAGE_NAMES: Record<Language, string> = {
     de: 'Deutsch',
     en: 'English',
     fr: 'Français',
-}
-
-/** The default language lives at `/`, the others under `/<language>/`. */
-export function pathFor(language: Language): string {
-    return language === DEFAULT_LANGUAGE ? '/' : `/${language}/`
 }
 
 /** Language from the first path segment; anything unknown falls back to the default language. */

@@ -1,6 +1,6 @@
 # Build settings
 
-The layout of the page and the style of the project graph are fixed at build time, through environment variables in [.env](../.env):
+The layout of the page, the style of the project graph and the address of the page are fixed at build time, through environment variables in [.env](../.env):
 
 | Variable | Meaning | Values | Default |
 |---|---|---|---|
@@ -11,6 +11,20 @@ The layout of the page and the style of the project graph are fixed at build tim
 - Override locally for good: the same lines in `.env.local` (not committed)
 - A missing or unknown value stops `bun dev` and `bun run build` with the allowed values (`build-plugins/settings.ts`).
 - Below a width of 56rem, every layout is a single column.
+
+## Page address and link previews
+
+| Variable | Meaning | Example |
+|---|---|---|
+| `VITE_SITE_URL` | Address of the deployed page, without a path | `https://adrien.wehrung.online` |
+
+Link previews (LinkedIn, messengers) read the HTML without running JavaScript. `build-plugins/page-meta.ts` therefore writes into `index.html` at build time, from `src/data/profile.yaml` in the default language:
+
+- `<title>` (the name) and `<meta name="description">` (the introduction, else the headline); the page replaces the description with the one of its language on load;
+- Open Graph tags: title (name · headline), description, `og:url`, and the photo as `og:image`;
+- `<link rel="alternate" hreflang>` for each language, and `<html lang>`.
+
+Open Graph needs absolute URLs, hence the variable. A missing or invalid value stops `bun dev` and `bun run build`. After a deployment, check the preview with LinkedIn's [Post Inspector](https://www.linkedin.com/post-inspector/), which also refreshes LinkedIn's cache.
 
 ## Comparing in development
 

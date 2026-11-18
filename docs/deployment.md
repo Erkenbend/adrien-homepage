@@ -39,6 +39,8 @@ bunx cdk deploy AdrienHomepageInfrastructureStack
    - `ROOT_DOMAIN_NAME` and `ROOT_HOSTED_ZONE_ID`: your domain and the id of its hosted zone;
    - `SUBDOMAIN`: the page is served at `<SUBDOMAIN>.<ROOT_DOMAIN_NAME>`;
    - `bucketName`: bucket names are unique across all AWS accounts, so pick your own.
+
+   And set `VITE_SITE_URL` in `.env` to the address of the page, for the link previews (see [build-settings.md](build-settings.md#page-address-and-link-previews)).
 4. **Names (optional):** rename the stack in `infrastructure/bin/infrastructure.ts`, and use the same name in the workflow and in the manual commands above. The construct ids (`AdrienHomepage…`) can stay as they are.
 5. **CI:** add the two secrets to your repository.
 
@@ -46,4 +48,4 @@ To serve the page at the root domain instead of a subdomain, change the certific
 
 ## Other hosts
 
-`dist/` works on any static host (GitHub Pages, Netlify, nginx, …) as long as the host serves `index.html` for paths without a file, at least for `/en/` and `/fr/`. Examples: `try_files $uri /index.html;` in nginx, a `/* /index.html 200` rule in Netlify's `_redirects`. On GitHub Pages, a copy of `index.html` as `404.html` does the job.
+`dist/` works on any static host (GitHub Pages, Netlify, nginx, …) as long as the host serves `index.html` for paths without a file, at least for `/en/` and `/fr/`. Examples: `try_files $uri /index.html;` in nginx, a `/* /index.html 200` rule in Netlify's `_redirects`. On GitHub Pages, a copy of `index.html` as `404.html` does the job. Set `VITE_SITE_URL` in `.env` to the address the page is served at.

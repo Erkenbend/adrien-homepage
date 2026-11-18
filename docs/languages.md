@@ -26,6 +26,6 @@ Do the same steps in reverse: remove it from `LANGUAGES`, delete its dictionary,
 
 ## Changing the default language
 
-Set `DEFAULT_LANGUAGE` in `src/i18n/languages.ts`. That language moves to `/`, and the former default gets its own path (e.g. `/de/`). Also set `<html lang>` in `index.html`; the page corrects it on load, but the static HTML is what crawlers see first.
+Set `DEFAULT_LANGUAGE` in `src/i18n/languages.ts`. That language moves to `/`, and the former default gets its own path (e.g. `/de/`). `<html lang>` and the texts of the link previews in `index.html` follow at build time (`build-plugins/page-meta.ts`).
 
 `src/i18n/de.ts` stays the reference dictionary that defines the keys, whichever language is the default.

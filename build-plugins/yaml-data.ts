@@ -78,6 +78,13 @@ export function yamlData(): Plugin {
     }
 }
 
+/** Reads and validates `src/data/<name>.yaml`, for other build plugins. */
+export function loadData(root: string, name: string): unknown {
+    const file = path.join(root, 'src', 'data', `${name}.yaml`)
+    const relativeFile = path.relative(root, file)
+    return validate(schemaFor(createSchemas(imagesInPublic(root)), file, relativeFile), readYaml(file, relativeFile), relativeFile)
+}
+
 function yamlFiles(dir: string): string[] {
     return readdirSync(dir).filter(name => name.endsWith('.yaml')).map(name => path.join(dir, name))
 }
