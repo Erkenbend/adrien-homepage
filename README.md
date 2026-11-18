@@ -2,7 +2,7 @@
 
 Profile, projects and contact on one static page → https://adrien.wehrung.online
 
-- **Projects as a graph:** every project sits on two axes, complexity and AI used while developing it. Click a project for its details; each one has its own link (`/#tfcoach`).
+- **Projects as a graph:** every project sits on two axes, complexity and AI used while developing it. Click a project for its details; each one has its own link (`/#article-trainer`).
 - **Three languages:** German at `/`, English at `/en/`, French at `/fr/`.
 - **Content in YAML:** profile and projects live in `src/data/*.yaml`, separate from the code. The build checks them against a schema, so a missing translation, an unknown value or a missing image fails the build instead of showing up on the page.
 - **Static and small:** React, no server, no tracking. Hosted on AWS (S3 + CloudFront), deployed by GitHub Actions.
