@@ -1,5 +1,9 @@
 # Personal homepage
 
+[![CI](https://github.com/Erkenbend/adrien-homepage/actions/workflows/github-actions-build-deploy.yml/badge.svg?branch=main)](https://github.com/Erkenbend/adrien-homepage/actions/workflows/github-actions-build-deploy.yml?query=branch%3Amain)
+[![License](https://img.shields.io/github/license/Erkenbend/adrien-homepage)](LICENSE)
+[![Vibe coded with Opus 5.5](https://img.shields.io/badge/vibe%20coded%20with-Opus%205.5-D97757?logo=claude&logoColor=white)](AGENTS.md)
+
 Profile, projects and contact on one static page → https://adrien.wehrung.online
 
 - **Projects as a graph:** every project sits on two axes, complexity and AI used while developing it. Click a project for its details; each one has its own link (`/#article-trainer`).
