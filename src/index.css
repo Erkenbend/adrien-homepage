@@ -472,10 +472,6 @@ body:has(.project-dialog[open]) {
 /* Layouts (proof of concept, see src/layout.ts and src/layouts/Layouts.tsx). Below 56rem every layout is a
    single column in DOM order. */
 
-body {
-  padding-bottom: 4rem; /* room for the options picker */
-}
-
 .layout-showcase,
 .layout-sidebar,
 .layout-bento {
@@ -661,52 +657,62 @@ body {
   margin: 0;
 }
 
-/* Options picker: one group per option, side by side, wrapping onto a second line when narrow */
+/* Options picker, only in `bun dev`: a bar along the left edge, the page moves aside to make room for it */
+
+:root {
+  --picker-width: 12rem;
+}
+
+body:has(.options-picker) {
+  padding-left: var(--picker-width);
+}
 
 .options-picker {
   position: fixed;
-  bottom: 0.75rem;
-  left: 50%;
+  top: 0;
+  bottom: 0;
+  left: 0;
   z-index: 2;
+  box-sizing: border-box;
+  width: var(--picker-width);
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  width: max-content;
-  max-width: calc(100vw - 1.5rem);
-  transform: translateX(-50%);
+  flex-direction: column;
+  gap: 1.25rem;
+  padding: 1rem 0.5rem;
+  overflow-y: auto;
+  border-right: 1px solid rgba(255, 255, 255, 0.12);
+  background: #232328;
   font-size: 0.8125rem;
 }
 
 .options-group {
   display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.3rem;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 999px;
-  background: rgba(40, 40, 46, 0.92);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  flex-direction: column;
+  gap: 0.125rem;
 }
 
 .options-group-title {
-  padding: 0 0.5rem 0 0.75rem;
+  padding: 0 0.5rem 0.25rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
   color: var(--text-muted);
+  overflow-wrap: anywhere;
 }
 
 .options-group button {
   display: flex;
-  align-items: center;
-  gap: 0.35rem;
+  align-items: baseline;
+  gap: 0.5rem;
   min-height: 2rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.25rem 0.5rem;
   border: none;
-  border-radius: 999px;
+  border-radius: 0.375rem;
   background: none;
   color: var(--text-muted);
   font: inherit;
-  white-space: nowrap;
+  text-align: left;
   cursor: pointer;
 }
 
@@ -724,10 +730,21 @@ body {
   opacity: 0.6;
 }
 
-/* Small screens: numbers only, the name is in the tooltip; two lines of pickers need more room */
+/* Small screens: a narrow bar with numbers only, the name is in the tooltip */
 @media (max-width: 56rem) {
-  body {
-    padding-bottom: 7rem;
+  :root {
+    --picker-width: 3rem;
+  }
+
+  .options-picker {
+    padding: 0.75rem 0.25rem;
+  }
+
+  .options-group-title {
+    padding: 0 0 0.25rem;
+    font-size: 0.5625rem;
+    letter-spacing: 0;
+    text-align: center;
   }
 
   .options-name {
@@ -735,9 +752,8 @@ body {
   }
 
   .options-group button {
-    min-width: 2.25rem;
     justify-content: center;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem;
   }
 
   .options-number {

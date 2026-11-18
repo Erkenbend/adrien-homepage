@@ -12,6 +12,20 @@ Lint: `bun lint`
 
 Produktions-Build nach `dist/`: `bun run build`
 
+## Build-Einstellungen
+
+Die Darstellung der Seite wird beim Build festgelegt, über Umgebungsvariablen in [.env](.env):
+
+| Variable | Bedeutung | Werte | Standard |
+|---|---|---|---|
+| `VITE_LAYOUT` | Anordnung der Seite | `classic` (eine Spalte, Projekte als erster Abschnitt), `showcase` (Projekte im Mittelpunkt), `sidebar` (Seitenleiste), `split` (geteilter Bildschirm, Graph bleibt stehen), `bento` (Kacheln) | `classic` |
+| `VITE_GRAPH` | Aussehen des Projekt-Graphen | `classic` (Bänder), `matrix` (gleich gefärbte Zellen), `lines` (Gitterlinien), `open` (nur Achsen) | `lines` |
+
+- Für einen einzelnen Build überschreiben: `VITE_LAYOUT=split bun run build`
+- Lokal dauerhaft überschreiben: dieselben Zeilen in `.env.local` (nicht im Repository)
+- Ein fehlender oder unbekannter Wert bricht `bun dev` und `bun run build` mit den erlaubten Werten ab.
+- In `bun dev` zeigt eine Leiste am linken Rand alle Werte zum Vergleichen; die Auswahl steht in der URL (`?layout=split&graph=open`) und überschreibt die Einstellung. Im Produktions-Build gibt es die Leiste nicht, und die URL-Parameter haben keine Wirkung.
+
 Inhalte (Profil, Projekte): YAML-Dateien in `src/data/`, beim Build gegen `src/data/schema.ts` geprüft; Bilder unter `public/images/`. Alle Felder mit Erklärungen: [src/data/examples/profile.yaml](src/data/examples/profile.yaml), [src/data/examples/projects.yaml](src/data/examples/projects.yaml)
 
 Infrastruktur (AWS CDK): siehe [infrastructure/README.md](infrastructure/README.md)

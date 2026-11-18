@@ -135,14 +135,16 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
   - Logos aus [Devicon](https://devicon.dev) (farbige Varianten). LocalStack: Signet aus dem Logo auf localstack.cloud (Devicon hat keines). AWS CDK nutzt das AWS-Logo. Ohne Logo: GML, GameMaker, Cobra, WebFlux.
 - ✅ **Flaggen bei Sprachen:** optionales Feld `flag` mit einem Flaggen-Emoji (🇫🇷, 🇩🇪, 🇬🇧), vom Schema geprüft; für Screenreader ausgeblendet, weil der Name daneben steht. Hinweis: Windows hat keine Flaggen-Emojis, Browser dort zeigen stattdessen die zwei Buchstaben (z. B. „FR“).
 
-### 9a. Anordnung der Seite ausprobieren (Proof of Concept, in Arbeit)
+### 9a. Anordnung der Seite und Aussehen des Graphen ✅
 
-- Ziel: verschiedene Anordnungen von Profiltexten und Graph vergleichen (nicht Schrift und Farben). Auswahl vorerst auf der Seite selbst, später evtl. als Build-Einstellung.
+- Ziel: verschiedene Anordnungen von Profiltexten und Graph vergleichen (nicht Schrift und Farben). Begonnen als Auswahl auf der Seite (Proof of Concept), jetzt Build-Einstellungen mit Umschalter nur in `bun dev`.
 - Entscheidung des Nutzers: Standard sind Anordnung 1 (mit den Projekten als erstem Abschnitt) und Graph 3 (Gitterlinien). Die anderen Varianten bleiben vorerst auswählbar.
 - Das Profil besteht jetzt aus einzelnen Bausteinen (`ProfileHeader`, `ProfileAbout`, `Experience`, `Education`, `Certificates`, `Languages` in `src/components/Profile.tsx`), die jede Anordnung frei platziert. Der Zustand des Easter Eggs liegt in einem Context (`src/components/shadow.ts`), weil Foto und Kurzvorstellung je nach Anordnung an verschiedenen Stellen stehen.
-- `src/options.ts`: Darstellungsoptionen (Anordnung `layout`, Aussehen des Graphen `graph`), jeweils über einen Query-Parameter (`?layout=split&graph=lines`), damit ein Link dieselbe Darstellung zeigt. Der Standard (`DEFAULTS`, unabhängig von der Reihenfolge im Umschalter) steht nicht in der URL. Der Sprachumschalter übernimmt die Parameter, der Hash der Detailansicht bleibt erhalten.
+- **Build-Einstellungen** in `.env` (im Repository): `VITE_LAYOUT` (Anordnung) und `VITE_GRAPH` (Graph); dokumentiert in `README.md`. Überschreibbar für einen Build (`VITE_LAYOUT=split bun run build`) oder lokal in `.env.local` (nicht im Repository). Die erlaubten Werte stehen in `src/settings.ts` (ohne React und Browser-APIs, weil auch der Build sie braucht); `build-plugins/settings.ts` prüft beim Start von Vite, dass beide gesetzt und gültig sind, sonst bricht `bun dev` bzw. der Build mit den erlaubten Werten ab.
+- Vites Mechanismus für Umgebungsvariablen statt einer eigenen Konfigurationsdatei: Er bringt `.env`, `.env.local` und das Überschreiben per Umgebung schon mit, auch für eine spätere CI-Pipeline.
+- `src/options.ts`: Werte für die Seite. Im Produktions-Build gelten nur die Build-Einstellungen, Query-Parameter werden ignoriert. In `bun dev` überschreibt ein Query-Parameter (`?layout=split&graph=lines`) die Einstellung, damit ein Link dieselbe Darstellung zeigt; Werte gleich der Build-Einstellung stehen nicht in der URL. Der Sprachumschalter übernimmt die Parameter (nur in `bun dev`), der Hash der Detailansicht bleibt erhalten.
 - `src/layouts/Layouts.tsx`: eine Komponente je Anordnung; CSS unter `.layout-<name>` in `src/index.css`. Unter 56rem Breite ist jede Anordnung einspaltig in DOM-Reihenfolge.
-- Umschalter unten in der Mitte (`src/components/OptionsPicker.tsx`), eine Gruppe je Option; bei wenig Platz untereinander, mobil nur mit Nummern.
+- Umschalter nur in `bun dev` (`src/components/OptionsPicker.tsx`, hinter `import.meta.env.DEV`, im Produktions-Bundle nicht enthalten): senkrechte Leiste am linken Rand, eine Gruppe je Einstellung; die Seite rückt um die Breite der Leiste nach rechts, damit nichts verdeckt wird. Unter 56rem nur mit Nummern (Name als Tooltip).
 - Anordnungen:
   1. **Klassisch** (`classic`, **Standard**): eine Spalte; Name und Kurzvorstellung, danach die Projekte als erster Abschnitt, dann Werdegang, Ausbildung, Zertifikate, Sprachen, Kontakt.
   2. **Projekte im Mittelpunkt** (`showcase`): Name und Kurzvorstellung nebeneinander, darunter der Graph über die volle Breite auf leicht abgesetzter Fläche, danach Lebenslauf in zwei Spalten (Werdegang | Ausbildung, Zertifikate, Sprachen).
@@ -155,7 +157,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
   3. **Gitterlinien** (`lines`, **Standard**): keine Füllung, dünne Linien zwischen den Zellen wie auf Millimeterpapier.
   4. **Offen** (`open`): nur Achsen und Teilstriche, keine Zellen.
 - Die Varianten 2–4 haben dasselbe Gerüst (`AxesGraph` in `src/components/ProjectGraph.tsx`, ein einziges CSS-Grid): Pfeile aus CSS (Linie + Dreieck), die sich unten links kreuzen; Stufennamen links der y-Achse bzw. unter der x-Achse, jeweils mit Teilstrich; Achsentitel an den Pfeilspitzen (KI-Einsatz neben der oberen, Komplexität unter der rechten). Mobil (unter 36rem) stehen die Namen der KI-Stufen hochkant, damit die Spalten breit genug für die Icons bleiben.
-- Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen, jeder Anordnung und jedem Graphen: kein horizontales Scrollen, alle 15 Projekte sichtbar.
+- Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen, jeder Anordnung und jedem Graphen: kein horizontales Scrollen, alle 15 Projekte sichtbar; in `bun dev` mit Leiste ebenso bei 360 px. Produktions-Build mit `VITE_LAYOUT=split`: Anordnung `split` trotz `?layout=bento`, kein Umschalter, Sprachlinks ohne Query-Parameter. Ungültige und leere Werte brechen den Build ab.
 
 ### 10. CI-Pipeline (sobald es das Upstream-Repository gibt)
 

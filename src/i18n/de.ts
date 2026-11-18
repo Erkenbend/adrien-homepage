@@ -1,4 +1,4 @@
-import type {GraphStyle, Layout} from '../options.ts'
+import type {GraphStyle, Layout} from '../settings.ts'
 import type {AiUsage, Complexity, ProjectKind, TeamSize} from '../data/scales.ts'
 
 // Reference dictionary: its shape defines `Messages`, the other languages must match it.

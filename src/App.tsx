@@ -16,7 +16,8 @@ function App() {
                     <PageContent layout={layout}/>
                 </main>
             </div>
-            <OptionsPicker/>
+            {/* Development only: dropped from the production build. */}
+            {import.meta.env.DEV && <OptionsPicker/>}
         </ShadowProvider>
     )
 }

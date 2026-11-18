@@ -1,24 +1,24 @@
 import {MESSAGES} from '../i18n/language.ts'
-import {OPTIONS, setOption, useOption, type OptionName} from '../options.ts'
+import {setOption, useOption} from '../options.ts'
+import {SETTING_NAMES, SETTINGS, type SettingName} from '../settings.ts'
 
-/** Proof of concept: floating selection of the display options, see src/options.ts. */
+/** Only in `bun dev`: a bar on the left to compare the display settings, see src/options.ts. */
 export function OptionsPicker() {
     return (
         <div className="options-picker">
-            <OptionGroup name="layout"/>
-            <OptionGroup name="graph"/>
+            {SETTING_NAMES.map(name => <OptionGroup key={name} name={name}/>)}
         </div>
     )
 }
 
-function OptionGroup({name}: {name: OptionName}) {
+function OptionGroup({name}: {name: SettingName}) {
     const current = useOption(name)
     const {title, values} = MESSAGES.options[name]
     const labels: Record<string, string> = values
     return (
         <nav className="options-group" aria-label={title}>
             <span className="options-group-title">{title}</span>
-            {OPTIONS[name].map((value, index) => (
+            {SETTINGS[name].map((value, index) => (
                 <button key={value} type="button" title={labels[value]}
                         aria-pressed={value === current} onClick={() => { setOption(name, value) }}>
                     <span className="options-number">{index + 1}</span>

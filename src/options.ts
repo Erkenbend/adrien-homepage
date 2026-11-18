@@ -1,29 +1,17 @@
 import {useSyncExternalStore} from 'react'
+import {ENV_VARIABLES, parseSetting, SETTING_NAMES, SETTINGS, type SettingName, type SettingValue} from './settings.ts'
 
-// Proof of concept: display options chosen on the page itself and kept in the query string
-// (`?layout=split&graph=lines`), so a link shows the same choice. Once one is picked, an option may become a
-// build setting. The default of each option (`DEFAULTS`) is left out of the URL.
+// The display settings of src/settings.ts as the page uses them. The build fixes them (`.env`); in `bun dev`
+// the options picker can override them for comparison, kept in the query string (`?layout=split&graph=lines`)
+// so a link shows the same choice. The production build ignores the query string.
 
-export const OPTIONS = {
-    /** Arrangement of the page, see src/layouts/Layouts.tsx. */
-    layout: ['classic', 'showcase', 'sidebar', 'split', 'bento'],
-    /** Look of the project graph, see src/components/ProjectGraph.tsx. */
-    graph: ['classic', 'matrix', 'lines', 'open'],
-} as const
-
-export type OptionName = keyof typeof OPTIONS
-export type OptionValue<Name extends OptionName> = (typeof OPTIONS)[Name][number]
-export type Layout = OptionValue<'layout'>
-export type GraphStyle = OptionValue<'graph'>
-
-/** Separate from the order above, so the numbers in the picker stay the same when a default changes. */
-const DEFAULTS: {[Name in OptionName]: OptionValue<Name>} = {
-    layout: 'classic',
-    graph: 'lines',
-}
-
-const OPTION_NAMES = Object.keys(OPTIONS) as OptionName[]
 const CHANGE_EVENT = 'options-change'
+
+/** The values from the build, checked there (build-plugins/settings.ts). */
+const BUILD_VALUES = Object.fromEntries(SETTING_NAMES.map(name => {
+    const value = parseSetting(name, import.meta.env[ENV_VARIABLES[name]])
+    return [name, value ?? SETTINGS[name][0]]
+})) as {[Name in SettingName]: SettingValue<Name>}
 
 function subscribe(onChange: () => void): () => void {
     window.addEventListener('popstate', onChange)
@@ -34,23 +22,21 @@ function subscribe(onChange: () => void): () => void {
     }
 }
 
-/** The value from the query string; anything unknown falls back to the default. */
-function valueIn<Name extends OptionName>(parameters: URLSearchParams, name: Name): OptionValue<Name> {
-    const values: readonly OptionValue<Name>[] = OPTIONS[name]
-    const value = parameters.get(name)
-    return values.find(candidate => candidate === value) ?? DEFAULTS[name]
+/** The value from the query string; anything unknown falls back to the build value. */
+function valueIn<Name extends SettingName>(parameters: URLSearchParams, name: Name): SettingValue<Name> {
+    return parseSetting(name, parameters.get(name)) ?? BUILD_VALUES[name]
 }
 
-function currentValue<Name extends OptionName>(name: Name): OptionValue<Name> {
+function currentValue<Name extends SettingName>(name: Name): SettingValue<Name> {
     return valueIn(new URLSearchParams(window.location.search), name)
 }
 
-/** Query string with every option that differs from its default, empty if none does. */
+/** Query string with every option that differs from the build value, empty if none does. */
 function queryOf(parameters: URLSearchParams): string {
     const kept = new URLSearchParams()
-    for (const name of OPTION_NAMES) {
+    for (const name of SETTING_NAMES) {
         const value = valueIn(parameters, name)
-        if (value !== DEFAULTS[name]) {
+        if (value !== BUILD_VALUES[name]) {
             kept.set(name, value)
         }
     }
@@ -62,17 +48,19 @@ function currentQuery(): string {
     return queryOf(new URLSearchParams(window.location.search))
 }
 
-export function useOption<Name extends OptionName>(name: Name): OptionValue<Name> {
-    return useSyncExternalStore(subscribe, () => currentValue(name))
+export function useOption<Name extends SettingName>(name: Name): SettingValue<Name> {
+    const value = useSyncExternalStore(subscribe, () => currentValue(name))
+    return import.meta.env.DEV ? value : BUILD_VALUES[name]
 }
 
-/** The query string to keep the current options on another page, e.g. another language. */
+/** The query string to keep the current options on another page, e.g. another language; empty in production. */
 export function useOptionsQuery(): string {
-    return useSyncExternalStore(subscribe, currentQuery)
+    const query = useSyncExternalStore(subscribe, currentQuery)
+    return import.meta.env.DEV ? query : ''
 }
 
 /** Replaces the current history entry, keeping its state (see `src/hash.ts`) and the hash. */
-export function setOption<Name extends OptionName>(name: Name, value: OptionValue<Name>): void {
+export function setOption<Name extends SettingName>(name: Name, value: SettingValue<Name>): void {
     const parameters = new URLSearchParams(window.location.search)
     parameters.set(name, value)
     const url = window.location.pathname + queryOf(parameters) + window.location.hash
