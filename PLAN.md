@@ -177,7 +177,8 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 ### 11. Feinschliff und Livegang
 
 - ✅ **README für GitHub:** `README.md` auf Englisch, kurz: Überblick, Befehle, „Make it your own“ (Schritte, um aus dem Repository eine eigene Seite zu machen) und Verweise auf die Details in `docs/`: `content.md` (Daten, Bilder, Technologien, Link-Seiten, Achsen, Texte), `languages.md` (Sprachen hinzufügen/entfernen, Standardsprache), `build-settings.md` (Anordnung, Graph), `deployment.md` (Infrastruktur, CI, Deployment von Hand, eigene Domain, andere Hosts), `credits.md` (Quellen der Grafiken, vorher im README).
-- Favicon, `<meta name="description">`, Open-Graph-Tags (für Vorschauen auf LinkedIn u. a.).
+- ✅ **Favicon:** Initialen „AW“ weiß auf der dunklen Seitenfarbe, als Linien gezeichnet statt als Text (unabhängig von Schriftarten): `public/favicon.svg` mit abgerundeten Ecken, `public/apple-touch-icon.png` (180 × 180, eckig, iOS rundet selbst) aus dem SVG gerendert.
+- `<meta name="description">`, Open-Graph-Tags (für Vorschauen auf LinkedIn u. a.).
 - Barrierefreiheit: Tastaturbedienung des Graphen, Kontraste, `alt`-Texte.
 - Dunkles Farbschema als Standard (schon im Grundgerüst); helles Schema nur bei Bedarf.
 - Prüfen mit Lighthouse (Performance, Accessibility, SEO); kein Ziel um jeden Preis, nur offensichtliche Mängel beheben.

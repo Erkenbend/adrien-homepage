@@ -51,6 +51,10 @@ Square images work best: a signet or favicon rather than a full word mark, which
 
 When you replace images, update [credits.md](credits.md) as well.
 
+### Favicon
+
+`public/favicon.svg` shows the initials as white strokes on the page background (drawn as paths, not text, so they do not depend on a font). `public/apple-touch-icon.png` is the same icon as a 180 × 180 PNG without rounded corners, for the home screen of iOS: export it again from the SVG with any tool after a change.
+
 ## Technologies
 
 `src/data/technologies.ts` holds three fixed lists: `PROGRAMMING_LANGUAGES`, `FRAMEWORKS` and `TOOLS` (platforms, build tools, infrastructure). Projects refer to them by id, e.g. `languages: [java, kotlin]`. An unknown id, or an id in the wrong list, fails the build.

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Initials "AW" drawn as strokes instead of text, so they look the same without depending on a font. -->
+  <rect width="64" height="64" rx="14" fill="#1b1b1f"/>
+  <g fill="none" stroke="#fff" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M7.5 47 L18 18.5 L28.5 47 M11.5 37.5 H24.5"/>
+    <path d="M32.5 18.5 L39 45.5 L45.75 24 L52.5 45.5 L59 18.5"/>
+  </g>
+</svg>

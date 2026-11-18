@@ -30,7 +30,7 @@ In `bun dev`, a bar on the left switches between the available page layouts and 
 The code is generic; everything personal sits in a few places. To build your own page from it:
 
 1. **Fork or clone** the repository, run `bun install` and `bun dev`.
-2. **Replace the content:** rewrite `src/data/profile.yaml` and `src/data/projects.yaml`. The reference examples in `src/data/examples/` show every field with an explanation. Put your photo, logos and project icons under `public/images/`, and delete the images you no longer use. → [docs/content.md](docs/content.md)
+2. **Replace the content:** rewrite `src/data/profile.yaml` and `src/data/projects.yaml`. The reference examples in `src/data/examples/` show every field with an explanation. Put your photo, logos and project icons under `public/images/`, and delete the images you no longer use. Put your initials in the favicon. → [docs/content.md](docs/content.md)
 3. **Adjust the texts of the page** (headings, the sentence above the graph, the contact sentence) in `src/i18n/`, and the fallback `<title>` and `lang` in `index.html`.
 4. **Optionally adapt the model:** the levels of the graph axes, the kinds of projects and their colours, the list of technologies and the recognized link sites. → [docs/content.md](docs/content.md)
 5. **Choose your languages:** add, remove or reorder them, or pick another default. → [docs/languages.md](docs/languages.md)
