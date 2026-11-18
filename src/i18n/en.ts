@@ -44,12 +44,25 @@ export const en = {
         solo: 'Solo',
         group: 'Team',
     },
-    layout: 'Layout',
-    layoutNames: {
-        classic: 'Classic',
-        showcase: 'Projects in focus',
-        sidebar: 'Sidebar',
-        split: 'Split screen',
-        bento: 'Tiles',
+    options: {
+        layout: {
+            title: 'Layout',
+            values: {
+                classic: 'Classic',
+                showcase: 'Projects in focus',
+                sidebar: 'Sidebar',
+                split: 'Split screen',
+                bento: 'Tiles',
+            },
+        },
+        graph: {
+            title: 'Graph',
+            values: {
+                classic: 'Classic',
+                matrix: 'Matrix',
+                lines: 'Grid lines',
+                open: 'Open',
+            },
+        },
     },
 } satisfies Messages

@@ -473,7 +473,7 @@ body:has(.project-dialog[open]) {
    single column in DOM order. */
 
 body {
-  padding-bottom: 4rem; /* room for the layout picker */
+  padding-bottom: 4rem; /* room for the options picker */
 }
 
 .layout-showcase,
@@ -661,34 +661,41 @@ body {
   margin: 0;
 }
 
-/* Layout picker */
+/* Options picker: one group per option, side by side, wrapping onto a second line when narrow */
 
-.layout-picker {
+.options-picker {
   position: fixed;
   bottom: 0.75rem;
   left: 50%;
   z-index: 2;
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  width: max-content;
+  max-width: calc(100vw - 1.5rem);
+  transform: translateX(-50%);
+  font-size: 0.8125rem;
+}
+
+.options-group {
+  display: flex;
   align-items: center;
   gap: 0.25rem;
-  max-width: calc(100vw - 1.5rem);
-  box-sizing: border-box;
   padding: 0.3rem;
-  transform: translateX(-50%);
   border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: 999px;
   background: rgba(40, 40, 46, 0.92);
   backdrop-filter: blur(6px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-  font-size: 0.8125rem;
 }
 
-.layout-picker-title {
+.options-group-title {
   padding: 0 0.5rem 0 0.75rem;
   color: var(--text-muted);
 }
 
-.layout-picker button {
+.options-group button {
   display: flex;
   align-items: center;
   gap: 0.35rem;
@@ -703,32 +710,222 @@ body {
   cursor: pointer;
 }
 
-.layout-picker button:hover {
+.options-group button:hover {
   color: var(--text);
 }
 
-.layout-picker button[aria-pressed="true"] {
+.options-group button[aria-pressed="true"] {
   background: rgba(255, 255, 255, 0.14);
   color: var(--text);
 }
 
-.layout-picker-number {
+.options-number {
   font-variant-numeric: tabular-nums;
   opacity: 0.6;
 }
 
-/* Small screens: numbers only, the name is in the tooltip */
+/* Small screens: numbers only, the name is in the tooltip; two lines of pickers need more room */
 @media (max-width: 56rem) {
-  .layout-picker-name {
+  body {
+    padding-bottom: 7rem;
+  }
+
+  .options-name {
     display: none;
   }
 
-  .layout-picker button {
-    min-width: 2.5rem;
+  .options-group button {
+    min-width: 2.25rem;
     justify-content: center;
+    padding: 0.25rem 0.5rem;
   }
 
-  .layout-picker-number {
+  .options-number {
     opacity: 1;
+  }
+}
+
+/* Project graph with arrows for axes (graph options other than `classic`), see AxesGraph in ProjectGraph.tsx */
+
+.axes-graph {
+  --axis: rgba(255, 255, 255, 0.6);
+  --axis-width: 2px;
+  --axis-room: 0.75rem;
+  --head-length: 0.7rem;
+  --head-half-width: 0.4rem;
+  --cell-color: rgba(255, 255, 255, 0.05);
+  --grid-line: rgba(255, 255, 255, 0.12);
+  --icon-size: 2.75rem;
+  display: grid; /* tracks set inline */
+  margin-top: 1rem;
+}
+
+.axes-graph .graph-cell {
+  min-width: 0;
+  border: none;
+}
+
+/* The axes start where they cross, in the middle of the axis row and column. */
+
+.axes-y-arrow,
+.axes-x-arrow {
+  position: relative;
+}
+
+.axes-y-arrow::before {
+  content: "";
+  position: absolute;
+  top: calc(var(--head-length) - 1px);
+  bottom: calc(var(--axis-room) / 2 - var(--axis-width) / 2);
+  left: calc(50% - var(--axis-width) / 2);
+  width: var(--axis-width);
+  background: var(--axis);
+}
+
+.axes-y-arrow::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(50% - var(--head-half-width));
+  border: solid transparent;
+  border-width: 0 var(--head-half-width) var(--head-length);
+  border-bottom-color: var(--axis);
+}
+
+.axes-x-arrow::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - var(--axis-width) / 2);
+  left: calc(var(--axis-room) / 2 - var(--axis-width) / 2);
+  right: calc(var(--head-length) - 1px);
+  height: var(--axis-width);
+  background: var(--axis);
+}
+
+.axes-x-arrow::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - var(--head-half-width));
+  right: 0;
+  border: solid transparent;
+  border-width: var(--head-half-width) 0 var(--head-half-width) var(--head-length);
+  border-left-color: var(--axis);
+}
+
+/* Level names outside the plot, each with a tick mark across the axis */
+
+.axes-y-label,
+.axes-x-label {
+  position: relative;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  hyphens: auto;
+  overflow-wrap: break-word;
+}
+
+.axes-y-label {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 0.5rem;
+  text-align: right;
+}
+
+.axes-y-label::after {
+  content: "";
+  position: absolute;
+  top: calc(50% - var(--axis-width) / 2);
+  right: calc(-1 * var(--axis-room) / 2 - 0.2rem);
+  width: 0.6rem;
+  height: var(--axis-width);
+  background: var(--axis);
+}
+
+.axes-x-label {
+  padding: 0.5rem 0.25rem 0;
+  text-align: center;
+}
+
+.axes-x-label::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--axis-room) / 2 - 0.2rem);
+  left: calc(50% - var(--axis-width) / 2);
+  width: var(--axis-width);
+  height: 0.6rem;
+  background: var(--axis);
+}
+
+/* Axis titles at the arrowheads */
+
+.axes-y-title,
+.axes-x-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.axes-y-title {
+  align-self: start;
+  padding: 0 0 0.5rem 0.5rem;
+  line-height: var(--head-length);
+}
+
+.axes-x-title {
+  padding-top: 0.25rem;
+  text-align: right;
+}
+
+/* Matrix: every cell the same colour, small gaps between them */
+
+.axes-matrix .graph-cell {
+  margin: 2px;
+  border-radius: 0.5rem;
+  background: var(--cell-color);
+}
+
+/* Grid lines: no fill, thin lines between the cells like graph paper */
+
+.axes-lines .graph-cell {
+  border-top: 1px solid var(--grid-line);
+  border-right: 1px solid var(--grid-line);
+}
+
+/* Open: nothing but the axes, the ticks lead the eye */
+
+.axes-open .graph-cell {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+/* Small screens: the y level names turn sideways, so the columns keep their width */
+@media (max-width: 36rem) {
+  .axes-graph {
+    --axis-room: 0.5rem;
+  }
+
+  .axes-graph .graph-cell {
+    padding-left: 0.125rem;
+    padding-right: 0.125rem;
+  }
+
+  .axes-matrix .graph-cell {
+    margin: 1px;
+  }
+
+  .axes-y-label {
+    justify-content: center;
+    padding-right: 0.375rem;
+    text-align: center;
+  }
+
+  .axes-y-label span {
+    writing-mode: vertical-rl;
+    text-orientation: sideways; /* else punctuation such as ’ stands upright */
+    transform: rotate(180deg);
+    padding: 0.5rem 0; /* the rows grow with the label, this keeps neighbouring labels apart */
+    white-space: nowrap;
+    font-size: 0.6875rem;
+    line-height: 1.2;
   }
 }

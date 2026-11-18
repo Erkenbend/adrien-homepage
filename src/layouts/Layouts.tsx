@@ -1,7 +1,7 @@
 import {Contact} from '../components/Contact.tsx'
 import {Certificates, Education, Experience, Languages, ProfileAbout, ProfileHeader} from '../components/Profile.tsx'
 import {ProjectGraph} from '../components/ProjectGraph.tsx'
-import type {Layout} from '../layout.ts'
+import type {Layout} from '../options.ts'
 
 // Arrangements of the same blocks. The DOM order is the reading order on small screens, where every layout
 // becomes a single column; CSS (`.layout-<name>` in src/index.css) places the blocks on wide screens.

@@ -44,12 +44,25 @@ export const fr = {
         solo: 'En solo',
         group: 'En équipe',
     },
-    layout: 'Mise en page',
-    layoutNames: {
-        classic: 'Classique',
-        showcase: 'Projets à la une',
-        sidebar: 'Barre latérale',
-        split: 'Écran partagé',
-        bento: 'Mosaïque',
+    options: {
+        layout: {
+            title: 'Mise en page',
+            values: {
+                classic: 'Classique',
+                showcase: 'Projets à la une',
+                sidebar: 'Barre latérale',
+                split: 'Écran partagé',
+                bento: 'Mosaïque',
+            },
+        },
+        graph: {
+            title: 'Graphe',
+            values: {
+                classic: 'Classique',
+                matrix: 'Matrice',
+                lines: 'Quadrillage',
+                open: 'Ouvert',
+            },
+        },
     },
 } satisfies Messages

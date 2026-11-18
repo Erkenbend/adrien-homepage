@@ -1,4 +1,4 @@
-import type {Layout} from '../layout.ts'
+import type {GraphStyle, Layout} from '../options.ts'
 import type {AiUsage, Complexity, ProjectKind, TeamSize} from '../data/scales.ts'
 
 // Reference dictionary: its shape defines `Messages`, the other languages must match it.
@@ -46,14 +46,27 @@ export const de = {
         solo: 'Allein',
         group: 'Im Team',
     } satisfies Record<TeamSize, string>,
-    layout: 'Layout',
-    layoutNames: {
-        classic: 'Klassisch',
-        showcase: 'Projekte im Mittelpunkt',
-        sidebar: 'Seitenleiste',
-        split: 'Geteilter Bildschirm',
-        bento: 'Kacheln',
-    } satisfies Record<Layout, string>,
+    options: {
+        layout: {
+            title: 'Layout',
+            values: {
+                classic: 'Klassisch',
+                showcase: 'Projekte im Mittelpunkt',
+                sidebar: 'Seitenleiste',
+                split: 'Geteilter Bildschirm',
+                bento: 'Kacheln',
+            } satisfies Record<Layout, string>,
+        },
+        graph: {
+            title: 'Graph',
+            values: {
+                classic: 'Klassisch',
+                matrix: 'Matrix',
+                lines: 'Gitterlinien',
+                open: 'Offen',
+            } satisfies Record<GraphStyle, string>,
+        },
+    },
 }
 
 export type Messages = typeof de

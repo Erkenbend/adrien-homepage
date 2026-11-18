@@ -139,16 +139,22 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 - Ziel: verschiedene Anordnungen von Profiltexten und Graph vergleichen (nicht Schrift und Farben). Auswahl vorerst auf der Seite selbst, später evtl. als Build-Einstellung.
 - Das Profil besteht jetzt aus einzelnen Bausteinen (`ProfileHeader`, `ProfileAbout`, `Experience`, `Education`, `Certificates`, `Languages` in `src/components/Profile.tsx`), die jede Anordnung frei platziert. Der Zustand des Easter Eggs liegt in einem Context (`src/components/shadow.ts`), weil Foto und Kurzvorstellung je nach Anordnung an verschiedenen Stellen stehen.
-- `src/layout.ts`: Liste der Anordnungen, Auswahl über den Query-Parameter `?layout=…` (Standard `classic` ohne Parameter), damit ein Link dieselbe Anordnung zeigt. Der Sprachumschalter übernimmt ihn, der Hash der Detailansicht bleibt erhalten.
+- `src/options.ts`: Darstellungsoptionen (Anordnung `layout`, Aussehen des Graphen `graph`), jeweils über einen Query-Parameter (`?layout=split&graph=lines`), damit ein Link dieselbe Darstellung zeigt. Der erste Wert ist der Standard und steht nicht in der URL. Der Sprachumschalter übernimmt die Parameter, der Hash der Detailansicht bleibt erhalten.
 - `src/layouts/Layouts.tsx`: eine Komponente je Anordnung; CSS unter `.layout-<name>` in `src/index.css`. Unter 56rem Breite ist jede Anordnung einspaltig in DOM-Reihenfolge.
-- Umschalter unten in der Mitte (`src/components/LayoutPicker.tsx`), mobil nur mit Nummern.
+- Umschalter unten in der Mitte (`src/components/OptionsPicker.tsx`), eine Gruppe je Option; bei wenig Platz untereinander, mobil nur mit Nummern.
 - Anordnungen:
   1. **Klassisch** (`classic`): wie bisher, eine Spalte, Profil → Projekte → Kontakt.
   2. **Projekte im Mittelpunkt** (`showcase`): Name und Kurzvorstellung nebeneinander, darunter der Graph über die volle Breite auf leicht abgesetzter Fläche, danach Lebenslauf in zwei Spalten (Werdegang | Ausbildung, Zertifikate, Sprachen).
   3. **Seitenleiste** (`sidebar`): links eine mitlaufende Spalte mit Foto, Name, Links, Sprachen und Kontakt; rechts Kurzvorstellung als Einleitung, Graph, Werdegang, Ausbildung, Zertifikate.
   4. **Geteilter Bildschirm** (`split`): breitere Seite; Texte links, der Graph rechts bleibt beim Scrollen stehen. Mobil folgt der Graph direkt auf die Kurzvorstellung.
   5. **Kacheln** (`bento`): jeder Baustein auf einer eigenen Kachel in einem Raster mit unterschiedlich großen Kacheln.
-- Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen: kein horizontales Scrollen, alle 15 Projekte sichtbar.
+- Aussehen des Graphen: Ziel ist ein Graph, der wie ein Diagramm aussieht: alle Zellen gleich gefärbt, lange Pfeile als Achsen, die Stufennamen außerhalb an den Achsen.
+  1. **Klassisch** (`classic`): wie bisher, abwechselnd gefärbte Bänder mit dem Namen der KI-Stufe darin, zum Vergleich.
+  2. **Matrix** (`matrix`): alle Zellen gleich gefärbt, mit schmalen Abständen, abgerundet.
+  3. **Gitterlinien** (`lines`): keine Füllung, dünne Linien zwischen den Zellen wie auf Millimeterpapier.
+  4. **Offen** (`open`): nur Achsen und Teilstriche, keine Zellen.
+- Die Varianten 2–4 haben dasselbe Gerüst (`AxesGraph` in `src/components/ProjectGraph.tsx`, ein einziges CSS-Grid): Pfeile aus CSS (Linie + Dreieck), die sich unten links kreuzen; Stufennamen links der y-Achse bzw. unter der x-Achse, jeweils mit Teilstrich; Achsentitel an den Pfeilspitzen (KI-Einsatz neben der oberen, Komplexität unter der rechten). Mobil (unter 36rem) stehen die Namen der KI-Stufen hochkant, damit die Spalten breit genug für die Icons bleiben.
+- Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen, jeder Anordnung und jedem Graphen: kein horizontales Scrollen, alle 15 Projekte sichtbar.
 
 ### 10. CI-Pipeline (sobald es das Upstream-Repository gibt)
 
