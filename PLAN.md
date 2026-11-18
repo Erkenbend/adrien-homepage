@@ -20,7 +20,7 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 | Komplexität | Fünf benannte Stufen wie beim KI-Einsatz: Skript → Demo → kleine Anwendung → mehrteilige Anwendung → großes System | Vorgabe des Nutzers; benannte Stufen sind leichter einzuordnen und zu lesen als Zahlen. „Demo“ kam bei der Durchsicht der Projekte dazu, für Spielwiesen und Beispiele |
 | Art des Projekts | Beruflich, Weiterbildung (von der Arbeit getragen, aber ohne Kundenbezug), Hobby | Vorgabe des Nutzers |
 | Projekt-Icons | Hobby- und Weiterbildungsprojekte: eigene, von Claude gezeichnete SVG-Icons; berufliche Projekte: Logo von XPAY bzw. DATEV; alles lokal im Repository | Vorgabe des Nutzers; die SVGs sind klein, scharf in jeder Größe und frei von fremden Rechten |
-| Lizenz | Wird vor dem Livegang entschieden | |
+| Lizenz | Code unter GPL-3.0 (`LICENSE`), persönliche Inhalte unter CC BY-SA 4.0 (`LICENSES/CC-BY-SA-4.0.txt`): `profile.yaml`, `projects.yaml`, Favicon, eigene Projekt-Icons; Porträts alle Rechte vorbehalten; fremde Logos behalten ihre Bedingungen (`docs/credits.md`). Aufteilung im README unter „License“ | Entscheidung des Nutzers: GPL hält den Code frei und die Urheberangaben erhalten, wie bei `random-picker`/`article-trainer`; AGPL brächte ohne eigenen Servercode nichts. Inhalte brauchen eine eigene Lizenz, mit Namensnennung und Weitergabe unter gleichen Bedingungen |
 | Graph | Eigene Komponente aus HTML/SVG, keine Chart-Bibliothek | Nur Punkte mit Icons auf zwei Achsen; eine Bibliothek brächte mehr Gewicht als Nutzen |
 | Inhalte (Profil, Projekte) | YAML-Dateien in `src/data/` (`profile.yaml`, später `projects.yaml`), getrennt vom Code | Inhalte ohne TSX pflegen; siehe „Datenhaltung“ |
 | Kontakt | Link zum LinkedIn-Profil statt SimpleLogin-Alias | Entscheidung des Nutzers (weicht von `grober_plan.md` ab); keine E-Mail-Adresse auf der Seite |
@@ -50,7 +50,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Vite-Projekt (React + TS) mit Bun; `package.json`, `tsconfig*.json`, `eslint.config.js`, `.gitignore` aus `article-trainer`.
 - Abweichungen: `bun lint` prüft das ganze Repository (`eslint .`) statt nur `src`; kein `BUILD_TIMESTAMP`; `infrastructure/tsconfig.json` kommt erst mit Schritt 2 in die ESLint-Konfiguration.
 - `README.md` im Stil der anderen Projekte (inzwischen auf Englisch mit Details in `docs/`, siehe Schritt 11).
-- `LICENSE` erst vor dem Livegang.
+- `LICENSE` erst vor dem Livegang (inzwischen ergänzt, siehe Entscheidung „Lizenz“).
 - Ergebnis: dunkle Seite mit Namen als Überschrift.
 
 ### 2. Infrastruktur ✅
@@ -192,4 +192,4 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 
 ## Offene Fragen
 
-1. **Lizenz:** vor dem Livegang; GPL wie `random-picker`/`article-trainer` oder MIT wie `star-battle-solver`, evtl. Texte und Bilder ausgenommen.
+Derzeit keine.

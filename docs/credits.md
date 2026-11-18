@@ -34,7 +34,7 @@ If you build your own page from this repository, replace the logos and icons you
 |---|---|
 | `xpay.svg` | XPAY logo from the reference page [finatix.de/referenzen/xpay](https://www.finatix.de/referenzen/xpay) (`Logo_gray_xPay.png`), cropped, scaled down and placed on a white tile |
 | `datev-paymentnext.svg` | [File:Datev.svg](https://commons.wikimedia.org/wiki/File:Datev.svg) from Wikimedia Commons (public domain as simple lettering, trademark of DATEV eG), placed on a white tile |
-| all others | own drawings (made with Claude), same licence as the repository |
+| all others | own drawings (made with Claude), [CC BY-SA 4.0](../LICENSES/CC-BY-SA-4.0.txt) like the rest of the personal content (see [License](../README.md#license)) |
 
 ## Technologies
 

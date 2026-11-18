@@ -55,3 +55,14 @@ The code is generic; everything personal sits in a few places. To build your own
 ## Tech stack
 
 React 19, TypeScript, Vite, Bun; Zod and YAML at build time only; AWS CDK for S3, CloudFront and Route 53.
+
+## License
+
+Copyright © 2026 Adrien Wehrung
+
+- **Code:** [GPL-3.0](LICENSE). This covers everything in the repository that is not listed below, including the docs and the reference examples in `src/data/examples/`.
+- **Personal content:** [CC BY-SA 4.0](LICENSES/CC-BY-SA-4.0.txt). This covers the profile and project data (`src/data/profile.yaml`, `src/data/projects.yaml`), the favicon (`public/favicon.svg`, `public/apple-touch-icon.png`) and the own project icons in `public/images/projects/` (all except `xpay.svg` and `datev-paymentnext.svg`). If you reuse it, credit Adrien Wehrung with a link to https://adrien.wehrung.online and share your changes under the same licence.
+- **Portraits** (`public/images/portrait_*.jpg`): all rights reserved, not licensed for reuse.
+- **Third-party logos and icons** keep their own licences and trademarks. → [docs/credits.md](docs/credits.md)
+
+If you build your own page from this repository, replace the personal content with your own (see [Make it your own](#make-it-your-own)).
