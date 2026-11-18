@@ -100,6 +100,7 @@ export function Education({className}: BlockProps) {
                         <strong>{localize(entry.degree)}</strong>
                         {entry.institution && <> · {entry.institution}</>}
                         <div className="muted">{formatPeriod(entry.period)}</div>
+                        {entry.description && <p><RichText text={localize(entry.description)}/></p>}
                     </TimelineItem>
                 ))}
             </ul>

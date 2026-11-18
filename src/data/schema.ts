@@ -64,6 +64,8 @@ export function createSchemas(context: SchemaContext) {
             institution: text.optional(),
             logo: image.optional(),
             period,
+            /** Details below the title line, e.g. the focus of the studies. */
+            description: localized.optional(),
         })).default([]),
         certificates: z.array(z.strictObject({
             name: localized,

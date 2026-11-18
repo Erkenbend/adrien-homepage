@@ -67,12 +67,16 @@ experience:
 
 education:
   - degree:
-      de: Erasmus-Jahr (letztes Studienjahr von TELECOM Nancy), Informatik mit den Schwerpunkten Künstliche Intelligenz und Bildverarbeitung
-      en: Erasmus year (final year at TELECOM Nancy), computer science with a focus on artificial intelligence and image processing
-      fr: Année Erasmus (dernière année de TELECOM Nancy), informatique, spécialisation en intelligence artificielle et traitement d’images
+      de: Erasmus-Jahr, Informatik
+      en: Erasmus year, computer science
+      fr: Année Erasmus, informatique
     institution: Martin-Luther-Universität Halle-Wittenberg
     logo: /images/logos/mlu.png
     period: {from: 2016, to: 2017}
+    description:
+      de: Letztes Studienjahr von TELECOM Nancy, Schwerpunkte Künstliche Intelligenz und Bildverarbeitung
+      en: Final year at TELECOM Nancy, focus on artificial intelligence and image processing
+      fr: Dernière année de TELECOM Nancy, spécialisation en intelligence artificielle et traitement d’images
   - degree:
       de: Diplôme d’ingénieur (Master-Niveau), Informatik
       en: Diplôme d’ingénieur (master’s level), computer science
