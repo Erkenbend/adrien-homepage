@@ -53,9 +53,9 @@ experience:
     location: Leipzig
     period: {from: 2018-07}
     description:
-      de: Vom Entwickler zum Entwickler & Team-Architekten. Projekte XPAY (Card-as-a-Service-Plattform, bis September 2020) und DATEV PaymentNext (seit Oktober 2020). Treiber von Weiterbildungsinitiativen wie Code-Katas und der Backend-Gilde.
-      en: Grew from developer to developer & team architect. Projects XPAY (card-as-a-service platform, until September 2020) and DATEV PaymentNext (since October 2020). Driving force behind training initiatives such as code katas and the backend guild.
-      fr: De développeur à développeur & architecte d’équipe. Projets XPAY (plateforme card-as-a-service, jusqu’en septembre 2020) et DATEV PaymentNext (depuis octobre 2020). Moteur d’initiatives de formation continue comme les code katas et la guilde backend.
+      de: Vom Entwickler zum Entwickler & Team-Architekten. Projekte XPAY (Card-as-a-Service-Plattform, bis September 2020) und DATEV PaymentNext (seit Oktober 2020). Treiber von Weiterbildungsinitiativen wie Code-Katas und der Backend-Gilde. Gelegentlich Autor von Fachartikeln für den [Firmenblog](https://finatix.de/fachartikel).
+      en: Grew from developer to developer & team architect. Projects XPAY (card-as-a-service platform, until September 2020) and DATEV PaymentNext (since October 2020). Driving force behind training initiatives such as code katas and the backend guild. Occasional author of technical articles for the [company blog](https://finatix.de/fachartikel).
+      fr: De développeur à développeur & architecte d’équipe. Projets XPAY (plateforme card-as-a-service, jusqu’en septembre 2020) et DATEV PaymentNext (depuis octobre 2020). Moteur d’initiatives de formation continue comme les code katas et la guilde backend. Auteur occasionnel d’articles techniques pour le [blog de l’entreprise](https://finatix.de/fachartikel).
   - role: {de: Entwickler, en: Developer, fr: Développeur}
     organization: IT Sonix custom development GmbH
     logo: /images/logos/it-sonix.png
@@ -68,16 +68,16 @@ experience:
 
 education:
   - degree:
-      de: Erasmus-Jahr (letztes Studienjahr von TELECOM Nancy)
-      en: Erasmus year (final year at TELECOM Nancy)
-      fr: Année Erasmus (dernière année de TELECOM Nancy)
+      de: Erasmus-Jahr (letztes Studienjahr von TELECOM Nancy), Informatik mit den Schwerpunkten Künstliche Intelligenz und Bildverarbeitung
+      en: Erasmus year (final year at TELECOM Nancy), computer science with a focus on artificial intelligence and image processing
+      fr: Année Erasmus (dernière année de TELECOM Nancy), informatique, spécialisation en intelligence artificielle et traitement d’images
     institution: Martin-Luther-Universität Halle-Wittenberg
     logo: /images/logos/mlu.png
     period: {from: 2016, to: 2017}
   - degree:
       de: Diplôme d’ingénieur (Master-Niveau), Informatik
       en: Diplôme d’ingénieur (master’s level), computer science
-      fr: Diplôme d’ingénieur, informatique
+      fr: Diplôme d’ingénieur en informatique et sciences du numérique
     institution: TELECOM Nancy (Université de Lorraine)
     logo: /images/logos/telecom-nancy.png
     period: {from: 2014, to: 2017}

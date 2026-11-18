@@ -59,13 +59,19 @@
   description:
     de: >
       Erzeugt und löst Star-Battle-Puzzles mit logischen Regeln, so wie ein Mensch es täte,
-      und erklärt jeden Schritt, im Terminal und auf einer interaktiven Webseite.
+      und erklärt jeden Schritt, im Terminal und auf einer interaktiven Webseite. Dient zugleich
+      als Praxisbeispiel, um Concurrency in Golang (Goroutines und Channels) mit animierten
+      Diagrammen zu erklären.
     en: >
       Generates and solves Star Battle puzzles with logical rules, the way a human would,
-      and explains every step, in the terminal and on an interactive web page.
+      and explains every step, in the terminal and on an interactive web page. Also serves
+      as a hands-on example for explaining concurrency in Golang (goroutines and channels)
+      with animated diagrams.
     fr: >
       Génère et résout des grilles Star Battle par des règles logiques, comme le ferait un humain,
-      et explique chaque étape, dans le terminal et sur une page web interactive.
+      et explique chaque étape, dans le terminal et sur une page web interactive. Sert aussi
+      d’exemple concret pour expliquer la concurrence en Golang (goroutines et channels)
+      à l’aide de diagrammes animés.
   languages: [go]
   kind: hobby
   period: {from: 2026-11}
