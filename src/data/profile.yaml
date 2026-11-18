@@ -91,10 +91,14 @@ education:
     institution: Lycée Georges Clemenceau, Reims
     period: {from: 2012, to: 2014}
   - degree:
-      de: Baccalauréat S (naturwissenschaftlich), Prädikat „gut“ (mention bien)
-      en: Baccalauréat S (science track), with honours (mention bien)
-      fr: Baccalauréat S, mention bien
+      de: Baccalauréat S (naturwissenschaftlich)
+      en: Baccalauréat S (science track)
+      fr: Baccalauréat S
     period: {from: 2012, to: 2012}
+    description:
+      de: Prädikat „gut“ (mention bien)
+      en: With honours (mention bien)
+      fr: Mention bien
 
 # The CPSA-F does not expire, hence no validUntil.
 certificates:
