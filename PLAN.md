@@ -152,6 +152,12 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Prüfen mit Lighthouse (Performance, Accessibility, SEO); kein Ziel um jeden Preis, nur offensichtliche Mängel beheben.
 - Deployment, Aufruf unter `https://adrien.wehrung.online`, Screenshot ins README.
 
+### 12. PDF-Export (später, noch nicht genau festgelegt)
+
+- Idee: Profil (und evtl. Projekte) als PDF exportieren, etwa als Lebenslauf zum Herunterladen.
+- Wahrscheinlich sind Änderungen an der Datenhaltung nötig: Manche Angaben gehören nur ins PDF, andere nur auf die Seite (z. B. Felder oder Markierungen in `profile.yaml`/`projects.yaml`, was wo erscheint).
+- Offen: Umfang und Inhalt, Erzeugung beim Build oder im Browser (Druckansicht mit `@media print` vs. eigens erzeugtes PDF), eine Datei je Sprache, Darstellung des Graphen im PDF.
+
 ## Offene Fragen
 
 1. **Inhalte:** Profil ausgefüllt, es fehlen nur das Profilbild und das Bild des Easter Eggs (bis dahin Platzhalter `public/images/profile-placeholder.svg` und `profile-shadow-placeholder.svg`, in `profile.yaml` mit `TODO` markiert). Projekte: mit `TODO` markierte Angaben (vervollständigt der Nutzer).
