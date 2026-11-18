@@ -6,13 +6,15 @@ interface Site {
     name: string
     /** Path below public/. */
     icon: string
+    /** The icon is white, made for a dark background: inverted in the light theme. */
+    darkOnly?: boolean
     /** Optional detail shown after the name, e.g. to tell several profiles apart. */
     detail?: (url: URL) => string | undefined
 }
 
 /** Known sites, recognized by host name. Add an entry here to give another site its icon and name. */
 export const SITES: Site[] = [
-    {hosts: ['github.com'], name: 'GitHub', icon: '/images/sites/github.svg', detail: githubUser},
+    {hosts: ['github.com'], name: 'GitHub', icon: '/images/sites/github.svg', darkOnly: true, detail: githubUser},
     {hosts: ['linkedin.com'], name: 'LinkedIn', icon: '/images/sites/linkedin.png'},
     {hosts: ['isaqb.org'], name: 'iSAQB', icon: '/images/sites/isaqb.svg'},
 ]
@@ -23,6 +25,8 @@ export const GENERIC_LINK_ICON = '/images/sites/link.svg'
 export interface LinkDisplay {
     label: string
     icon: string
+    /** See `Site.darkOnly`. */
+    darkOnly: boolean
 }
 
 /**
@@ -34,10 +38,11 @@ export function describeLink(href: string, fallbackLabel?: string): LinkDisplay 
     const host = url.hostname.toLowerCase()
     const site = SITES.find(({hosts}) => hosts.some(known => host === known || host.endsWith(`.${known}`)))
     if (!site) {
-        return {label: fallbackLabel ?? host.replace(/^www\./, ''), icon: GENERIC_LINK_ICON}
+        // The generic icon is white as well.
+        return {label: fallbackLabel ?? host.replace(/^www\./, ''), icon: GENERIC_LINK_ICON, darkOnly: true}
     }
     const detail = site.detail?.(url)
-    return {label: detail ? `${site.name} (${detail})` : site.name, icon: site.icon}
+    return {label: detail ? `${site.name} (${detail})` : site.name, icon: site.icon, darkOnly: site.darkOnly ?? false}
 }
 
 /** `https://github.com/<user>` → `<user>`; repository URLs get no detail, the project is clear from context. */

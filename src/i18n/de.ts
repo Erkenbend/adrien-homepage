@@ -4,6 +4,7 @@ import type {AiUsage, Complexity, ProjectKind, TeamSize} from '../data/scales.ts
 // Reference dictionary: its shape defines `Messages`, the other languages must match it.
 export const de = {
     languageSwitcherLabel: 'Sprache wählen',
+    lightTheme: 'Helles Farbschema',
     experience: 'Werdegang',
     education: 'Ausbildung',
     certificates: 'Zertifikate',

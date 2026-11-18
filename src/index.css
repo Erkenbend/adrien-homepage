@@ -3,9 +3,15 @@
   line-height: 1.5;
   font-weight: 400;
 
-  --text: rgba(255, 255, 255, 0.87);
-  --text-muted: rgba(255, 255, 255, 0.5);
+  /* Dark by default; [data-theme="light"] below, chosen with the toggle in the header (src/theme.ts).
+     --ink is the colour of lines and tints, as RGB channels: rgb(var(--ink) / 0.12). */
+  --ink: 255 255 255;
+  --text: rgb(var(--ink) / 0.87);
+  --text-muted: rgb(var(--ink) / 0.5);
   --background: #1b1b1f;
+  --tooltip-background: #33333a;
+  --tooltip-text: var(--text);
+  --picker-background: #232328;
 
   color-scheme: dark;
   color: var(--text);
@@ -15,6 +21,18 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Kept apart from the dark values above so the cascade stays simple: the attribute wins by specificity. */
+:root[data-theme="light"] {
+  --ink: 0 0 0;
+  --text-muted: rgb(var(--ink) / 0.6); /* 0.5 would fall below 4.5:1 on the light background */
+  --background: #f7f7f8;
+  --tooltip-background: #2b2b30;
+  --tooltip-text: #fff;
+  --picker-background: #ececef;
+
+  color-scheme: light;
 }
 
 body {
@@ -32,6 +50,27 @@ header, main, footer {
 header {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.theme-toggle {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  margin: -0.5rem -0.5rem -0.5rem 0; /* a large target without moving the header */
+  padding: 0;
+  border: none;
+  border-radius: 0.5rem;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.theme-toggle:hover,
+.theme-toggle[aria-pressed="true"] {
+  color: var(--text);
 }
 
 footer {
@@ -183,10 +222,12 @@ h2 {
   padding: 0.25rem;
   border-radius: 0.5rem;
   background: #fff;
+  box-shadow: inset 0 0 0 1px rgb(var(--ink) / 0.1); /* sets the tile off the light background */
 }
 
 .org-logo-empty {
   background: none;
+  box-shadow: none;
 }
 
 .org-logo img {
@@ -199,7 +240,7 @@ h2 {
 /* Project graph: one column per complexity level, one band per AI usage level. */
 
 .graph {
-  --graph-line: rgba(255, 255, 255, 0.12);
+  --graph-line: rgb(var(--ink) / 0.12);
   --icon-size: 2.75rem;
   margin-top: 1rem;
 }
@@ -225,7 +266,7 @@ h2 {
 }
 
 .graph-band:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.03);
+  background: rgb(var(--ink) / 0.03);
 }
 
 .graph-band-label {
@@ -296,6 +337,19 @@ h2 {
   --kind-color: #ff6fb5;
 }
 
+/* Darker in the light theme, so the rings stand out against the background as clearly as in the dark one. */
+[data-theme="light"] .kind-professional {
+  --kind-color: #1d6fd8;
+}
+
+[data-theme="light"] .kind-training {
+  --kind-color: #c86e00;
+}
+
+[data-theme="light"] .kind-hobby {
+  --kind-color: #d42d86;
+}
+
 /* Gap in the page colour, then the ring; the radius follows the icon tiles (14 of 64). */
 .project-icon[class*="kind-"] img,
 .project-dialog-icon[class*="kind-"] {
@@ -343,8 +397,8 @@ h2 {
   z-index: 1;
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
-  background: #33333a;
-  color: var(--text);
+  background: var(--tooltip-background);
+  color: var(--tooltip-text);
   font-size: 0.875rem;
   white-space: nowrap;
   pointer-events: none;
@@ -379,7 +433,7 @@ body:has(.project-dialog[open]) {
   width: min(36rem, calc(100% - 2rem));
   max-height: calc(100% - 2rem);
   padding: 0; /* a click on the dialog element itself is then a click on the backdrop */
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgb(var(--ink) / 0.12);
   border-radius: 0.75rem;
   background: var(--background);
   color: var(--text);
@@ -487,6 +541,12 @@ body:has(.project-dialog[open]) {
   vertical-align: -0.2em; /* centred on the text, also within a sentence */
 }
 
+/* Icons drawn in white for the dark theme (`darkOnly` in src/sites.ts and src/data/technologies.ts): the
+   light theme inverts them, the hue rotation keeps coloured parts such as the AWS smile close to their hue. */
+[data-theme="light"] .dark-only-icon {
+  filter: invert(1) hue-rotate(180deg);
+}
+
 /* Layouts (proof of concept, see src/layout.ts and src/layouts/Layouts.tsx). Below 56rem every layout is a
    single column in DOM order. */
 
@@ -533,7 +593,7 @@ body:has(.project-dialog[open]) {
     margin-top: 1.5rem;
     padding: 1.5rem;
     border-radius: 1rem;
-    background: rgba(255, 255, 255, 0.025);
+    background: rgb(var(--ink) / 0.025);
   }
 
   .showcase-graph > h2 {
@@ -562,7 +622,7 @@ body:has(.project-dialog[open]) {
     max-height: calc(100vh - 2rem);
     overflow-y: auto;
     padding-right: 1.5rem;
-    border-right: 1px solid rgba(255, 255, 255, 0.08);
+    border-right: 1px solid rgb(var(--ink) / 0.08);
   }
 
   .sidebar .profile-intro {
@@ -666,9 +726,9 @@ body:has(.project-dialog[open]) {
   min-width: 0;
   margin: 0;
   padding: 1rem 0.75rem; /* narrow, so the graph keeps its width on small screens */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgb(var(--ink) / 0.08);
   border-radius: 1rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgb(var(--ink) / 0.03);
 }
 
 .tile.profile-intro {
@@ -698,8 +758,8 @@ body:has(.options-picker) {
   gap: 1.25rem;
   padding: 1rem 0.5rem;
   overflow-y: auto;
-  border-right: 1px solid rgba(255, 255, 255, 0.12);
-  background: #232328;
+  border-right: 1px solid rgb(var(--ink) / 0.12);
+  background: var(--picker-background);
   font-size: 0.8125rem;
 }
 
@@ -739,7 +799,7 @@ body:has(.options-picker) {
 }
 
 .options-group button[aria-pressed="true"] {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgb(var(--ink) / 0.14);
   color: var(--text);
 }
 
@@ -782,13 +842,13 @@ body:has(.options-picker) {
 /* Project graph with arrows for axes (graph options other than `classic`), see AxesGraph in ProjectGraph.tsx */
 
 .axes-graph {
-  --axis: rgba(255, 255, 255, 0.6);
+  --axis: rgb(var(--ink) / 0.6);
   --axis-width: 2px;
   --axis-room: 0.75rem;
   --head-length: 0.7rem;
   --head-half-width: 0.4rem;
-  --cell-color: rgba(255, 255, 255, 0.05);
-  --grid-line: rgba(255, 255, 255, 0.12);
+  --cell-color: rgb(var(--ink) / 0.05);
+  --grid-line: rgb(var(--ink) / 0.12);
   --icon-size: 2.75rem;
   display: grid; /* tracks set inline */
   margin-top: 1rem;

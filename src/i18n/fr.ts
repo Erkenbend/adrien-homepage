@@ -2,6 +2,7 @@ import type {Messages} from './de.ts'
 
 export const fr = {
     languageSwitcherLabel: 'Choisir la langue',
+    lightTheme: 'Thème clair',
     experience: 'Expérience',
     education: 'Formation',
     certificates: 'Certifications',

@@ -32,7 +32,7 @@ The code is generic; everything personal sits in a few places. To build your own
 1. **Fork or clone** the repository, run `bun install` and `bun dev`.
 2. **Replace the content:** rewrite `src/data/profile.yaml` and `src/data/projects.yaml`. The reference examples in `src/data/examples/` show every field with an explanation. Put your photo, logos and project icons under `public/images/`, and delete the images you no longer use. Put your initials in the favicon. → [docs/content.md](docs/content.md)
 3. **Adjust the texts of the page** (headings, the sentence above the graph, the contact sentence) in `src/i18n/`. Title, description and link preview come from `profile.yaml` at build time.
-4. **Optionally adapt the model:** the levels of the graph axes, the kinds of projects and their colours, the list of technologies and the recognized link sites. → [docs/content.md](docs/content.md)
+4. **Optionally adapt the model and the look:** the levels of the graph axes, the kinds of projects and their colours, the list of technologies and the recognized link sites, the colours of the dark and light theme. → [docs/content.md](docs/content.md)
 5. **Choose your languages:** add, remove or reorder them, or pick another default. → [docs/languages.md](docs/languages.md)
 6. **Choose a layout and graph style** in `.env`. → [docs/build-settings.md](docs/build-settings.md)
 7. **Point the footer** at your repository: `REPOSITORY_URL` in `src/components/Footer.tsx`.
@@ -45,7 +45,7 @@ The code is generic; everything personal sits in a few places. To build your own
 
 | File | Contents |
 |---|---|
-| [docs/content.md](docs/content.md) | Profile and project data, images, technologies, link sites, graph axes, texts of the page |
+| [docs/content.md](docs/content.md) | Profile and project data, images, favicon, technologies, link sites, graph axes, colours and themes, texts of the page |
 | [docs/languages.md](docs/languages.md) | Adding or removing a language, changing the default |
 | [docs/build-settings.md](docs/build-settings.md) | Page layouts and graph styles (`VITE_LAYOUT`, `VITE_GRAPH`), page address and link previews (`VITE_SITE_URL`) |
 | [docs/deployment.md](docs/deployment.md) | AWS infrastructure (CDK), GitHub Actions, manual deployment, other hosts |

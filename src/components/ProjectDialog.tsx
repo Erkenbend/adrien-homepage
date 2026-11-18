@@ -101,10 +101,10 @@ function TechFact<Id extends string>({label, registry, ids}: TechFactProps<Id>) 
         <Fact label={label}>
             <ul className="tech-list">
                 {ids.map(id => {
-                    const {name, logo} = registry[id]
+                    const {name, logo, darkOnly} = registry[id]
                     return (
                         <li key={id}>
-                            {logo && <img className="tech-logo" src={logo} alt=""/>}
+                            {logo && <img className={darkOnly ? 'tech-logo dark-only-icon' : 'tech-logo'} src={logo} alt=""/>}
                             {name}
                         </li>
                     )

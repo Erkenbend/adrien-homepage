@@ -7,6 +7,8 @@ export interface Technology {
     name: string
     /** Path below public/, shown before the name; sources in docs/credits.md. */
     logo?: string
+    /** The logo is (partly) white, made for a dark background: inverted in the light theme. */
+    darkOnly?: boolean
 }
 
 export const PROGRAMMING_LANGUAGES = {
@@ -22,7 +24,7 @@ export const PROGRAMMING_LANGUAGES = {
 
 export const FRAMEWORKS = {
     'angular': {name: 'Angular', logo: '/images/tech/angular.svg'},
-    'aws-cdk': {name: 'AWS CDK', logo: '/images/tech/aws.svg'},
+    'aws-cdk': {name: 'AWS CDK', logo: '/images/tech/aws.svg', darkOnly: true},
     'cobra': {name: 'Cobra'},
     'fastapi': {name: 'FastAPI', logo: '/images/tech/fastapi.svg'},
     'gamemaker': {name: 'GameMaker'},
@@ -35,7 +37,7 @@ export const FRAMEWORKS = {
 
 /** Platforms, build tools, infrastructure. */
 export const TOOLS = {
-    'aws': {name: 'AWS', logo: '/images/tech/aws.svg'},
+    'aws': {name: 'AWS', logo: '/images/tech/aws.svg', darkOnly: true},
     'docker': {name: 'Docker', logo: '/images/tech/docker.svg'},
     'dynamodb': {name: 'DynamoDB', logo: '/images/tech/dynamodb.svg'},
     'localstack': {name: 'LocalStack', logo: '/images/tech/localstack.svg'},

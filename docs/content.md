@@ -59,13 +59,13 @@ When you replace images, update [credits.md](credits.md) as well.
 
 `src/data/technologies.ts` holds three fixed lists: `PROGRAMMING_LANGUAGES`, `FRAMEWORKS` and `TOOLS` (platforms, build tools, infrastructure). Projects refer to them by id, e.g. `languages: [java, kotlin]`. An unknown id, or an id in the wrong list, fails the build.
 
-To add a technology, add an entry with its `name` (the same in every language) and optionally a `logo` (path below `public/`).
+To add a technology, add an entry with its `name` (the same in every language) and optionally a `logo` (path below `public/`). A logo drawn in white for dark backgrounds gets `darkOnly: true`: the light theme inverts it (see [Colours and themes](#colours-and-themes)).
 
 ## Link sites
 
 `src/sites.ts` recognizes known sites by host name, subdomains included, and shows their logo and name: GitHub, LinkedIn and iSAQB so far. Links to other sites get a generic link icon and the host name.
 
-To recognize another site, add an entry to `SITES` and put its logo into `public/images/sites/`. The build checks that the logo exists.
+To recognize another site, add an entry to `SITES` and put its logo into `public/images/sites/`. The build checks that the logo exists. A white logo gets `darkOnly: true`, like GitHub's.
 
 ## Graph axes, kinds and team sizes
 
@@ -82,7 +82,15 @@ The graph adapts to the number of levels. When you change a list:
 
 - add or remove its labels in every dictionary in `src/i18n/` (a missing label is a type error);
 - update `src/data/projects.yaml` and the examples in `src/data/examples/projects.yaml`;
-- for a new kind of project, add its colour as `.kind-<name>` in `src/index.css`.
+- for a new kind of project, add its colour as `.kind-<name>` in `src/index.css`, and a darker one for the light theme under `[data-theme="light"] .kind-<name>`.
+
+## Colours and themes
+
+The page is dark by default; the button next to the language switcher turns it light. The choice is kept in the browser (`localStorage`), and an inline script in `index.html` applies it before the first paint (`src/theme.ts`).
+
+The colours are custom properties at the top of `src/index.css`: `:root` for the dark theme, `:root[data-theme="light"]` for the light one. `--ink` is the colour of lines and tints as RGB channels, used as `rgb(var(--ink) / 0.12)`, so most colours follow the theme without a second definition.
+
+Images do not follow the theme. Logos of organizations sit on a white tile in both; white icons (`darkOnly` in `src/sites.ts` and `src/data/technologies.ts`) are inverted in the light theme.
 
 ## Texts of the page
 

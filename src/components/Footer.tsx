@@ -1,5 +1,5 @@
 import {LANGUAGE, MESSAGES} from '../i18n/language.ts'
-import {describeLink} from '../sites.ts'
+import {SiteLink} from './SiteLink.tsx'
 
 const REPOSITORY_URL = 'https://github.com/Erkenbend/adrien-homepage'
 
@@ -11,10 +11,7 @@ export function Footer() {
     return (
         <footer>
             <span>{MESSAGES.version}: <time dateTime={BUILD_TIMESTAMP}>{buildTime}</time></span>
-            <a className="site-link" href={REPOSITORY_URL}>
-                <img className="site-icon" src={describeLink(REPOSITORY_URL).icon} alt=""/>
-                {MESSAGES.sourceCode}
-            </a>
+            <SiteLink url={REPOSITORY_URL} label={MESSAGES.sourceCode}/>
         </footer>
     )
 }
