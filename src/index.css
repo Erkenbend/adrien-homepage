@@ -386,6 +386,12 @@ h2 {
   transform: scale(1.1);
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .project-icon img {
+    transition: none;
+  }
+}
+
 .project-icon:focus-visible {
   outline: 2px solid var(--text);
   outline-offset: 2px;

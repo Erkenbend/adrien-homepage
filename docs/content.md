@@ -49,6 +49,8 @@ All images live under `public/images/` and are referenced from YAML by their pat
 
 Square images work best: a signet or favicon rather than a full word mark, which would be unreadable at this size. SVG or a small WebP keeps the page light.
 
+The profile photo is shown at 128 px, so about 400 px wide is plenty, even for high-density screens. Keep it a JPEG or PNG: it is also the image of link previews (`og:image`), and LinkedIn does not take WebP. Strip the camera metadata (date, device, location) before committing a photo.
+
 When you replace images, update [credits.md](credits.md) as well.
 
 ### Favicon
