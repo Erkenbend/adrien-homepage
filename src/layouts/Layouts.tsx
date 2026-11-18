@@ -6,17 +6,17 @@ import type {Layout} from '../options.ts'
 // Arrangements of the same blocks. The DOM order is the reading order on small screens, where every layout
 // becomes a single column; CSS (`.layout-<name>` in src/index.css) places the blocks on wide screens.
 
-/** One column: profile, then projects, then contact. */
+/** One column: introduction, projects, the rest of the profile, contact. */
 function Classic() {
     return (
         <>
             <ProfileHeader/>
             <ProfileAbout/>
+            <ProjectGraph/>
             <Experience/>
             <Education/>
             <Certificates/>
             <Languages/>
-            <ProjectGraph/>
             <Contact/>
         </>
     )

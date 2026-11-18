@@ -2,7 +2,7 @@ import {useSyncExternalStore} from 'react'
 
 // Proof of concept: display options chosen on the page itself and kept in the query string
 // (`?layout=split&graph=lines`), so a link shows the same choice. Once one is picked, an option may become a
-// build setting. The first value of each option is its default and is left out of the URL.
+// build setting. The default of each option (`DEFAULTS`) is left out of the URL.
 
 export const OPTIONS = {
     /** Arrangement of the page, see src/layouts/Layouts.tsx. */
@@ -15,6 +15,12 @@ export type OptionName = keyof typeof OPTIONS
 export type OptionValue<Name extends OptionName> = (typeof OPTIONS)[Name][number]
 export type Layout = OptionValue<'layout'>
 export type GraphStyle = OptionValue<'graph'>
+
+/** Separate from the order above, so the numbers in the picker stay the same when a default changes. */
+const DEFAULTS: {[Name in OptionName]: OptionValue<Name>} = {
+    layout: 'classic',
+    graph: 'lines',
+}
 
 const OPTION_NAMES = Object.keys(OPTIONS) as OptionName[]
 const CHANGE_EVENT = 'options-change'
@@ -32,7 +38,7 @@ function subscribe(onChange: () => void): () => void {
 function valueIn<Name extends OptionName>(parameters: URLSearchParams, name: Name): OptionValue<Name> {
     const values: readonly OptionValue<Name>[] = OPTIONS[name]
     const value = parameters.get(name)
-    return values.find(candidate => candidate === value) ?? values[0]
+    return values.find(candidate => candidate === value) ?? DEFAULTS[name]
 }
 
 function currentValue<Name extends OptionName>(name: Name): OptionValue<Name> {
@@ -44,7 +50,7 @@ function queryOf(parameters: URLSearchParams): string {
     const kept = new URLSearchParams()
     for (const name of OPTION_NAMES) {
         const value = valueIn(parameters, name)
-        if (value !== OPTIONS[name][0]) {
+        if (value !== DEFAULTS[name]) {
             kept.set(name, value)
         }
     }
