@@ -14,7 +14,7 @@ const COLUMNS = {gridTemplateColumns: `repeat(${String(COMPLEXITY_LEVELS.length)
  * AI usage level (most AI at the top). Projects sharing a cell sit side by side, sorted by name, so
  * they never overlap and the layout does not change between builds.
  */
-export function ProjectGraph() {
+export function ProjectGraph({className}: {className?: string}) {
     const hash = useHash()
     if (projects.length === 0) {
         return null
@@ -23,7 +23,7 @@ export function ProjectGraph() {
     const bands = [...AI_USAGE_LEVELS].reverse()
 
     return (
-        <section id="projects">
+        <section id="projects" className={className}>
             <h2>{MESSAGES.projects}</h2>
             <p>{MESSAGES.projectsIntro}</p>
             <div className="graph">

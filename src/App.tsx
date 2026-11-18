@@ -1,20 +1,23 @@
-import {Contact} from './components/Contact.tsx'
 import {LanguageSwitcher} from './components/LanguageSwitcher.tsx'
-import {Profile} from './components/Profile.tsx'
-import {ProjectGraph} from './components/ProjectGraph.tsx'
+import {LayoutPicker} from './components/LayoutPicker.tsx'
+import {ShadowProvider} from './components/Profile.tsx'
+import {useLayout} from './layout.ts'
+import {PageContent} from './layouts/Layouts.tsx'
 
 function App() {
+    const layout = useLayout()
     return (
-        <>
-            <header>
-                <LanguageSwitcher/>
-            </header>
-            <main>
-                <Profile/>
-                <ProjectGraph/>
-                <Contact/>
-            </main>
-        </>
+        <ShadowProvider>
+            <div className={`page layout-${layout}`}>
+                <header>
+                    <LanguageSwitcher layout={layout}/>
+                </header>
+                <main>
+                    <PageContent layout={layout}/>
+                </main>
+            </div>
+            <LayoutPicker layout={layout}/>
+        </ShadowProvider>
     )
 }
 

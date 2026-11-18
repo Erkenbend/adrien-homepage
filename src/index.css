@@ -24,7 +24,7 @@ body {
 }
 
 header, main {
-  max-width: 60rem;
+  max-width: var(--page-width, 60rem);
   margin: 0 auto;
   padding: 1rem;
 }
@@ -467,4 +467,268 @@ body:has(.project-dialog[open]) {
   width: auto;
   margin-right: 0.35em;
   vertical-align: -0.2em; /* centred on the text, also within a sentence */
+}
+
+/* Layouts (proof of concept, see src/layout.ts and src/layouts/Layouts.tsx). Below 56rem every layout is a
+   single column in DOM order. */
+
+body {
+  padding-bottom: 4rem; /* room for the layout picker */
+}
+
+.layout-showcase,
+.layout-sidebar,
+.layout-bento {
+  --page-width: 72rem;
+}
+
+.layout-split {
+  --page-width: 90rem;
+}
+
+/* The first heading of a column or tile starts at its top. */
+.sidebar > :first-child h2,
+.sidebar-main > :first-child,
+.split-cv > :first-child h2,
+.showcase-cv > div > section:first-child h2,
+.tile > h2 {
+  margin-top: 0;
+}
+
+@media (min-width: 56rem) {
+  /* Showcase: introduction beside the name, graph full width, CV in two columns */
+
+  .showcase-hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: center;
+    padding: 1.5rem 0;
+  }
+
+  .showcase-hero .profile-intro,
+  .showcase-hero .profile-about {
+    margin: 0;
+  }
+
+  .showcase-hero .profile-about {
+    font-size: 1.0625rem;
+  }
+
+  .showcase-graph {
+    margin-top: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    background: rgba(255, 255, 255, 0.025);
+  }
+
+  .showcase-graph > h2 {
+    margin-top: 0;
+  }
+
+  .showcase-cv {
+    display: grid;
+    grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+    gap: 3rem;
+    margin-top: 2.5rem;
+  }
+
+  /* Sidebar: who and how to reach on the left, sticky */
+
+  .sidebar-layout {
+    display: grid;
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .sidebar {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    padding-right: 1.5rem;
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .sidebar .profile-intro {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 0;
+  }
+
+  .sidebar h1 {
+    font-size: 1.75rem;
+  }
+
+  .sidebar .profile-links {
+    flex-direction: column;
+  }
+
+  .sidebar h2 {
+    margin-top: 2rem;
+  }
+
+  .sidebar-main .lead {
+    margin: 0 0 1rem;
+    font-size: 1.25rem;
+    line-height: 1.55;
+  }
+
+  /* Split: text on the left, the graph stays in view on the right */
+
+  .split-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    grid-template-areas:
+      "intro graph"
+      "cv graph";
+    grid-template-rows: auto 1fr;
+    column-gap: 4rem;
+  }
+
+  .split-intro {
+    grid-area: intro;
+  }
+
+  .split-cv {
+    grid-area: cv;
+  }
+
+  .split-graph {
+    grid-area: graph;
+    align-self: start;
+    position: sticky;
+    top: 1rem;
+  }
+
+  .split-graph h2 {
+    margin-top: 0;
+  }
+
+  /* Bento: each block on a tile of its own size */
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+      "identity identity about about"
+      "graph graph graph graph"
+      "experience experience education education"
+      "certificates certificates languages contact";
+    gap: 1rem;
+  }
+
+  .tile-identity { grid-area: identity; }
+  .tile-about { grid-area: about; }
+  .tile-graph { grid-area: graph; }
+  .tile-experience { grid-area: experience; }
+  .tile-education { grid-area: education; }
+  .tile-certificates { grid-area: certificates; }
+  .tile-languages { grid-area: languages; }
+  .tile-contact { grid-area: contact; }
+
+  .tile {
+    padding: 1.25rem 1.5rem;
+  }
+
+  .tile-about {
+    display: grid;
+    align-items: center;
+    font-size: 1.0625rem;
+  }
+}
+
+/* Tiles also on small screens, just stacked */
+
+.bento {
+  display: grid;
+  gap: 1rem;
+}
+
+.tile {
+  box-sizing: border-box;
+  min-width: 0;
+  margin: 0;
+  padding: 1rem 0.75rem; /* narrow, so the graph keeps its width on small screens */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tile.profile-intro {
+  margin: 0;
+}
+
+/* Layout picker */
+
+.layout-picker {
+  position: fixed;
+  bottom: 0.75rem;
+  left: 50%;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  max-width: calc(100vw - 1.5rem);
+  box-sizing: border-box;
+  padding: 0.3rem;
+  transform: translateX(-50%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+  background: rgba(40, 40, 46, 0.92);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  font-size: 0.8125rem;
+}
+
+.layout-picker-title {
+  padding: 0 0.5rem 0 0.75rem;
+  color: var(--text-muted);
+}
+
+.layout-picker button {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-height: 2rem;
+  padding: 0.25rem 0.75rem;
+  border: none;
+  border-radius: 999px;
+  background: none;
+  color: var(--text-muted);
+  font: inherit;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.layout-picker button:hover {
+  color: var(--text);
+}
+
+.layout-picker button[aria-pressed="true"] {
+  background: rgba(255, 255, 255, 0.14);
+  color: var(--text);
+}
+
+.layout-picker-number {
+  font-variant-numeric: tabular-nums;
+  opacity: 0.6;
+}
+
+/* Small screens: numbers only, the name is in the tooltip */
+@media (max-width: 56rem) {
+  .layout-picker-name {
+    display: none;
+  }
+
+  .layout-picker button {
+    min-width: 2.5rem;
+    justify-content: center;
+  }
+
+  .layout-picker-number {
+    opacity: 1;
+  }
 }

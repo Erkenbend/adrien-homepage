@@ -135,6 +135,21 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
   - Logos aus [Devicon](https://devicon.dev) (farbige Varianten). LocalStack: Signet aus dem Logo auf localstack.cloud (Devicon hat keines). AWS CDK nutzt das AWS-Logo. Ohne Logo: GML, GameMaker, Cobra, WebFlux.
 - ✅ **Flaggen bei Sprachen:** optionales Feld `flag` mit einem Flaggen-Emoji (🇫🇷, 🇩🇪, 🇬🇧), vom Schema geprüft; für Screenreader ausgeblendet, weil der Name daneben steht. Hinweis: Windows hat keine Flaggen-Emojis, Browser dort zeigen stattdessen die zwei Buchstaben (z. B. „FR“).
 
+### 9a. Anordnung der Seite ausprobieren (Proof of Concept, in Arbeit)
+
+- Ziel: verschiedene Anordnungen von Profiltexten und Graph vergleichen (nicht Schrift und Farben). Auswahl vorerst auf der Seite selbst, später evtl. als Build-Einstellung.
+- Das Profil besteht jetzt aus einzelnen Bausteinen (`ProfileHeader`, `ProfileAbout`, `Experience`, `Education`, `Certificates`, `Languages` in `src/components/Profile.tsx`), die jede Anordnung frei platziert. Der Zustand des Easter Eggs liegt in einem Context (`src/components/shadow.ts`), weil Foto und Kurzvorstellung je nach Anordnung an verschiedenen Stellen stehen.
+- `src/layout.ts`: Liste der Anordnungen, Auswahl über den Query-Parameter `?layout=…` (Standard `classic` ohne Parameter), damit ein Link dieselbe Anordnung zeigt. Der Sprachumschalter übernimmt ihn, der Hash der Detailansicht bleibt erhalten.
+- `src/layouts/Layouts.tsx`: eine Komponente je Anordnung; CSS unter `.layout-<name>` in `src/index.css`. Unter 56rem Breite ist jede Anordnung einspaltig in DOM-Reihenfolge.
+- Umschalter unten in der Mitte (`src/components/LayoutPicker.tsx`), mobil nur mit Nummern.
+- Anordnungen:
+  1. **Klassisch** (`classic`): wie bisher, eine Spalte, Profil → Projekte → Kontakt.
+  2. **Projekte im Mittelpunkt** (`showcase`): Name und Kurzvorstellung nebeneinander, darunter der Graph über die volle Breite auf leicht abgesetzter Fläche, danach Lebenslauf in zwei Spalten (Werdegang | Ausbildung, Zertifikate, Sprachen).
+  3. **Seitenleiste** (`sidebar`): links eine mitlaufende Spalte mit Foto, Name, Links, Sprachen und Kontakt; rechts Kurzvorstellung als Einleitung, Graph, Werdegang, Ausbildung, Zertifikate.
+  4. **Geteilter Bildschirm** (`split`): breitere Seite; Texte links, der Graph rechts bleibt beim Scrollen stehen. Mobil folgt der Graph direkt auf die Kurzvorstellung.
+  5. **Kacheln** (`bento`): jeder Baustein auf einer eigenen Kachel in einem Raster mit unterschiedlich großen Kacheln.
+- Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen: kein horizontales Scrollen, alle 15 Projekte sichtbar.
+
 ### 10. CI-Pipeline (sobald es das Upstream-Repository gibt)
 
 - `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernehmen (Bun 1.3.8, Node 22), Stack-Name anpassen.

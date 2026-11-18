@@ -44,4 +44,12 @@ export const fr = {
         solo: 'En solo',
         group: 'En équipe',
     },
+    layout: 'Mise en page',
+    layoutNames: {
+        classic: 'Classique',
+        showcase: 'Projets à la une',
+        sidebar: 'Barre latérale',
+        split: 'Écran partagé',
+        bento: 'Mosaïque',
+    },
 } satisfies Messages
