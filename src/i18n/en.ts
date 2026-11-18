@@ -20,6 +20,8 @@ export const en = {
     frameworks: 'Frameworks',
     tools: 'Tools',
     website: 'Website',
+    version: 'Version',
+    sourceCode: 'Source code',
     complexity: 'Complexity',
     complexityLevels: {
         script: 'Script',

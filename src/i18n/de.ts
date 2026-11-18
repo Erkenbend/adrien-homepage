@@ -22,6 +22,8 @@ export const de = {
     frameworks: 'Frameworks',
     tools: 'Werkzeuge',
     website: 'Webseite',
+    version: 'Version',
+    sourceCode: 'Quellcode',
     complexity: 'Komplexität',
     complexityLevels: {
         script: 'Skript',

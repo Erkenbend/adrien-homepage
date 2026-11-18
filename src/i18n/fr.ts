@@ -20,6 +20,8 @@ export const fr = {
     frameworks: 'Frameworks',
     tools: 'Outils',
     website: 'Site web',
+    version: 'Version',
+    sourceCode: 'Code source',
     complexity: 'Complexité',
     complexityLevels: {
         script: 'Script',

@@ -1,3 +1,4 @@
+import {Footer} from './components/Footer.tsx'
 import {LanguageSwitcher} from './components/LanguageSwitcher.tsx'
 import {OptionsPicker} from './components/OptionsPicker.tsx'
 import {ShadowProvider} from './components/Profile.tsx'
@@ -15,6 +16,7 @@ function App() {
                 <main>
                     <PageContent layout={layout}/>
                 </main>
+                <Footer/>
             </div>
             {/* Development only: dropped from the production build. */}
             {import.meta.env.DEV && <OptionsPicker/>}

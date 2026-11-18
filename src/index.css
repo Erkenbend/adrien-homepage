@@ -23,7 +23,7 @@ body {
   min-height: 100vh;
 }
 
-header, main {
+header, main, footer {
   max-width: var(--page-width, 60rem);
   margin: 0 auto;
   padding: 1rem;
@@ -32,6 +32,24 @@ header, main {
 header {
   display: flex;
   justify-content: flex-end;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.5rem 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+footer a {
+  color: var(--text-muted);
+  text-decoration: none;
+}
+
+footer a:hover {
+  color: var(--text);
 }
 
 .language-switcher {

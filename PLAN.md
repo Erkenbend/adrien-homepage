@@ -168,9 +168,10 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Offen: Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` im Repository hinterlegen (Nutzer).
 - Achtung: Der erste Push auf `main` deployt die Seite (siehe Schritt 2, noch nicht deployt). Der Nutzer macht das erste Deployment evtl. von Hand vorher.
 
-**Mit dem Upstream-Repository außerdem:**
-- `BUILD_TIMESTAMP` wieder einführen (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`) und als Version im Footer anzeigen, wie bei `article-trainer`.
-- Link zum GitHub-Repository mit GitHub-Logo im Footer, wie bei `random-picker` und `article-trainer`.
+**Footer** ✅ (`src/components/Footer.tsx`), am Ende jeder Anordnung in Seitenbreite, klein und gedämpft:
+- Version = Zeitpunkt des Builds: `BUILD_TIMESTAMP` (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`), wie bei `article-trainer`; angezeigt je Sprache über `Intl.DateTimeFormat` in der Zeitzone des Besuchers.
+- Link „Quellcode“ zum GitHub-Repository mit GitHub-Logo aus `src/sites.ts`. Abweichung von `article-trainer`: nicht fest unten rechts über dem Inhalt, sondern als normaler Footer unter der Seite, damit nichts verdeckt wird.
+- Geprüft mit Headless-Chromium bei 1100 und 360 px.
 
 ### 11. Feinschliff und Livegang
 
