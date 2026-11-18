@@ -12,7 +12,7 @@ location:
   en: Halle (Saale), Germany
   fr: Halle (Saale), Allemagne
 # TODO: replace with a real photo (e.g. /images/profile.webp), then delete profile-placeholder.svg
-photo: /images/profile-placeholder.svg
+photo: /images/portrait_cut.jpg
 about:
   de: >
     Ich entwickle und konzipiere Software. Technischer Schwerpunkt Java Spring-Boot Backend.
@@ -27,8 +27,7 @@ about:
     J'ai travaillé jusqu'ici dans le paiement (EBICS) et les services financiers.
     Français, installé en Allemagne depuis 2016.
 # Easter egg, shown while the mouse is over the photo.
-# TODO: replace with a real photo, then delete profile-shadow-placeholder.svg
-shadowPhoto: /images/profile-shadow-placeholder.svg
+shadowPhoto: /images/portrait_2_cut.jpg
 shadowAbout:
   de: >
     Ich schreibe gerne Software, und manchmal bekomme ich dafür Geld.
