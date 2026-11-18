@@ -3,6 +3,7 @@ import {formatPeriod, kindClass, localize} from '../data/format.ts'
 import type {Project} from '../data/schema.ts'
 import {FRAMEWORKS, PROGRAMMING_LANGUAGES, TOOLS, type Technology} from '../data/technologies.ts'
 import {MESSAGES} from '../i18n/language.ts'
+import {RichText} from './RichText.tsx'
 import {SiteLink} from './SiteLink.tsx'
 
 interface ProjectDialogProps {
@@ -50,7 +51,7 @@ function Details({project, onClose}: {project: Project, onClose: () => void}) {
                 </button>
             </header>
 
-            <p>{localize(project.description)}</p>
+            <p><RichText text={localize(project.description)}/></p>
 
             <dl className="project-facts">
                 <Fact label={MESSAGES.complexity}>{MESSAGES.complexityLevels[project.complexity]}</Fact>

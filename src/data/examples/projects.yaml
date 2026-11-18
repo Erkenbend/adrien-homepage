@@ -30,7 +30,7 @@
   #   heavy  large parts written with AI, reviewed and reworked by hand
   #   vibe   vibe-coded: written by AI, hardly read
   aiUsage: heavy
-  description:    # required, text
+  description:    # required, text; links as in Markdown: [label](url), see profile.yaml
     de: >
       Übt Vokabeln mit Karteikarten und wiederholt
       schwierige Wörter öfter.

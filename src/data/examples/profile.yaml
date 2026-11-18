@@ -57,10 +57,10 @@ experience:
     logo: /images/logos/beispiel.svg                                                # optional, path below public/; shown on a white tile, ideally square
     location: {de: München, en: Munich, fr: Munich}                                 # optional, text
     period: {from: 2021-03}                                                         # required; no `to` = until today
-    description:                                                                    # optional, text
-      de: Verantwortlich für die Kundenplattform.
-      en: Responsible for the customer platform.
-      fr: Responsable de la plateforme client.
+    description:                                                                    # optional, text; links as in Markdown: [label](url)
+      de: Verantwortlich für die [Kundenplattform](https://beispiel.de/plattform).
+      en: Responsible for the [customer platform](https://beispiel.de/plattform).
+      fr: Responsable de la [plateforme client](https://beispiel.de/plattform).
   - role: {de: Entwicklerin, en: Developer, fr: Développeuse}
     organization: Muster AG
     period: {from: 2017-09, to: 2021-02}

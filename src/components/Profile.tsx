@@ -2,6 +2,7 @@ import {type ReactNode, useMemo, useState} from 'react'
 import profile from '../data/profile.yaml'
 import {formatPeriod, formatYearMonth, localize} from '../data/format.ts'
 import {MESSAGES} from '../i18n/language.ts'
+import {RichText} from './RichText.tsx'
 import {ShadowContext, useShadow} from './shadow.ts'
 import {SiteLink} from './SiteLink.tsx'
 
@@ -77,7 +78,7 @@ export function Experience({className}: BlockProps) {
                             {formatPeriod(entry.period)}
                             {entry.location && <> · {localize(entry.location)}</>}
                         </div>
-                        {entry.description && <p>{localize(entry.description)}</p>}
+                        {entry.description && <p><RichText text={localize(entry.description)}/></p>}
                     </TimelineItem>
                 ))}
             </ul>
