@@ -1,4 +1,4 @@
-import {type ReactNode, useMemo, useState} from 'react'
+import {type PointerEvent, type ReactNode, useMemo, useState} from 'react'
 import profile from '../data/profile.yaml'
 import {formatPeriod, formatYearMonth, localize} from '../data/format.ts'
 import {MESSAGES} from '../i18n/language.ts'
@@ -25,11 +25,19 @@ export function ProfileHeader({className}: BlockProps) {
     const {shadow, setShadow} = useShadow()
     const hasShadow = profile.shadowPhoto !== undefined || profile.shadowAbout !== undefined
 
+    // A mouse shows the shadow version while it hovers the photo; touch and pen toggle it with a tap, as they
+    // have no hover to leave. A scroll starting on the photo cancels the pointer instead of releasing it, so
+    // it does not toggle.
+    const shadowEvents = hasShadow ? {
+        onPointerEnter: (event: PointerEvent) => { if (event.pointerType === 'mouse') { setShadow(true) } },
+        onPointerLeave: (event: PointerEvent) => { if (event.pointerType === 'mouse') { setShadow(false) } },
+        onPointerUp: (event: PointerEvent) => { if (event.pointerType !== 'mouse') { setShadow(!shadow) } },
+    } : {}
+
     return (
         <section className={classes('profile-intro', className)}>
             {profile.photo && (
-                <div onMouseEnter={hasShadow ? () => { setShadow(true) } : undefined}
-                     onMouseLeave={hasShadow ? () => { setShadow(false) } : undefined}>
+                <div {...shadowEvents}>
                     <Swap shadow={shadow}
                           normal={<img className="profile-photo" src={profile.photo} alt={profile.name}/>}
                           alternative={profile.shadowPhoto &&

@@ -22,7 +22,7 @@ The reference examples list every field with fictional values and an explanation
 ### Profile
 
 - `name` is also the page title.
-- `photo` and the optional easter egg `shadowPhoto`/`shadowAbout`: while the mouse is over the photo (on touch screens after a tap), the shadow photo and text replace the normal ones.
+- `photo` and the optional easter egg `shadowPhoto`/`shadowAbout`: while the mouse is over the photo (on touch screens: from one tap on the photo to the next), the shadow photo and text replace the normal ones.
 - `links`: any URLs, shown with the logo and name of the site (see [Link sites](#link-sites)).
 - `contact`: the URL of the contact section. There is deliberately no e-mail address.
 

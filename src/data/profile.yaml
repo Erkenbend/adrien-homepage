@@ -25,7 +25,7 @@ about:
     Je développe et conçois des logiciels, avec un accent technique sur le backend Java Spring-Boot.
     J'ai travaillé jusqu'ici dans le paiement (EBICS) et les services financiers.
     Français, installé en Allemagne depuis 2016.
-# Easter egg, shown while the mouse is over the photo.
+# Easter egg, shown while the mouse is over the photo (on touch screens: tap the photo, tap again to go back).
 shadowPhoto: /images/portrait_2_cut.jpg
 shadowAbout:
   de: >

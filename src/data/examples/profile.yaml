@@ -36,7 +36,7 @@ about:
     Je développe des applications web et des outils,
     de préférence en TypeScript.
 
-# Easter egg: while the mouse is over the photo (on touch screens: after tapping it), the photo
+# Easter egg: while the mouse is over the photo (on touch screens: from one tap on it to the next), the photo
 # and the introduction are replaced by these. Each is optional; without one, the normal version
 # stays. Both need `photo`, `shadowAbout` also needs `about`.
 
