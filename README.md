@@ -30,6 +30,20 @@ Inhalte (Profil, Projekte): YAML-Dateien in `src/data/`, beim Build gegen `src/d
 
 Infrastruktur (AWS CDK): siehe [infrastructure/README.md](infrastructure/README.md)
 
+## Deployment
+
+Jeder Push auf `main` baut und deployt die Seite über GitHub Actions ([Workflow](.github/workflows/github-actions-build-deploy.yml)): install → lint → build → `cdk diff` → `cdk deploy`. Dafür braucht das Repository die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY`.
+
+Von Hand deployen (mit lokalen AWS-Zugangsdaten, Region `us-east-1`):
+
+```sh
+bun run build
+cd infrastructure
+bun install
+bunx cdk diff
+bunx cdk deploy AdrienHomepageInfrastructureStack
+```
+
 ## Grafiken
 
 Logos sind Marken ihrer Inhaber und werden nur verwendet, um auf die jeweilige Seite, Organisation oder das Projekt zu verweisen.

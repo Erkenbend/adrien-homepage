@@ -160,12 +160,13 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Die Varianten 2–4 haben dasselbe Gerüst (`AxesGraph` in `src/components/ProjectGraph.tsx`, ein einziges CSS-Grid): Pfeile aus CSS (Linie + Dreieck), die sich unten links kreuzen; Stufennamen links der y-Achse bzw. unter der x-Achse, jeweils mit Teilstrich; Achsentitel an den Pfeilspitzen (KI-Einsatz neben der oberen, Komplexität unter der rechten). Mobil (unter 36rem) stehen die Namen der KI-Stufen hochkant, damit die Spalten breit genug für die Icons bleiben.
 - Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen, jeder Anordnung und jedem Graphen: kein horizontales Scrollen, alle 15 Projekte sichtbar; in `bun dev` mit Leiste ebenso bei 360 px. Produktions-Build mit `VITE_LAYOUT=split`: Anordnung `split` trotz `?layout=bento`, kein Umschalter, Sprachlinks ohne Query-Parameter. Ungültige und leere Werte brechen den Build ab.
 
-### 10. CI-Pipeline (als Nächstes)
+### 10. CI-Pipeline (in Arbeit)
 
-- Das Upstream-Repository auf GitHub legt der Nutzer an.
-- `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernehmen (Bun 1.3.8, Node 22), Stack-Name anpassen.
-- Im Upstream-Repository die Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` hinterlegen.
-- Achtung: Der erste Push auf `main` mit dem Workflow löst das erste `cdk deploy` aus (siehe Schritt 2, noch nicht deployt).
+- ✅ Upstream-Repository `git@github.com:Erkenbend/adrien-homepage.git` als Remote `origin` eingetragen; noch nichts gepusht.
+- ✅ `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernommen (Bun 1.3.8, Node 22), Stack `AdrienHomepageInfrastructureStack`. Abweichung: nur bei Push auf `main`, ohne manuellen Start (`workflow_dispatch`), Entscheidung des Nutzers.
+- ✅ Befehle für Deployment von Hand in `README.md`.
+- Offen: Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` im Repository hinterlegen (Nutzer).
+- Achtung: Der erste Push auf `main` deployt die Seite (siehe Schritt 2, noch nicht deployt). Der Nutzer macht das erste Deployment evtl. von Hand vorher.
 
 **Mit dem Upstream-Repository außerdem:**
 - `BUILD_TIMESTAMP` wieder einführen (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`) und als Version im Footer anzeigen, wie bei `article-trainer`.
