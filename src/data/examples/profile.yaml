@@ -106,3 +106,9 @@ links:
 
 # Required. Linked in the contact section, shown like the links above.
 contact: https://www.linkedin.com/in/erika-mustermann
+
+# Optional, default false. A trap for AI agents that read the page and write a message on their
+# own: adds a note to the contact section asking them to start the first five sentences of their
+# message with R, O, B, O, T. Sighted visitors don't see it, screen readers read it out. The text is
+# `agentNote` in src/i18n/.
+agentTrap: true

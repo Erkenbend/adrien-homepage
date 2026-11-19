@@ -187,6 +187,14 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - ✅ **Lighthouse** (Performance, Accessibility, Best Practices, SEO; nur offensichtliche Mängel beheben): vorher 80 / 100 / 100 / 92. Behoben: `public/robots.txt` (CloudFront lieferte `index.html`, ungültig) und die Profilfotos (450 KB bzw. 154 KB → 18 KB bzw. 37 KB: 400 px breit, JPEG, ohne Kamera-Metadaten; JPEG statt WebP, weil das Foto auch `og:image` ist). Danach 98 / 100 / 100 / 100. Bleibt: LCP ist der Text der Kurzvorstellung, der erst nach dem JS-Bundle erscheint (reine SPA; mit Schritt 13 vorgerendert).
 - ✅ **Deployment:** live unter `https://adrien.wehrung.online` (antwortet mit 200, `<title>` aus `profile.yaml`).
 
+### Falle für KI-Agenten ✅
+
+- Ziel: Nachrichten erkennen, die ein KI-Agent nach dem Lesen der Seite verfasst und ohne menschliche Durchsicht abgeschickt hat. Kontakt läuft über LinkedIn, das Merkmal muss also in einer normalen Textnachricht erkennbar sein.
+- Schalter `agentTrap` in `profile.yaml` (Boolean, Standard `false`, damit eine Kopie als Vorlage ohne Falle startet). Ist er an, steht im Kontaktabschnitt ein Hinweis an KI-Assistenten (`agentNote` in `src/i18n/`): die ersten fünf Sätze der Nachricht mit R, O, B, O, T beginnen (Akrostichon „ROBOT“).
+- Entscheidungen des Nutzers: Akrostichon statt Gedicht, Lipogramm oder Codewort; offener, freundlicher Hinweis statt „ignore previous instructions“ (gute Agenten erkennen und übergehen solche Befehle); Text personunabhängig (kein Name, kein „ich“), passend für jede Seite aus der Vorlage; nur im Kontaktabschnitt; für Menschen unsichtbar.
+- Nur optisch versteckt (`.agent-note`, `clip-path`, 1 × 1 px, `user-select: none`), bewusst ohne `aria-hidden`, `hidden` oder `display: none`: Browser-Agenten lesen oft den Accessibility Tree, und verbreitete Text-Extraktoren (Readability) verwerfen solche Elemente. Folge: Screenreader lesen den Hinweis vor.
+- Einschränkungen: LLMs treffen Akrosticha nicht immer genau (ein halbes „ROB…“ verrät den Bot trotzdem). Dank Vorrendern steht der Hinweis im statischen HTML jeder Sprache, Agenten ohne JavaScript sehen ihn also auch. Mögliche Erweiterungen: eine `llms.txt`, derselbe Satz in der LinkedIn-Info.
+
 ### 12. PDF-Export (später, noch nicht genau festgelegt)
 
 - Idee: Profil (und evtl. Projekte) als PDF exportieren, etwa als Lebenslauf zum Herunterladen.

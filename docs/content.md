@@ -25,6 +25,7 @@ The reference examples list every field with fictional values and an explanation
 - `photo` and the optional easter egg `shadowPhoto`/`shadowAbout`: while the mouse is over the photo (on touch screens: from one tap on the photo to the next), the shadow photo and text replace the normal ones.
 - `links`: any URLs, shown with the logo and name of the site (see [Link sites](#link-sites)).
 - `contact`: the URL of the contact section. There is deliberately no e-mail address.
+- `agentTrap` (default `false`): a trap for AI agents that read the page and send a message without anyone reviewing it. Adds a polite note to the contact section asking AI assistants to start the first five sentences of their message with R, O, B, O, T; a message whose sentences spell "ROBOT" was most likely not reviewed by a human. The text is `agentNote` in `src/i18n/`. The note is hidden from sight only, not with `aria-hidden`, `hidden` or `display: none`: browser agents often read the accessibility tree, and common text extractors (e.g. Readability) drop such elements. Screen readers therefore read it out. It is part of the prerendered HTML, so agents that don't run JavaScript see it too.
 
 ### Projects
 

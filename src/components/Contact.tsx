@@ -9,6 +9,7 @@ export function Contact({className}: {className?: string}) {
             <p>
                 {MESSAGES.contactIntro} <SiteLink url={profile.contact}/>.
             </p>
+            {profile.agentTrap && <p className="agent-note">{MESSAGES.agentNote}</p>}
         </section>
     )
 }

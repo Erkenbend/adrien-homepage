@@ -86,6 +86,8 @@ export function createSchemas(context: SchemaContext) {
         links: z.array(z.url()).default([]),
         /** The one way to get in touch, linked in the contact section. */
         contact: z.url(),
+        /** Adds a note for AI agents to the contact section, invisible to sighted visitors: see docs/content.md. */
+        agentTrap: z.boolean().default(false),
     })
         .refine(({photo, shadowPhoto, shadowAbout}) =>
             photo !== undefined || (shadowPhoto === undefined && shadowAbout === undefined),
