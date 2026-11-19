@@ -65,7 +65,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
   - Aktuelle CDK-Versionen (`aws-cdk-lib` 2.277.0, `aws-cdk` 2.1148.1) statt der Stände von `article-trainer`.
 - ESLint prüft `infrastructure/` mit (`cdk.out` ausgenommen).
 - Geprüft mit `bun run build` und danach `bunx cdk synth` in `infrastructure/` (ohne AWS-Zugang möglich).
-- **Noch nicht deployt:** Vorerst wird nur lokal getestet (`bun dev`); das erste `cdk deploy` erst nach Rücksprache.
+- ✅ Deployt über die CI-Pipeline (Schritt 10), live seit 18.11.2026.
 
 ### 3. I18n-Grundlage ✅
 
@@ -162,13 +162,13 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Die Varianten 2–4 haben dasselbe Gerüst (`AxesGraph` in `src/components/ProjectGraph.tsx`, ein einziges CSS-Grid): Pfeile aus CSS (Linie + Dreieck), die sich unten links kreuzen; Stufennamen links der y-Achse bzw. unter der x-Achse, jeweils mit Teilstrich; Achsentitel an den Pfeilspitzen (KI-Einsatz neben der oberen, Komplexität unter der rechten). Mobil (unter 36rem) stehen die Namen der KI-Stufen hochkant, damit die Spalten breit genug für die Icons bleiben.
 - Geprüft mit Headless-Chromium bei 360, 900 und 1400 px in allen drei Sprachen, jeder Anordnung und jedem Graphen: kein horizontales Scrollen, alle 15 Projekte sichtbar; in `bun dev` mit Leiste ebenso bei 360 px. Produktions-Build mit `VITE_LAYOUT=split`: Anordnung `split` trotz `?layout=bento`, kein Umschalter, Sprachlinks ohne Query-Parameter. Ungültige und leere Werte brechen den Build ab.
 
-### 10. CI-Pipeline (in Arbeit)
+### 10. CI-Pipeline ✅
 
-- ✅ Upstream-Repository `git@github.com:Erkenbend/adrien-homepage.git` als Remote `origin` eingetragen; noch nichts gepusht.
+- ✅ Upstream-Repository `git@github.com:Erkenbend/adrien-homepage.git` als Remote `origin` eingetragen.
 - ✅ `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernommen (Bun 1.3.8, Node 22), Stack `AdrienHomepageInfrastructureStack`. Abweichung: nur bei Push auf `main`, ohne manuellen Start (`workflow_dispatch`), Entscheidung des Nutzers.
 - ✅ Befehle für Deployment von Hand in `docs/deployment.md`.
-- Offen: Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` im Repository hinterlegen (Nutzer).
-- Achtung: Der erste Push auf `main` deployt die Seite (siehe Schritt 2, noch nicht deployt). Der Nutzer macht das erste Deployment evtl. von Hand vorher.
+- ✅ Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` im Repository hinterlegt (Nutzer).
+- ✅ Erstes Deployment durch die Pipeline beim Push von `3788cfb` am 18.11.2026 (Lauf erfolgreich).
 
 **Footer** ✅ (`src/components/Footer.tsx`), am Ende jeder Anordnung in Seitenbreite, klein und gedämpft:
 - Version = Zeitpunkt des Builds: `BUILD_TIMESTAMP` (`define` in `vite.config.ts`, Deklaration in `src/vite-env.d.ts`), wie bei `article-trainer`; angezeigt je Sprache über `Intl.DateTimeFormat` in der Zeitzone des Besuchers.
@@ -183,7 +183,9 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - ✅ **Barrierefreiheit:** geprüft mit axe-core (WCAG 2.2 AA + Best Practices) in beiden Farbschemata, bei 1100 und 360 px, mit und ohne offene Detailansicht: keine Verstöße (Kontraste, Zielgrößen, Namen, `alt`-Texte). Tastatur: Sprachlinks → Farbschema → Profil-Links → Projekt-Icons, Umschalten mit Enter und Leertaste. Ergänzt: `prefers-reduced-motion` auch für das Vergrößern der Projekt-Icons. Das Easter Egg bleibt bewusst ohne Tastaturbedienung.
 - ✅ **Helles Farbschema:** Knopf mit Sonne rechts neben dem Sprachumschalter (`src/components/ThemeToggle.tsx`, Toggle-Button mit `aria-pressed`), dunkel bleibt Standard; die Systemeinstellung (`prefers-color-scheme`) wird bewusst nicht beachtet. Die Wahl liegt in `localStorage` (`theme`), ein Inline-Skript in `index.html` setzt `<html data-theme="light">` vor dem ersten Zeichnen, damit nichts dunkel aufblitzt (`src/theme.ts`). Farben als Custom Properties: `--ink` (RGB-Kanäle für Linien und Tönungen) ersetzt alle festen `rgba(255, 255, 255, …)`; im hellen Schema gedämpfter Text mit 0,6 statt 0,5 Deckkraft (Kontrast ≥ 4,5:1), dunklere Ringfarben für die Projektarten, dunkle Tooltips. Weiße Icons (GitHub, allgemeines Link-Icon, AWS) tragen `darkOnly` und werden im hellen Schema invertiert (`invert` + `hue-rotate`, damit Farbiges wie das AWS-Lächeln seinen Farbton behält); Logos bleiben auf weißer Kachel, im hellen Schema mit feinem Rand.
 - ✅ **Lighthouse** (Performance, Accessibility, Best Practices, SEO; nur offensichtliche Mängel beheben): vorher 80 / 100 / 100 / 92. Behoben: `public/robots.txt` (CloudFront lieferte `index.html`, ungültig) und die Profilfotos (450 KB bzw. 154 KB → 18 KB bzw. 37 KB: 400 px breit, JPEG, ohne Kamera-Metadaten; JPEG statt WebP, weil das Foto auch `og:image` ist). Danach 98 / 100 / 100 / 100. Bleibt: LCP ist der Text der Kurzvorstellung, der erst nach dem JS-Bundle erscheint (reine SPA, Vorrendern siehe Entscheidungen).
-- Deployment, Aufruf unter `https://adrien.wehrung.online`, Screenshot ins README.
+- ✅ **Deployment:** live unter `https://adrien.wehrung.online` (antwortet mit 200, `<title>` aus `profile.yaml`).
+- Offen: Screenshot ins README.
+- Offen: Link-Vorschau mit LinkedIns Post Inspector prüfen (Nutzer, siehe „Link-Vorschau und Metadaten“).
 
 ### 12. PDF-Export (später, noch nicht genau festgelegt)
 
