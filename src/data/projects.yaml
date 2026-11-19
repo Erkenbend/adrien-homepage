@@ -78,6 +78,34 @@
   githubUrl: https://github.com/Erkenbend/star-battle-solver
   websiteUrl: https://meow.ninasworkshop.de
 
+- id: adrien-homepage
+  visible: true
+  name: {de: Diese Homepage, en: This homepage, fr: Cette page d’accueil}
+  icon: /images/projects/adrien-homepage.svg
+  complexity: multiPart
+  aiUsage: vibe
+  description:
+    de: >
+      Diese Seite: Profil und Projekte als Graph aus Komplexität und KI-Einsatz, auf Deutsch,
+      Englisch und Französisch. Inhalte als YAML, beim Build geprüft; ausgeliefert über
+      S3 und CloudFront, als Vorlage für eigene Seiten gedacht.
+    en: >
+      This page: profile and projects as a graph of complexity and AI usage, in German,
+      English and French. Content as YAML, checked at build time; served via S3 and
+      CloudFront, meant as a template for your own page.
+    fr: >
+      Cette page : profil et projets sous forme de graphe complexité × usage de l’IA, en allemand,
+      anglais et français. Contenu en YAML, vérifié au build ; servie via S3 et CloudFront,
+      pensée comme modèle pour sa propre page.
+  languages: [typescript]
+  frameworks: [react, aws-cdk]
+  tools: [vite, aws]
+  kind: hobby
+  period: {from: 2026-11}
+  team: solo
+  githubUrl: https://github.com/Erkenbend/adrien-homepage
+  websiteUrl: https://adrien.wehrung.online
+
 - id: home-dashboard
   visible: true
   name: Home Dashboard
