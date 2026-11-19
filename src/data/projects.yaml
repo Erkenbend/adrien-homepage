@@ -82,24 +82,21 @@
   visible: true
   name: {de: Diese Homepage, en: This homepage, fr: Cette page d’accueil}
   icon: /images/projects/adrien-homepage.svg
-  complexity: multiPart
+  complexity: app
   aiUsage: vibe
   description:
     de: >
       Diese Seite: Profil und Projekte als Graph aus Komplexität und KI-Einsatz, auf Deutsch,
-      Englisch und Französisch. Inhalte als YAML, beim Build geprüft; ausgeliefert über
-      S3 und CloudFront, als Vorlage für eigene Seiten gedacht.
+      Englisch und Französisch. Inhalte als YAML, beim Build geprüft.
     en: >
       This page: profile and projects as a graph of complexity and AI usage, in German,
-      English and French. Content as YAML, checked at build time; served via S3 and
-      CloudFront, meant as a template for your own page.
+      English and French. Content as YAML, checked at build time.
     fr: >
       Cette page : profil et projets sous forme de graphe complexité × usage de l’IA, en allemand,
-      anglais et français. Contenu en YAML, vérifié au build ; servie via S3 et CloudFront,
-      pensée comme modèle pour sa propre page.
+      anglais et français. Contenu en YAML, vérifié au build.
   languages: [typescript]
   frameworks: [react, aws-cdk]
-  tools: [vite, aws]
+  tools: [vite]
   kind: hobby
   period: {from: 2026-11}
   team: solo
