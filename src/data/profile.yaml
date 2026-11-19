@@ -16,15 +16,15 @@ about:
   de: >
     Ich entwickle und konzipiere Software. Technischer Schwerpunkt Java Spring-Boot Backend.
     Bisher im Bereich Zahlungsverkehr (EBICS) und Finanzdienstleistung tätig.
-    Franzose, seit 2016 in Deutschland.
+    Franzose, seit 2016 in Deutschland. Gerade nicht auf Jobsuche.
   en: >
     I develop and design software, with a technical focus on Java Spring-Boot backends.
     So far I have worked in payments (EBICS) and financial services.
-    French, living in Germany since 2016.
+    French, living in Germany since 2016. Not looking for a job right now.
   fr: >
     Je développe et conçois des logiciels, avec un accent technique sur le backend Java Spring-Boot.
     J'ai travaillé jusqu'ici dans le paiement (EBICS) et les services financiers.
-    Français, installé en Allemagne depuis 2016.
+    Français, installé en Allemagne depuis 2016. Pas en recherche d'emploi actuellement.
 # Easter egg, shown while the mouse is over the photo (on touch screens: tap the photo, tap again to go back).
 shadowPhoto: /images/portrait_2_cut.jpg
 shadowAbout:
