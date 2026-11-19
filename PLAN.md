@@ -14,7 +14,7 @@ Ausgangsidee: `grober_plan.md`. Statische Seite unter `adrien.wehrung.online`: P
 | Deployment | GitHub Actions bei Push auf `main`: install → lint → build → `cdk diff` → `cdk deploy` | Wie `article-trainer`; erst aktiv, wenn es ein Upstream-Repository gibt |
 | I18n | Eigene, typisierte Wörterbücher (`src/i18n/de.ts` als Referenz, `en.ts`/`fr.ts` mit `satisfies Messages`), keine Bibliothek | Drei Sprachen und wenige Texte; TypeScript erzwingt Vollständigkeit, kein Test nötig |
 | Sprache in der URL | Pfade: `/` Deutsch, `/en/` Englisch, `/fr/` Französisch | Links auf eine bestimmte Sprache möglich; CloudFront liefert bei 403/404 schon `index.html` aus |
-| Vorrendern | Vorerst nicht, reine SPA | Evtl. später für Suchmaschinen und Link-Vorschauen |
+| Vorrendern | Beim Build: je Sprache eine fertige `index.html` (`/`, `/en/`, `/fr/`), React übernimmt sie im Browser (Hydration); siehe Schritt 13 | Anfangs reine SPA. Geändert, weil KI-Werkzeuge wie ChatGPT und viele Crawler kein JavaScript ausführen und nur eine leere Seite sahen (Nutzer, 19.11.2026) |
 | Gestaltung | Standardmäßig dunkel, „weniger ist mehr“; helles Schema per Knopf | Vorgabe des Nutzers |
 | Reihenfolge im Lebenslauf | Werdegang, Zertifikate, Ausbildung, Sprachen – in allen Anordnungen, im Schema und in den YAML-Dateien gleich | Vorgabe des Nutzers |
 | KI-Einsatz | Vier Stufen: keine KI → wenig KI-Unterstützung → starker KI-Einsatz → vibe-coded | Gemeint ist KI beim Entwickeln, nicht KI im Produkt |
@@ -192,6 +192,15 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 - Idee: Profil (und evtl. Projekte) als PDF exportieren, etwa als Lebenslauf zum Herunterladen.
 - Wahrscheinlich sind Änderungen an der Datenhaltung nötig: Manche Angaben gehören nur ins PDF, andere nur auf die Seite (z. B. Felder oder Markierungen in `profile.yaml`/`projects.yaml`, was wo erscheint).
 - Offen: Umfang und Inhalt, Erzeugung beim Build oder im Browser (Druckansicht mit `@media print` vs. eigens erzeugtes PDF), eine Datei je Sprache, Darstellung des Graphen im PDF.
+
+### 13. Vorrendern
+
+Anlass: ChatGPT konnte die Seite nicht lesen. Das HTML enthielt nur `<div id="root"></div>`, der Inhalt entstand erst per JavaScript; robots.txt und CloudFront waren nicht die Ursache (200 auch mit den User-Agents von OpenAI).
+
+- Build über Vites App-Builder (`builder`/`buildApp`): erst der Client wie bisher, dann `src/entry-server.tsx` als SSR-Bundle, das je Sprache `renderToString` aufruft; das Ergebnis samt Kopfdaten der Sprache landet in `dist/index.html`, `dist/en/index.html`, `dist/fr/index.html`.
+- Im Browser `hydrateRoot` statt `createRoot`, in `bun dev` weiter ohne Vorrendern.
+- Alles, was nur im Browser bekannt ist (Hash, Farbschema, Zeitzone), beim Vorrendern mit festem Wert und erst nach der Hydration mit dem echten.
+- CloudFront: eine CloudFront Function bildet Seitenpfade auf die `index.html` ihres ersten Pfadsegments ab (`/en/…` → `/en/index.html`), unbekannte Pfade fallen wie bisher auf `/index.html` zurück.
 
 ## Offene Fragen
 
