@@ -49,13 +49,13 @@ function currentQuery(): string {
 }
 
 export function useOption<Name extends SettingName>(name: Name): SettingValue<Name> {
-    const value = useSyncExternalStore(subscribe, () => currentValue(name))
+    const value = useSyncExternalStore(subscribe, () => currentValue(name), () => BUILD_VALUES[name])
     return import.meta.env.DEV ? value : BUILD_VALUES[name]
 }
 
 /** The query string to keep the current options on another page, e.g. another language; empty in production. */
 export function useOptionsQuery(): string {
-    const query = useSyncExternalStore(subscribe, currentQuery)
+    const query = useSyncExternalStore(subscribe, currentQuery, () => '')
     return import.meta.env.DEV ? query : ''
 }
 

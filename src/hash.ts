@@ -20,9 +20,9 @@ function currentHash(): string {
     return decodeURIComponent(window.location.hash.slice(1))
 }
 
-/** The URL hash without `#`, empty if there is none. */
+/** The URL hash without `#`, empty if there is none; always empty while prerendering and hydrating. */
 export function useHash(): string {
-    return useSyncExternalStore(subscribe, currentHash)
+    return useSyncExternalStore(subscribe, currentHash, () => '')
 }
 
 interface HistoryState {

@@ -165,10 +165,8 @@ function Cell({complexity, aiUsage, tooltipAlign, style}: CellProps) {
     )
 }
 
-const collator = new Intl.Collator(LANGUAGE)
-
 function byName(a: Project, b: Project): number {
-    return collator.compare(localize(a.name), localize(b.name)) || a.id.localeCompare(b.id)
+    return new Intl.Collator(LANGUAGE).compare(localize(a.name), localize(b.name)) || a.id.localeCompare(b.id)
 }
 
 /** The kind is shown as a coloured ring around the icon, so it is part of the label too. */

@@ -1,69 +1,43 @@
-import path from 'node:path'
-import type {HtmlTagDescriptor, Plugin} from 'vite'
 import type {Localized, Profile} from '../src/data/schema.ts'
-import {DEFAULT_LANGUAGE, LANGUAGES, pathFor} from '../src/i18n/languages.ts'
-import {loadData} from './yaml-data.ts'
+import {LANGUAGES, pathFor, type Language} from '../src/i18n/languages.ts'
 
 export const SITE_URL_VARIABLE = 'VITE_SITE_URL'
 
 /**
- * Writes title, description and Open Graph tags from src/data/profile.yaml into index.html, in the default
- * language. Link previews (LinkedIn, messengers) do not run JavaScript, so these must be in the HTML itself;
- * as the page is a single index.html for every language, the previews are in the default language.
+ * Title, description and Open Graph tags from src/data/profile.yaml for the page in one language, as HTML for
+ * `<head>`. Link previews (LinkedIn, messengers) and other crawlers do not run JavaScript, so these must be in
+ * the HTML itself; build-plugins/prerender.ts writes them into each language's page.
  *
  * Open Graph needs absolute URLs, hence `VITE_SITE_URL` (in .env): checked when Vite starts.
  */
-export function pageMeta(): Plugin {
-    let root = process.cwd()
-    let siteUrl = ''
+export function pageHead(profile: Profile, language: Language, siteUrl: string): string {
+    const localize = (value: Localized): string => typeof value === 'string' ? value : value[language]
+    const headline = localize(profile.headline)
+    const description = profile.about ? localize(profile.about).trim() : headline
 
-    return {
-        name: 'page-meta',
-
-        configResolved(config) {
-            root = config.root
-            siteUrl = parseSiteUrl(config.env[SITE_URL_VARIABLE] as string | undefined)
-        },
-
-        transformIndexHtml(html, context) {
-            if (context.filename !== path.join(root, 'index.html')) {
-                return html
-            }
-            const profile = loadData(root, 'profile') as Profile
-            const headline = inDefaultLanguage(profile.headline)
-            const description = profile.about ? inDefaultLanguage(profile.about).trim() : headline
-
-            const meta = (attribute: 'name' | 'property', key: string, content: string): HtmlTagDescriptor =>
-                ({tag: 'meta', attrs: {[attribute]: key, content}, injectTo: 'head'})
-            const tags: HtmlTagDescriptor[] = [
-                {tag: 'title', children: profile.name, injectTo: 'head'},
-                meta('name', 'description', description),
-                meta('property', 'og:type', 'website'),
-                meta('property', 'og:url', `${siteUrl}/`),
-                meta('property', 'og:title', `${profile.name} · ${headline}`),
-                meta('property', 'og:description', description),
-                meta('name', 'twitter:card', 'summary'),
-                ...LANGUAGES.map((language): HtmlTagDescriptor => ({
-                    tag: 'link',
-                    attrs: {rel: 'alternate', hreflang: language, href: `${siteUrl}${pathFor(language)}`},
-                    injectTo: 'head',
-                })),
-            ]
-            if (profile.photo) {
-                tags.push(
-                    meta('property', 'og:image', `${siteUrl}${profile.photo}`),
-                    meta('property', 'og:image:alt', profile.name),
-                )
-            }
-            return {
-                html: html.replace(/<html lang="[^"]*">/, `<html lang="${DEFAULT_LANGUAGE}">`),
-                tags,
-            }
-        },
+    const meta = (attribute: 'name' | 'property', key: string, content: string): string =>
+        element('meta', {[attribute]: key, content})
+    const tags = [
+        element('title', {}, profile.name),
+        meta('name', 'description', description),
+        meta('property', 'og:type', 'website'),
+        meta('property', 'og:url', `${siteUrl}${pathFor(language)}`),
+        meta('property', 'og:title', `${profile.name} · ${headline}`),
+        meta('property', 'og:description', description),
+        meta('name', 'twitter:card', 'summary'),
+        ...LANGUAGES.map(other => element('link', {rel: 'alternate', hreflang: other, href: `${siteUrl}${pathFor(other)}`})),
+    ]
+    if (profile.photo) {
+        tags.push(
+            meta('property', 'og:image', `${siteUrl}${profile.photo}`),
+            meta('property', 'og:image:alt', profile.name),
+        )
     }
+    return tags.join('\n    ')
 }
 
-function parseSiteUrl(value: string | undefined): string {
+/** The origin of `VITE_SITE_URL`; fails with an explanation if it is missing or not the address of a page. */
+export function parseSiteUrl(value: string | undefined): string {
     let url: URL | undefined
     try {
         url = value ? new URL(value) : undefined
@@ -77,6 +51,12 @@ function parseSiteUrl(value: string | undefined): string {
     return url.origin
 }
 
-function inDefaultLanguage(value: Localized): string {
-    return typeof value === 'string' ? value : value[DEFAULT_LANGUAGE]
+/** An HTML element; without content a void element such as `<meta>`. */
+function element(tag: string, attributes: Record<string, string>, content?: string): string {
+    const attributeText = Object.entries(attributes).map(([name, value]) => ` ${name}="${escapeHtml(value)}"`).join('')
+    return content === undefined ? `<${tag}${attributeText}>` : `<${tag}${attributeText}>${escapeHtml(content)}</${tag}>`
+}
+
+function escapeHtml(text: string): string {
+    return text.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;')
 }

@@ -6,7 +6,7 @@ The page is available in German (default, at `/`), English (`/en/`) and French (
 - **No redirect by browser language:** a shared link always shows the same language.
 - **Language switcher:** plain links. It keeps the anchor (e.g. `#contact`), and switching is a normal page load.
 
-The page relies on the host serving `index.html` for paths like `/en/`; see [deployment.md](deployment.md#other-hosts).
+The build prerenders one page per language (`dist/en/index.html` for `/en/`, see [build-settings.md](build-settings.md#prerendering)); the host serves them like any static file, see [deployment.md](deployment.md#other-hosts).
 
 ## Adding a language
 
@@ -26,6 +26,6 @@ Do the same steps in reverse: remove it from `LANGUAGES`, delete its dictionary,
 
 ## Changing the default language
 
-Set `DEFAULT_LANGUAGE` in `src/i18n/languages.ts`. That language moves to `/`, and the former default gets its own path (e.g. `/de/`). `<html lang>` and the texts of the link previews in `index.html` follow at build time (`build-plugins/page-meta.ts`).
+Set `DEFAULT_LANGUAGE` in `src/i18n/languages.ts`. That language moves to `/`, and the former default gets its own path (e.g. `/de/`). The prerendered pages follow at build time (`build-plugins/prerender.ts`).
 
 `src/i18n/de.ts` stays the reference dictionary that defines the keys, whichever language is the default.

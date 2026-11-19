@@ -2,9 +2,23 @@
 // index.html applies it before the first paint, so a light page does not flash dark first. Both read the
 // same key and attribute, keep them in sync.
 
+import {useSyncExternalStore} from 'react'
+
 export type Theme = 'dark' | 'light'
 
 export const THEME_STORAGE_KEY = 'theme'
+
+const CHANGE_EVENT = 'theme-change'
+
+function subscribe(onChange: () => void): () => void {
+    window.addEventListener(CHANGE_EVENT, onChange)
+    return () => { window.removeEventListener(CHANGE_EVENT, onChange) }
+}
+
+/** The current theme; dark while prerendering and hydrating, as the prerendered page cannot know the choice. */
+export function useTheme(): Theme {
+    return useSyncExternalStore(subscribe, currentTheme, () => 'dark')
+}
 
 /** The theme index.html applied, from `<html data-theme>`. */
 export function currentTheme(): Theme {
@@ -19,6 +33,7 @@ export function applyTheme(theme: Theme) {
         delete root.dataset.theme
     }
     document.querySelector('meta[name="color-scheme"]')?.setAttribute('content', theme)
+    window.dispatchEvent(new Event(CHANGE_EVENT))
     try {
         if (theme === 'light') {
             localStorage.setItem(THEME_STORAGE_KEY, theme)

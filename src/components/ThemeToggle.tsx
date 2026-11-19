@@ -1,17 +1,13 @@
-import {useState} from 'react'
 import {MESSAGES} from '../i18n/language.ts'
-import {applyTheme, currentTheme} from '../theme.ts'
+import {applyTheme, useTheme} from '../theme.ts'
 
 /** Switches to the light theme and back; a toggle button, pressed while the page is light. */
 export function ThemeToggle() {
-    const [theme, setTheme] = useState(currentTheme)
-    const light = theme === 'light'
+    const light = useTheme() === 'light'
     return (
         <button type="button" className="theme-toggle" aria-pressed={light} aria-label={MESSAGES.lightTheme}
                 title={MESSAGES.lightTheme} onClick={() => {
-                    const next = light ? 'dark' : 'light'
-                    applyTheme(next)
-                    setTheme(next)
+                    applyTheme(light ? 'dark' : 'light')
                 }}>
             <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor"
                  strokeWidth="2" strokeLinecap="round">

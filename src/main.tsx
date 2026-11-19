@@ -1,19 +1,19 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import {StrictMode} from 'react'
+import {createRoot, hydrateRoot} from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
-import { LANGUAGE } from './i18n/language.ts'
-import profile from './data/profile.yaml'
-import { localize } from './data/format.ts'
-
-document.documentElement.lang = LANGUAGE
-document.title = profile.name
-// index.html has it in the default language (build-plugins/page-meta.ts), for crawlers that run JavaScript.
-document.querySelector('meta[name="description"]')?.setAttribute('content', localize(profile.about ?? profile.headline).trim())
+import {LANGUAGE} from './i18n/language.ts'
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+const root = document.getElementById('root')!
+const app = <StrictMode><App/></StrictMode>
+
+// The build prerenders the page per language (src/entry-server.tsx), `bun dev` does not. A host may serve
+// the page of another language for a path, e.g. `/index.html` for `/en` without slash: rendered anew then.
+if (root.hasChildNodes() && document.documentElement.lang === LANGUAGE) {
+    hydrateRoot(root, app)
+} else {
+    root.replaceChildren()
+    document.documentElement.lang = LANGUAGE
+    createRoot(root).render(app)
+}
