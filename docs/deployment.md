@@ -7,7 +7,7 @@
 There is one stack, `AdrienHomepageInfrastructureStack`, in `us-east-1` (CloudFront only accepts certificates from there):
 
 - **S3 bucket:** holds a copy of `dist/`, uploaded on every deployment and served without caching.
-- **CloudFront distribution:** reads the bucket through Origin Access Control and answers 403/404 with `index.html`, so that `/en/` and `/fr/` work.
+- **CloudFront distribution:** reads the bucket through Origin Access Control. A CloudFront Function ([page-path.js](../infrastructure/lib/page-path.js)) maps page paths to the prerendered page of their first segment (`/en/` and `/en/anything` to `/en/index.html`); 403/404 are answered with `/index.html`, so unknown paths show the default language.
 - **Certificate:** a DNS-validated ACM certificate for the subdomain only.
 - **DNS:** a Route 53 A record pointing the subdomain at the distribution, in a hosted zone that already exists (imported by its id).
 
@@ -48,4 +48,4 @@ To serve the page at the root domain instead of a subdomain, change the certific
 
 ## Other hosts
 
-`dist/` works on any static host (GitHub Pages, Netlify, nginx, …) as long as the host serves `index.html` for paths without a file, at least for `/en/` and `/fr/`. Examples: `try_files $uri /index.html;` in nginx, a `/* /index.html 200` rule in Netlify's `_redirects`. On GitHub Pages, a copy of `index.html` as `404.html` does the job. Set `VITE_SITE_URL` in `.env` to the address the page is served at.
+`dist/` works on any static host (GitHub Pages, Netlify, nginx, …): each language has its own `index.html` (`dist/en/index.html` for `/en/`), which static hosts serve by default. For unknown paths to show the page too, let the host fall back to `/index.html`. Examples: `try_files $uri $uri/index.html /index.html;` in nginx, a `/* /index.html 200` rule in Netlify's `_redirects` (it only applies where no file exists). On GitHub Pages, a copy of `index.html` as `404.html` does the job. Set `VITE_SITE_URL` in `.env` to the address the page is served at.

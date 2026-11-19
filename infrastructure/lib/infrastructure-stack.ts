@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as cdk from 'aws-cdk-lib';
 import * as s3 from 'aws-cdk-lib/aws-s3';
 import * as s3deploy from 'aws-cdk-lib/aws-s3-deployment';
@@ -51,13 +52,20 @@ export class InfrastructureStack extends cdk.Stack {
             cacheControl: [s3deploy.CacheControl.fromString('max-age=0,no-cache,no-store,must-revalidate')]
         });
 
+        // Maps page paths to the prerendered index.html of their language, e.g. /en/ to /en/index.html
+        const pagePath = new cloudfront.Function(this, 'AdrienHomepagePagePath', {
+            code: cloudfront.FunctionCode.fromFile({filePath: path.join(__dirname, 'page-path.js')}),
+            runtime: cloudfront.FunctionRuntime.JS_2_0,
+        });
+
         // Create Cloudfront distribution with custom domain and redirects
         const distribution = new cloudfront.Distribution(this, 'AdrienHomepageDistribution', {
             defaultBehavior: {
                 origin: origins.S3BucketOrigin.withOriginAccessControl(
                     bucket,
                     {originAccessLevels: [cloudfront.AccessLevel.READ]}
-                )
+                ),
+                functionAssociations: [{function: pagePath, eventType: cloudfront.FunctionEventType.VIEWER_REQUEST}],
             },
             defaultRootObject: "index.html",
             domainNames: [DOMAIN_NAME],
