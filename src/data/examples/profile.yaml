@@ -66,16 +66,6 @@ experience:
     period: {from: 2017-09, to: 2021-02}
 
 # Optional list.
-education:
-  - degree: {de: Master Informatik, en: Master's in computer science, fr: Master en informatique}  # required, text
-    institution: Technische Universität Musterstadt                                                # optional
-    logo: /images/logos/tu-musterstadt.png                                                         # optional, as in experience
-    period: {from: 2015, to: 2017}                                                                 # required; from = to is shown once, e.g. {from: 2012, to: 2012}
-    description: {de: Schwerpunkt Datenbanken, en: Focus on databases, fr: Spécialisation en bases de données}  # optional, text below the title line; links as in experience
-  - degree: {de: Abitur, en: Abitur (high school diploma), fr: Abitur (baccalauréat allemand)}
-    period: {from: 2009, to: 2009}
-
-# Optional list.
 certificates:
   - name: AWS Certified Solutions Architect – Associate    # required, text
     issuer: Amazon Web Services                            # required
@@ -86,6 +76,16 @@ certificates:
   - name: {de: Scrum-Master-Zertifikat, en: Scrum Master certificate, fr: Certificat Scrum Master}
     issuer: Scrum.org
     issued: 2019
+
+# Optional list.
+education:
+  - degree: {de: Master Informatik, en: Master's in computer science, fr: Master en informatique}  # required, text
+    institution: Technische Universität Musterstadt                                                # optional
+    logo: /images/logos/tu-musterstadt.png                                                         # optional, as in experience
+    period: {from: 2015, to: 2017}                                                                 # required; from = to is shown once, e.g. {from: 2012, to: 2012}
+    description: {de: Schwerpunkt Datenbanken, en: Focus on databases, fr: Spécialisation en bases de données}  # optional, text below the title line; links as in experience
+  - degree: {de: Abitur, en: Abitur (high school diploma), fr: Abitur (baccalauréat allemand)}
+    period: {from: 2009, to: 2009}
 
 # Optional list.
 languages:

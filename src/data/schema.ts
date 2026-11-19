@@ -59,14 +59,6 @@ export function createSchemas(context: SchemaContext) {
             period,
             description: localized.optional(),
         })).default([]),
-        education: z.array(z.strictObject({
-            degree: localized,
-            institution: text.optional(),
-            logo: image.optional(),
-            period,
-            /** Details below the title line, e.g. the focus of the studies. */
-            description: localized.optional(),
-        })).default([]),
         certificates: z.array(z.strictObject({
             name: localized,
             issuer: text,
@@ -77,6 +69,14 @@ export function createSchemas(context: SchemaContext) {
             url: z.url().optional(),
         }).refine(({issued, validUntil}) => validUntil === undefined || issued <= validUntil,
             'issued must not be after validUntil')).default([]),
+        education: z.array(z.strictObject({
+            degree: localized,
+            institution: text.optional(),
+            logo: image.optional(),
+            period,
+            /** Details below the title line, e.g. the focus of the studies. */
+            description: localized.optional(),
+        })).default([]),
         languages: z.array(z.strictObject({
             name: localized,
             level: localized,

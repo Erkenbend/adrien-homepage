@@ -695,8 +695,8 @@ body:has(.project-dialog[open]) {
     grid-template-areas:
       "identity identity about about"
       "graph graph graph graph"
-      "experience experience education education"
-      "certificates certificates languages contact";
+      "experience experience certificates certificates"
+      "education education languages contact";
     gap: 1rem;
   }
 
@@ -704,8 +704,8 @@ body:has(.project-dialog[open]) {
   .tile-about { grid-area: about; }
   .tile-graph { grid-area: graph; }
   .tile-experience { grid-area: experience; }
-  .tile-education { grid-area: education; }
   .tile-certificates { grid-area: certificates; }
+  .tile-education { grid-area: education; }
   .tile-languages { grid-area: languages; }
   .tile-contact { grid-area: contact; }
 

@@ -94,28 +94,6 @@ export function Experience({className}: BlockProps) {
     )
 }
 
-export function Education({className}: BlockProps) {
-    if (profile.education.length === 0) {
-        return null
-    }
-    return (
-        <section className={className}>
-            <h2>{MESSAGES.education}</h2>
-            <ul className="timeline">
-                {profile.education.map(entry => (
-                    <TimelineItem key={`${localize(entry.degree)}-${entry.period.from}`}
-                                  logo={entry.logo} withLogo={hasLogos(profile.education)}>
-                        <strong>{localize(entry.degree)}</strong>
-                        {entry.institution && <> · {entry.institution}</>}
-                        <div className="muted">{formatPeriod(entry.period)}</div>
-                        {entry.description && <p><RichText text={localize(entry.description)}/></p>}
-                    </TimelineItem>
-                ))}
-            </ul>
-        </section>
-    )
-}
-
 export function Certificates({className}: BlockProps) {
     if (profile.certificates.length === 0) {
         return null
@@ -134,6 +112,28 @@ export function Certificates({className}: BlockProps) {
                             {formatYearMonth(entry.issued)}
                             {entry.validUntil && <> · {MESSAGES.validUntil} {formatYearMonth(entry.validUntil)}</>}
                         </div>
+                    </TimelineItem>
+                ))}
+            </ul>
+        </section>
+    )
+}
+
+export function Education({className}: BlockProps) {
+    if (profile.education.length === 0) {
+        return null
+    }
+    return (
+        <section className={className}>
+            <h2>{MESSAGES.education}</h2>
+            <ul className="timeline">
+                {profile.education.map(entry => (
+                    <TimelineItem key={`${localize(entry.degree)}-${entry.period.from}`}
+                                  logo={entry.logo} withLogo={hasLogos(profile.education)}>
+                        <strong>{localize(entry.degree)}</strong>
+                        {entry.institution && <> · {entry.institution}</>}
+                        <div className="muted">{formatPeriod(entry.period)}</div>
+                        {entry.description && <p><RichText text={localize(entry.description)}/></p>}
                     </TimelineItem>
                 ))}
             </ul>

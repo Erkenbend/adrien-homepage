@@ -64,6 +64,14 @@ experience:
       en: Project XPAY. Moved to the newly founded Finatix GmbH in July 2018.
       fr: Projet XPAY. Passage à la société Finatix GmbH, nouvellement créée, en juillet 2018.
 
+# The CPSA-F does not expire, hence no validUntil.
+certificates:
+  - name: iSAQB® Certified Professional for Software Architecture – Foundation Level (CPSA-F)
+    issuer: iSAQB
+    logo: /images/sites/isaqb.svg
+    issued: 2023-06
+    url: https://www.certible.com/de/verify/54e5c27bc63e7c187ee07d4d231b1d79/
+
 education:
   - degree:
       de: Erasmus-Jahr, Informatik
@@ -98,14 +106,6 @@ education:
       de: Prädikat „gut“ (mention bien)
       en: With honours (mention bien)
       fr: Mention bien
-
-# The CPSA-F does not expire, hence no validUntil.
-certificates:
-  - name: iSAQB® Certified Professional for Software Architecture – Foundation Level (CPSA-F)
-    issuer: iSAQB
-    logo: /images/sites/isaqb.svg
-    issued: 2023-06
-    url: https://www.certible.com/de/verify/54e5c27bc63e7c187ee07d4d231b1d79/
 
 languages:
   - name: {de: Französisch, en: French, fr: Français}

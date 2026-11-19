@@ -14,8 +14,8 @@ function Classic() {
             <ProfileAbout/>
             <ProjectGraph/>
             <Experience/>
-            <Education/>
             <Certificates/>
+            <Education/>
             <Languages/>
             <Contact/>
         </>
@@ -36,8 +36,8 @@ function Showcase() {
                     <Experience/>
                 </div>
                 <div>
-                    <Education/>
                     <Certificates/>
+                    <Education/>
                     <Languages/>
                 </div>
             </div>
@@ -59,8 +59,8 @@ function Sidebar() {
                 <ProfileAbout className="lead"/>
                 <ProjectGraph/>
                 <Experience/>
-                <Education/>
                 <Certificates/>
+                <Education/>
             </div>
         </div>
     )
@@ -79,8 +79,8 @@ function Split() {
             </div>
             <div className="split-cv">
                 <Experience/>
-                <Education/>
                 <Certificates/>
+                <Education/>
                 <Languages/>
                 <Contact/>
             </div>
@@ -96,8 +96,8 @@ function Bento() {
             <ProfileAbout className="tile tile-about"/>
             <ProjectGraph className="tile tile-graph"/>
             <Experience className="tile tile-experience"/>
-            <Education className="tile tile-education"/>
             <Certificates className="tile tile-certificates"/>
+            <Education className="tile tile-education"/>
             <Languages className="tile tile-languages"/>
             <Contact className="tile tile-contact"/>
         </div>

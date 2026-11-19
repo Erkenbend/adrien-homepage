@@ -6,7 +6,7 @@ There is no server: the page is static. Content is read when Vite starts (`bun d
 
 | File | Contents | Reference example |
 |---|---|---|
-| `src/data/profile.yaml` | Name, headline, photo, introduction, experience, education, certificates, languages, links, contact | [src/data/examples/profile.yaml](../src/data/examples/profile.yaml) |
+| `src/data/profile.yaml` | Name, headline, photo, introduction, experience, certificates, education, languages, links, contact | [src/data/examples/profile.yaml](../src/data/examples/profile.yaml) |
 | `src/data/projects.yaml` | Projects shown in the graph | [src/data/examples/projects.yaml](../src/data/examples/projects.yaml) |
 
 The reference examples list every field with fictional values and an explanation. Start from them when writing your own files.
