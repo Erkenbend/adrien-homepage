@@ -204,7 +204,7 @@ Anlass: ChatGPT konnte die Seite nicht lesen. Das HTML enthielt nur `<div id="ro
 - ✅ **Hydration:** `hydrateRoot`, wenn die Seite vorgerendert ist und ihr `<html lang>` zur Sprache der URL passt; sonst (z. B. ein Host liefert für `/en` ohne Schrägstrich `/index.html`) wird neu gerendert, ohne Hydration-Fehler.
 - ✅ **CloudFront:** CloudFront Function `infrastructure/lib/page-path.js` (Viewer Request): Pfade ohne Dateiendung → `index.html` ihres ersten Segments (`/en/…` → `/en/index.html`, `/` → `/index.html`); ohne passende Seite greift wie bisher die Fehlerantwort mit `/index.html`. Abbildung lokal mit Node geprüft, `cdk synth` ok.
 - ✅ Geprüft mit Headless-Chromium gegen `bun run preview`: `/`, `/en/`, `/fr/` (auch mit hellem Schema), `/en/#tfcoach`, `/en`, unbekannter Pfad, jeweils ohne Konsolenfehler; `/fr/` ohne JavaScript zeigt den ganzen Inhalt; ebenso mit `VITE_LAYOUT=bento VITE_GRAPH=classic`; `bun dev` mit Kopfdaten je Sprache.
-- Offen: nach dem Deployment prüfen, dass `/en/` und `/fr/` live die eigene Seite liefern und ChatGPT den Inhalt lesen kann.
+- ✅ Live seit 19.11.2026 (Deployment rund 100 s nach dem Push): `/`, `/en/`, `/en`, `/en/foo`, `/fr/` liefern die Seite ihrer Sprache, unbekannte Pfade die deutsche; mit dem User-Agent von ChatGPT kommt der ganze Text. Ob ChatGPT selbst die Seite jetzt liest, prüft der Nutzer (evtl. noch zwischengespeichert).
 
 ## Offene Fragen
 
