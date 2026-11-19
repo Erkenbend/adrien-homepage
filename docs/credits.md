@@ -38,6 +38,6 @@ If you build your own page from this repository, replace the logos and icons you
 
 ## Technologies
 
-`public/images/tech/`: coloured variants (`*-original.svg`) from [Devicon](https://github.com/devicons/devicon) v2.18.0, MIT, © konpa; the logos themselves are trademarks of their owners. Lightened for the dark background (otherwise unmodified): the lettering of `aws.svg` (white), the angle brackets of `htmx.svg` (light grey), the circle of `symfony.svg` (white). `aws.svg` is also used for AWS CDK.
+`public/images/tech/`: coloured variants (`*-original.svg`) from [Devicon](https://github.com/devicons/devicon) v2.18.0, MIT, © konpa; the logos themselves are trademarks of their owners. Lightened for the dark background (otherwise unmodified): the lettering of `aws.svg` (white), the angle brackets of `htmx.svg` (light grey), the circle of `symfony.svg` (white), the whole of `rust.svg` (white, black in the original). `aws.svg` is also used for AWS CDK. Some files are renamed after the id they serve: `cplusplus` → `cpp.svg`, `googlecloud` → `gcp.svg`.
 
 `localstack.svg`: signet from the logo in the navigation bar of [localstack.cloud](https://www.localstack.cloud) (inline SVG; only the signet without the lettering, otherwise unmodified), trademark of LocalStack GmbH.

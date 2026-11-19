@@ -136,6 +136,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
   - XPAY und DATEV PaymentNext: Firmenlogo auf weißer Kachel, wie die Logos der Organisationen.
 - ✅ **Technologien:** Programmiersprachen, Frameworks und Werkzeuge sind kein Freitext mehr, sondern IDs aus drei festen Listen in `src/data/technologies.ts` (`PROGRAMMING_LANGUAGES`, `FRAMEWORKS`, `TOOLS`; z. B. `java` → „Java“). Eine unbekannte ID oder eine ID in der falschen Liste (z. B. `docker` unter `languages`) bricht den Build ab; eine neue Technologie ist ein Eintrag dort. Der Name ist in allen Sprachen gleich, das Logo optional (`public/images/tech/`, der Build prüft, dass es existiert). In der Detailansicht steht das Logo vor dem Namen, die Einträge stehen nebeneinander statt durch Kommas getrennt.
   - Logos aus [Devicon](https://devicon.dev) (farbige Varianten). LocalStack: Signet aus dem Logo auf localstack.cloud (Devicon hat keines). AWS CDK nutzt das AWS-Logo. Ohne Logo: GML, GameMaker, Cobra, WebFlux.
+  - Vorrat für spätere Projekte (noch von keinem Projekt genutzt): Sprachen C, C++, C#, Rust; Werkzeuge Android, Azure, Google Cloud. Das Rust-Logo ist im Original schwarz, daher weiß eingefärbt und `darkOnly` wie AWS.
 - ✅ **Flaggen bei Sprachen:** optionales Feld `flag` mit einem Flaggen-Emoji (🇫🇷, 🇩🇪, 🇬🇧), vom Schema geprüft; für Screenreader ausgeblendet, weil der Name daneben steht. Hinweis: Windows hat keine Flaggen-Emojis, Browser dort zeigen stattdessen die zwei Buchstaben (z. B. „FR“).
 
 ### 9a. Anordnung der Seite und Aussehen des Graphen ✅

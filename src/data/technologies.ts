@@ -12,6 +12,9 @@ export interface Technology {
 }
 
 export const PROGRAMMING_LANGUAGES = {
+    c: {name: 'C', logo: '/images/tech/c.svg'},
+    cpp: {name: 'C++', logo: '/images/tech/cpp.svg'},
+    csharp: {name: 'C#', logo: '/images/tech/csharp.svg'},
     gml: {name: 'GML'},
     go: {name: 'Go', logo: '/images/tech/go.svg'},
     java: {name: 'Java', logo: '/images/tech/java.svg'},
@@ -19,6 +22,7 @@ export const PROGRAMMING_LANGUAGES = {
     kotlin: {name: 'Kotlin', logo: '/images/tech/kotlin.svg'},
     php: {name: 'PHP', logo: '/images/tech/php.svg'},
     python: {name: 'Python', logo: '/images/tech/python.svg'},
+    rust: {name: 'Rust', logo: '/images/tech/rust.svg', darkOnly: true},
     typescript: {name: 'TypeScript', logo: '/images/tech/typescript.svg'},
 } as const satisfies Record<string, Technology>
 
@@ -37,9 +41,12 @@ export const FRAMEWORKS = {
 
 /** Platforms, build tools, infrastructure. */
 export const TOOLS = {
+    'android': {name: 'Android', logo: '/images/tech/android.svg'},
     'aws': {name: 'AWS', logo: '/images/tech/aws.svg', darkOnly: true},
+    'azure': {name: 'Azure', logo: '/images/tech/azure.svg'},
     'docker': {name: 'Docker', logo: '/images/tech/docker.svg'},
     'dynamodb': {name: 'DynamoDB', logo: '/images/tech/dynamodb.svg'},
+    'gcp': {name: 'Google Cloud', logo: '/images/tech/gcp.svg'},
     'localstack': {name: 'LocalStack', logo: '/images/tech/localstack.svg'},
     'maven': {name: 'Maven', logo: '/images/tech/maven.svg'},
     'openapi': {name: 'OpenAPI', logo: '/images/tech/openapi.svg'},
