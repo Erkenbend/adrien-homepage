@@ -167,7 +167,7 @@ Jeder Schritt endet mit `bun lint` und `bun run build` ohne Fehler und einem eig
 ### 10. CI-Pipeline ✅
 
 - ✅ Upstream-Repository `git@github.com:Erkenbend/adrien-homepage.git` als Remote `origin` eingetragen.
-- ✅ `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernommen (Bun 1.3.8, Node 22), Stack `AdrienHomepageInfrastructureStack`. Abweichung: nur bei Push auf `main`, ohne manuellen Start (`workflow_dispatch`), Entscheidung des Nutzers.
+- ✅ `.github/workflows/github-actions-build-deploy.yml` aus `article-trainer` übernommen (heute Bun 1.4.5, Node 26), Stack `AdrienHomepageInfrastructureStack`. Abweichung: nur bei Push auf `main`, ohne manuellen Start (`workflow_dispatch`), Entscheidung des Nutzers.
 - ✅ Befehle für Deployment von Hand in `docs/deployment.md`.
 - ✅ Secrets `AWS_ACCESS_KEY_ID` und `AWS_SECRET_ACCESS_KEY` im Repository hinterlegt (Nutzer).
 - ✅ Erstes Deployment durch die Pipeline beim Push von `3788cfb` am 18.11.2026 (Lauf erfolgreich).
