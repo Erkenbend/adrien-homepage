@@ -16,8 +16,9 @@
     de: Card-as-a-Service-Plattform, entwickelt bei IT Sonix und Finatix. Whitelabel-Card-Programm, das es Geschäften erlaubt, ihren Kunden eigene Prepaid-Kreditkarten mit eigenem Branding sowie Treueprogramme anzubieten.
     en: Card-as-a-service platform, developed at IT Sonix and Finatix. A white-label card program that lets businesses offer their customers their own prepaid credit cards with their own branding, as well as loyalty programs.
     fr: Plateforme card-as-a-service, développée chez IT Sonix puis Finatix. Programme de cartes en marque blanche permettant aux commerces de proposer à leurs clients leurs propres cartes de crédit prépayées à leur image, ainsi que des programmes de fidélité.
-  languages: [java, php, typescript]
+  languages: [java, php, sql, typescript]
   frameworks: [spring-boot, symfony, angular]
+  tools: [docker, elasticsearch, jenkins, maven, openapi, rabbitmq, grafana]
   kind: professional
   period: {from: 2017-10, to: 2020-09}
   team: group
@@ -36,9 +37,9 @@
     de: "Zahlungsverkehrsplattform für DATEV, als Entwickler und Team-Architekt bei Finatix. Kontext EBICS: sichere und resiliente Abwicklung von Umsatzabholungen und Zahlungsaufträgen (Millionen pro Tag), zentral und standardisiert bereitgestellt für die anderen Komponenten des Systems."
     en: "Payment platform for DATEV, as developer and team architect at Finatix. EBICS context: secure and resilient processing of account transaction retrievals and payment orders (millions per day), provided centrally and in a standardized way to the other components of the system."
     fr: "Plateforme de paiement pour DATEV, en tant que développeur et architecte d’équipe chez Finatix. Contexte EBICS : traitement sûr et résilient des récupérations de transactions bancaires et des ordres de paiement (des millions par jour), mis à disposition de façon centralisée et standardisée pour les autres composants du système."
-  languages: [java, typescript, python]
-  frameworks: [spring-boot, angular]
-  tools: [aws, postgres, terraform]
+  languages: [java, typescript, python, sql]
+  frameworks: [spring-boot, angular, junit]
+  tools: [aws, postgres, terraform, docker, maven, openapi, rabbitmq, gitlab-ci, localstack, datadog]
   kind: professional
   period: {from: 2020-10}
   team: group
@@ -72,6 +73,7 @@
       d’exemple concret pour expliquer la concurrence en Golang (goroutines et channels)
       à l’aide de diagrammes animés.
   languages: [go]
+  tools: [raspberry-pi, github-actions]
   kind: hobby
   period: {from: 2026-11}
   team: solo
@@ -82,7 +84,7 @@
   visible: true
   name: {de: Diese Homepage, en: This homepage, fr: Cette page d’accueil}
   icon: /images/projects/adrien-homepage.svg
-  complexity: app
+  complexity: demo
   aiUsage: vibe
   description:
     de: >
@@ -96,7 +98,7 @@
       anglais et français. Contenu en YAML, vérifié au build.
   languages: [typescript]
   frameworks: [react, aws-cdk]
-  tools: [vite]
+  tools: [vite, github-actions]
   kind: hobby
   period: {from: 2026-11}
   team: solo
@@ -139,7 +141,7 @@
     fr: Entraîneur interactif pour les articles des noms allemands difficiles.
   languages: [typescript]
   frameworks: [react, aws-cdk]
-  tools: [vite]
+  tools: [vite, github-actions]
   kind: hobby
   period: {from: 2025-09}
   team: solo
@@ -177,7 +179,7 @@
   aiUsage: none
   description:
     de: >
-      Linter für Terraform-Code. Beiträge: nebenläufige Verarbeitung, neue Regeln,
+      Linter für Terraform-Code. Beiträge: parallele Verarbeitung, neue Regeln,
       Ausgabeformate (JSON, lesbar, lehrreich), Konfiguration und Ignorier-Dateien.
     en: >
       Linter for Terraform code. Contributions: concurrent processing, new rules,
@@ -187,7 +189,7 @@
       formats de sortie (JSON, lisible, pédagogique), configuration et fichiers d’exclusion.
   languages: [go]
   frameworks: [cobra]
-  tools: [terraform]
+  tools: [terraform, github-actions]
   kind: hobby
   period: {from: 2025-10, to: 2026-03}
   team: group
@@ -209,6 +211,7 @@
     fr: Participation à la 14e Pirate Software Game Jam en janvier 2024, développée en équipe.
   languages: [gml]
   frameworks: [gamemaker]
+  tools: [github-actions]
   kind: hobby
   period: {from: 2024-01, to: 2024-01}
   team: group
@@ -231,7 +234,7 @@
     fr: Tire un nombre au hasard entre 1 et N en un clic.
   languages: [typescript]
   frameworks: [react, aws-cdk]
-  tools: [vite]
+  tools: [vite, github-actions]
   kind: hobby
   period: {from: 2025-04, to: 2025-12}
   team: solo
@@ -281,7 +284,7 @@
       via RabbitMQ, pour relier toutes les entrées de log d’une requête.
   languages: [java]
   frameworks: [spring-boot]
-  tools: [rabbitmq, dynamodb, localstack, docker]
+  tools: [rabbitmq, dynamodb, localstack, docker, maven]
   kind: training
   period: {from: 2023-03, to: 2023-12}
   team: solo
@@ -305,7 +308,7 @@
       implémenté une fois en réactif et une fois en Spring MVC classique.
   languages: [java]
   frameworks: [spring-boot, webflux]
-  tools: [openapi]
+  tools: [openapi, maven]
   kind: training
   period: {from: 2024-07, to: 2024-07}
   team: solo
@@ -329,6 +332,7 @@
       fait se chevaucher des étapes de traitement lentes.
   languages: [java]
   frameworks: [spring-boot, webflux]
+  tools: [openapi, maven]
   kind: training
   period: {from: 2020-11, to: 2021-01}
   team: solo
